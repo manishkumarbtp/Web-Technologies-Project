@@ -1,0 +1,1986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>The ICFAI University, Jaipur</title>
+
+    <style>
+        /* =========================
+           GLOBAL
+        ========================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                         Roboto, Helvetica, Arial, sans-serif;
+
+            background: #f5f7fb;
+            color: #111827;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ::selection {
+            background: #172554;
+            color: white;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================== */
+
+        .navbar {
+            position: fixed;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+
+            width: min(1180px, 94%);
+            height: 66px;
+
+            display: flex;
+            align-items: center;
+
+            padding: 0 22px;
+
+            background: rgba(255, 255, 255, 0.78);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 22px;
+
+            box-shadow: 0 15px 45px rgba(15, 23, 42, 0.10);
+
+            z-index: 1000;
+
+            transition: 0.3s ease;
+        }
+
+        .nav-container {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: -0.3px;
+        }
+
+        .logo-mark {
+            width: 38px;
+            height: 38px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(135deg,
+                #172554,
+                #2563eb);
+
+            color: white;
+            font-weight: 800;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+
+            list-style: none;
+
+            font-size: 14px;
+            color: #475569;
+        }
+
+        .nav-links a {
+            transition: 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        .nav-admission {
+            padding: 10px 17px;
+            border-radius: 20px;
+
+            background: #111827;
+            color: white !important;
+        }
+
+        .nav-admission:hover {
+            background: #2563eb;
+        }
+
+        .menu-btn {
+            display: none;
+
+            border: none;
+            background: transparent;
+
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+        /* =========================
+           HERO
+        ========================== */
+
+        .hero {
+            min-height: 100vh;
+
+            position: relative;
+            overflow: hidden;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            padding: 150px 20px 100px;
+
+            background:
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(37, 99, 235, 0.18),
+                    transparent 28%
+                ),
+
+                radial-gradient(
+                    circle at 85% 30%,
+                    rgba(124, 58, 237, 0.18),
+                    transparent 28%
+                ),
+
+                radial-gradient(
+                    circle at 50% 100%,
+                    rgba(14, 165, 233, 0.12),
+                    transparent 35%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #ffffff,
+                    #f4f7ff,
+                    #eef2ff
+                );
+        }
+
+        .orb {
+            position: absolute;
+
+            width: 250px;
+            height: 250px;
+
+            border-radius: 50%;
+
+            filter: blur(80px);
+
+            opacity: 0.35;
+
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .orb-one {
+            background: #2563eb;
+            top: 20%;
+            left: -100px;
+        }
+
+        .orb-two {
+            background: #7c3aed;
+            bottom: 5%;
+            right: -100px;
+
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-35px);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+
+            max-width: 1000px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 9px 16px;
+
+            border-radius: 30px;
+
+            background: rgba(255,255,255,0.75);
+
+            border: 1px solid rgba(37,99,235,0.15);
+
+            color: #1d4ed8;
+
+            font-size: 13px;
+            font-weight: 600;
+
+            margin-bottom: 25px;
+        }
+
+        .badge-dot {
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #22c55e;
+
+            box-shadow: 0 0 10px #22c55e;
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 8vw, 96px);
+
+            line-height: 0.98;
+
+            letter-spacing: -5px;
+
+            font-weight: 800;
+
+            background:
+                linear-gradient(
+                    100deg,
+                    #0f172a,
+                    #1d4ed8,
+                    #7c3aed
+                );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero h1 span {
+            display: block;
+
+            font-size: 0.48em;
+
+            letter-spacing: -1px;
+
+            margin-top: 15px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #334155,
+                    #64748b
+                );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-description {
+            max-width: 700px;
+
+            margin: 30px auto;
+
+            color: #64748b;
+
+            font-size: 19px;
+
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 13px;
+
+            flex-wrap: wrap;
+
+            margin-top: 35px;
+        }
+
+        .btn {
+            padding: 14px 24px;
+
+            border-radius: 30px;
+
+            font-size: 15px;
+            font-weight: 600;
+
+            transition: 0.35s ease;
+        }
+
+        .btn-primary {
+            background: #111827;
+            color: white;
+
+            box-shadow:
+                0 10px 30px rgba(15,23,42,0.18);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            background: #2563eb;
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.75);
+
+            border: 1px solid #dbe2ea;
+
+            color: #1e293b;
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+
+            border-color: #2563eb;
+            color: #2563eb;
+        }
+
+        /* =========================
+           SECTION
+        ========================== */
+
+        section {
+            padding: 110px 20px;
+        }
+
+        .container {
+            width: min(1150px, 92%);
+            margin: auto;
+        }
+
+        .section-label {
+            text-align: center;
+
+            color: #2563eb;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            letter-spacing: 2px;
+            text-transform: uppercase;
+
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            text-align: center;
+
+            font-size: clamp(38px, 5vw, 62px);
+
+            letter-spacing: -3px;
+
+            line-height: 1.05;
+        }
+
+        .section-subtitle {
+            max-width: 650px;
+
+            margin: 18px auto 60px;
+
+            text-align: center;
+
+            color: #64748b;
+
+            font-size: 17px;
+            line-height: 1.8;
+        }
+
+        /* =========================
+           ABOUT
+        ========================== */
+
+        .about {
+            background: white;
+        }
+
+        .about-grid {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 60px;
+
+            align-items: center;
+        }
+
+        .about-content h3 {
+            font-size: 38px;
+
+            letter-spacing: -2px;
+
+            line-height: 1.15;
+
+            margin-bottom: 22px;
+        }
+
+        .about-content p {
+            color: #64748b;
+
+            font-size: 16px;
+
+            line-height: 1.9;
+
+            margin-bottom: 15px;
+        }
+
+        .about-visual {
+            min-height: 430px;
+
+            position: relative;
+
+            border-radius: 35px;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0f172a,
+                    #172554,
+                    #2563eb
+                );
+
+            box-shadow:
+                0 35px 80px rgba(30,64,175,0.25);
+        }
+
+        .about-visual::before {
+            content: "";
+
+            position: absolute;
+
+            width: 300px;
+            height: 300px;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,0.08);
+
+            top: -100px;
+            right: -80px;
+        }
+
+        .about-visual::after {
+            content: "";
+
+            position: absolute;
+
+            width: 220px;
+            height: 220px;
+
+            border-radius: 50%;
+
+            border: 1px solid rgba(255,255,255,0.2);
+
+            bottom: -70px;
+            left: -60px;
+        }
+
+        .visual-content {
+            position: absolute;
+
+            inset: 0;
+
+            display: flex;
+            flex-direction: column;
+
+            justify-content: center;
+            align-items: center;
+
+            color: white;
+
+            text-align: center;
+
+            z-index: 2;
+        }
+
+        .visual-symbol {
+            font-size: 80px;
+
+            margin-bottom: 20px;
+
+            filter:
+                drop-shadow(
+                    0 10px 20px
+                    rgba(0,0,0,0.2)
+                );
+        }
+
+        .visual-content h3 {
+            font-size: 28px;
+        }
+
+        .visual-content p {
+            color: #cbd5e1;
+
+            margin-top: 8px;
+        }
+
+        /* =========================
+           PROGRAMS
+        ========================== */
+
+        .programs {
+            background: #f6f8fc;
+        }
+
+        .program-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 18px;
+        }
+
+        .program-card {
+            position: relative;
+
+            min-height: 270px;
+
+            padding: 28px;
+
+            border-radius: 28px;
+
+            background: white;
+
+            border: 1px solid #e8edf4;
+
+            overflow: hidden;
+
+            transition: 0.45s ease;
+        }
+
+        .program-card::before {
+            content: "";
+
+            position: absolute;
+
+            width: 120px;
+            height: 120px;
+
+            border-radius: 50%;
+
+            background: #eff6ff;
+
+            right: -45px;
+            top: -45px;
+
+            transition: 0.4s ease;
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px);
+
+            box-shadow:
+                0 25px 60px
+                rgba(15,23,42,0.12);
+        }
+
+        .program-card:hover::before {
+            transform: scale(2.2);
+        }
+
+        .program-icon {
+            position: relative;
+
+            width: 52px;
+            height: 52px;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            border-radius: 16px;
+
+            background: #eff6ff;
+
+            font-size: 25px;
+
+            margin-bottom: 35px;
+        }
+
+        .program-card h3 {
+            font-size: 22px;
+
+            margin-bottom: 10px;
+        }
+
+        .program-card p {
+            position: relative;
+
+            color: #64748b;
+
+            font-size: 14px;
+
+            line-height: 1.7;
+        }
+
+        /* =========================
+           EXPERIENCE
+        ========================== */
+
+        .experience {
+            background:
+                linear-gradient(
+                    135deg,
+                    #0f172a,
+                    #172554
+                );
+
+            color: white;
+        }
+
+        .experience .section-label {
+            color: #93c5fd;
+        }
+
+        .experience .section-subtitle {
+            color: #94a3b8;
+        }
+
+        .experience-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+        .experience-card {
+            padding: 35px;
+
+            border-radius: 28px;
+
+            background:
+                rgba(255,255,255,0.06);
+
+            border: 1px solid
+                rgba(255,255,255,0.10);
+
+            backdrop-filter: blur(15px);
+
+            transition: 0.4s ease;
+        }
+
+        .experience-card:hover {
+            transform: translateY(-8px);
+
+            background:
+                rgba(255,255,255,0.10);
+        }
+
+        .experience-card span {
+            font-size: 35px;
+        }
+
+        .experience-card h3 {
+            font-size: 22px;
+
+            margin: 22px 0 10px;
+        }
+
+        .experience-card p {
+            color: #94a3b8;
+
+            font-size: 14px;
+
+            line-height: 1.8;
+        }
+
+        /* =========================
+           STATS
+        ========================== */
+
+        .stats {
+            background: white;
+        }
+
+        .stats-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 20px;
+
+            text-align: center;
+        }
+
+        .stat {
+            padding: 30px;
+        }
+
+        .stat h2 {
+            font-size: 52px;
+
+            letter-spacing: -3px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #172554,
+                    #2563eb
+                );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat p {
+            color: #64748b;
+
+            margin-top: 5px;
+        }
+
+        /* =========================
+           ADMISSION
+        ========================== */
+
+        .admission {
+            padding-top: 30px;
+
+            background: white;
+        }
+
+        .admission-box {
+            position: relative;
+
+            overflow: hidden;
+
+            padding: 75px 40px;
+
+            border-radius: 38px;
+
+            text-align: center;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    #111827,
+                    #172554,
+                    #2563eb
+                );
+
+            box-shadow:
+                0 30px 80px
+                rgba(30,64,175,0.22);
+        }
+
+        .admission-box::before {
+            content: "";
+
+            position: absolute;
+
+            width: 300px;
+            height: 300px;
+
+            border: 1px solid
+                rgba(255,255,255,0.12);
+
+            border-radius: 50%;
+
+            left: -100px;
+            top: -130px;
+        }
+
+        .admission-box h2 {
+            position: relative;
+
+            font-size: clamp(38px, 5vw, 60px);
+
+            letter-spacing: -3px;
+        }
+
+        .admission-box p {
+            position: relative;
+
+            max-width: 600px;
+
+            margin: 18px auto 30px;
+
+            color: #cbd5e1;
+
+            line-height: 1.8;
+        }
+
+        .admission-box .btn {
+            position: relative;
+
+            background: white;
+
+            color: #172554;
+        }
+
+        .admission-box .btn:hover {
+            transform: translateY(-3px);
+
+            background: #dbeafe;
+        }
+
+        /* =========================
+           CONTACT
+        ========================== */
+
+        .contact {
+            background: #f6f8fc;
+        }
+
+        .contact-grid {
+            display: grid;
+
+            grid-template-columns:
+                0.8fr 1.2fr;
+
+            gap: 30px;
+        }
+
+        .contact-info,
+        .contact-form {
+            background: white;
+
+            border-radius: 30px;
+
+            padding: 35px;
+
+            border: 1px solid #e7ebf2;
+        }
+
+        .contact-info h3 {
+            font-size: 30px;
+
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            color: #64748b;
+
+            line-height: 1.8;
+
+            margin-bottom: 20px;
+        }
+
+        .contact-item {
+            padding: 15px 0;
+
+            border-bottom: 1px solid #eef1f5;
+
+            color: #475569;
+
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+
+            border: 1px solid #dbe1ea;
+
+            border-radius: 14px;
+
+            padding: 14px;
+
+            font-family: inherit;
+
+            font-size: 15px;
+
+            outline: none;
+
+            transition: 0.3s ease;
+        }
+
+        .form-group textarea {
+            min-height: 130px;
+
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #2563eb;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(37,99,235,0.10);
+        }
+
+        .submit-btn {
+            width: 100%;
+
+            padding: 14px;
+
+            border: none;
+
+            border-radius: 20px;
+
+            background: #111827;
+
+            color: white;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #2563eb;
+        }
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+            background: #080b12;
+
+            color: white;
+
+            padding: 50px 20px;
+        }
+
+        .footer-container {
+            width: min(1150px, 92%);
+
+            margin: auto;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 25px;
+        }
+
+        .footer-logo {
+            font-size: 17px;
+
+            font-weight: 700;
+        }
+
+        .footer-container p {
+            color: #64748b;
+
+            font-size: 13px;
+        }
+
+        .footer-links {
+            display: flex;
+
+            gap: 20px;
+
+            color: #94a3b8;
+
+            font-size: 13px;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        /* =========================
+           SCROLL REVEAL
+        ========================== */
+
+        .reveal {
+            opacity: 0;
+
+            transform: translateY(40px);
+
+            transition:
+                opacity 0.8s ease,
+                transform 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+
+            transform: translateY(0);
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================== */
+
+        @media (max-width: 900px) {
+
+            .nav-links {
+                position: absolute;
+
+                top: 76px;
+                left: 0;
+
+                width: 100%;
+
+                display: none;
+
+                flex-direction: column;
+
+                align-items: stretch;
+
+                gap: 0;
+
+                padding: 10px;
+
+                border-radius: 20px;
+
+                background: rgba(255,255,255,0.96);
+
+                backdrop-filter: blur(20px);
+
+                box-shadow:
+                    0 20px 50px
+                    rgba(15,23,42,0.15);
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .nav-links li {
+                padding: 13px 18px;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .program-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .experience-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                top: 8px;
+            }
+
+            .hero h1 {
+                letter-spacing: -3px;
+            }
+
+            .hero-description {
+                font-size: 16px;
+            }
+
+            .program-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-container {
+                flex-direction: column;
+
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+
+                justify-content: center;
+            }
+
+            section {
+                padding: 80px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+
+    <nav class="navbar">
+
+        <div class="nav-container">
+
+            <a href="#home" class="logo">
+
+                <div class="logo-mark">
+                    IU
+                </div>
+
+                <span>
+                    The ICFAI University, Jaipur
+                </span>
+
+            </a>
+
+            <button class="menu-btn" id="menuBtn">
+                ☰
+            </button>
+
+            <ul class="nav-links" id="navLinks">
+
+                <li>
+                    <a href="#home">Home</a>
+                </li>
+
+                <li>
+                    <a href="#about">University</a>
+                </li>
+
+                <li>
+                    <a href="#programs">Programs</a>
+                </li>
+
+                <li>
+                    <a href="#experience">Experience</a>
+                </li>
+
+                <li>
+                    <a href="#contact">Contact</a>
+                </li>
+
+                <li>
+                    <a href="#admission" class="nav-admission">
+                        Admissions
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero" id="home">
+
+        <div class="orb orb-one"></div>
+        <div class="orb orb-two"></div>
+
+        <div class="hero-content">
+
+            <div class="hero-badge">
+
+                <span class="badge-dot"></span>
+
+                Admissions & Academic Journey
+
+            </div>
+
+            <h1>
+
+                The ICFAI
+                University
+
+                <span>
+                    Jaipur • Rajasthan
+                </span>
+
+            </h1>
+
+            <p class="hero-description">
+
+                A modern learning environment where ideas,
+                technology and ambition come together to
+                shape the leaders of tomorrow.
+
+            </p>
+
+            <div class="hero-buttons">
+
+                <a
+                    href="#programs"
+                    class="btn btn-primary"
+                >
+                    Explore Programs →
+                </a>
+
+                <a
+                    href="#about"
+                    class="btn btn-secondary"
+                >
+                    Discover the University
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         ABOUT
+    ========================== -->
+
+    <section class="about reveal" id="about">
+
+        <div class="container">
+
+            <div class="section-label">
+                THE UNIVERSITY
+            </div>
+
+            <h2 class="section-title">
+                Education without limits.
+            </h2>
+
+            <p class="section-subtitle">
+
+                An environment designed to encourage curiosity,
+                creativity, professional growth and innovation.
+
+            </p>
+
+            <div class="about-grid">
+
+                <div class="about-content">
+
+                    <h3>
+                        Learn today.
+                        Create tomorrow.
+                    </h3>
+
+                    <p>
+
+                        The ICFAI University, Jaipur provides an
+                        academic environment where students can
+                        develop knowledge, practical skills and
+                        independent thinking.
+
+                    </p>
+
+                    <p>
+
+                        With technology-driven learning,
+                        professional exposure and a focus on
+                        future-ready skills, students can prepare
+                        themselves for an evolving world.
+
+                    </p>
+
+                </div>
+
+                <div class="about-visual">
+
+                    <div class="visual-content">
+
+                        <div class="visual-symbol">
+                            ✦
+                        </div>
+
+                        <h3>
+                            Learn • Lead • Innovate
+                        </h3>
+
+                        <p>
+                            The ICFAI University, Jaipur
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PROGRAMS
+    ========================== -->
+
+    <section class="programs reveal" id="programs">
+
+        <div class="container">
+
+            <div class="section-label">
+                ACADEMICS
+            </div>
+
+            <h2 class="section-title">
+                Explore your future.
+            </h2>
+
+            <p class="section-subtitle">
+
+                Discover academic pathways designed to build
+                strong foundations and practical skills.
+
+            </p>
+
+            <div class="program-grid">
+
+                <div class="program-card">
+
+                    <div class="program-icon">
+                        💻
+                    </div>
+
+                    <h3>
+                        Computer Applications
+                    </h3>
+
+                    <p>
+
+                        Develop programming, software development
+                        and technology skills for the digital world.
+
+                    </p>
+
+                </div>
+
+
+                <div class="program-card">
+
+                    <div class="program-icon">
+                        ⚙️
+                    </div>
+
+                    <h3>
+                        Computer Science
+                    </h3>
+
+                    <p>
+
+                        Explore algorithms, software systems,
+                        computing and emerging technologies.
+
+                    </p>
+
+                </div>
+
+
+                <div class="program-card">
+
+                    <div class="program-icon">
+                        📊
+                    </div>
+
+                    <h3>
+                        Management
+                    </h3>
+
+                    <p>
+
+                        Build business knowledge, leadership skills
+                        and strategic thinking.
+
+                    </p>
+
+                </div>
+
+
+                <div class="program-card">
+
+                    <div class="program-icon">
+                        🚀
+                    </div>
+
+                    <h3>
+                        Technology
+                    </h3>
+
+                    <p>
+
+                        Learn with a future-focused mindset and
+                        explore innovation-driven opportunities.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         EXPERIENCE
+    ========================== -->
+
+    <section class="experience reveal" id="experience">
+
+        <div class="container">
+
+            <div class="section-label">
+                CAMPUS EXPERIENCE
+            </div>
+
+            <h2 class="section-title">
+                More than a classroom.
+            </h2>
+
+            <p class="section-subtitle">
+
+                University life is about learning, discovering
+                new interests and creating meaningful experiences.
+
+            </p>
+
+            <div class="experience-grid">
+
+                <div class="experience-card">
+
+                    <span>🧠</span>
+
+                    <h3>
+                        Innovation
+                    </h3>
+
+                    <p>
+
+                        Encourage creative thinking, problem solving
+                        and technology-driven ideas.
+
+                    </p>
+
+                </div>
+
+
+                <div class="experience-card">
+
+                    <span>🌐</span>
+
+                    <h3>
+                        Industry Exposure
+                    </h3>
+
+                    <p>
+
+                        Connect academic learning with practical
+                        knowledge and professional experiences.
+
+                    </p>
+
+                </div>
+
+
+                <div class="experience-card">
+
+                    <span>🎯</span>
+
+                    <h3>
+                        Career Focus
+                    </h3>
+
+                    <p>
+
+                        Develop skills, confidence and professional
+                        capabilities for future opportunities.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         STATS
+    ========================== -->
+
+    <section class="stats reveal">
+
+        <div class="container">
+
+            <div class="stats-grid">
+
+                <div class="stat">
+
+                    <h2>25+</h2>
+
+                    <p>
+                        Years of Academic Journey
+                    </p>
+
+                </div>
+
+                <div class="stat">
+
+                    <h2>5K+</h2>
+
+                    <p>
+                        Student Community
+                    </p>
+
+                </div>
+
+                <div class="stat">
+
+                    <h2>100+</h2>
+
+                    <p>
+                        Faculty & Academics
+                    </p>
+
+                </div>
+
+                <div class="stat">
+
+                    <h2>50+</h2>
+
+                    <p>
+                        Industry Connections
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         ADMISSION CTA
+    ========================== -->
+
+    <section class="admission reveal" id="admission">
+
+        <div class="container">
+
+            <div class="admission-box">
+
+                <h2>
+                    Your next chapter
+                    starts here.
+                </h2>
+
+                <p>
+
+                    Take the next step toward your academic
+                    and professional journey at
+                    The ICFAI University, Jaipur.
+
+                </p>
+
+                <a
+                    href="#contact"
+                    class="btn"
+                >
+                    Enquire Now →
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CONTACT
+    ========================== -->
+
+    <section class="contact reveal" id="contact">
+
+        <div class="container">
+
+            <div class="section-label">
+                CONNECT
+            </div>
+
+            <h2 class="section-title">
+                Let's talk.
+            </h2>
+
+            <p class="section-subtitle">
+
+                Have a question about academics, admissions
+                or university life?
+
+            </p>
+
+            <div class="contact-grid">
+
+                <div class="contact-info">
+
+                    <h3>
+                        The ICFAI University, Jaipur
+                    </h3>
+
+                    <p>
+
+                        Connect with the university to learn more
+                        about programs, admissions and opportunities.
+
+                    </p>
+
+                    <div class="contact-item">
+                        📍 Jaipur, Rajasthan, India
+                    </div>
+
+                    <div class="contact-item">
+                        🎓 Academic Admissions
+                    </div>
+
+                    <div class="contact-item">
+                        💻 Technology & Programs
+                    </div>
+
+                </div>
+
+
+                <div class="contact-form">
+
+                    <form id="contactForm">
+
+                        <div class="form-group">
+
+                            <label>
+                                Your Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="name"
+                                placeholder="Enter your name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Email Address
+                            </label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                placeholder="Enter your email"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Message
+                            </label>
+
+                            <textarea
+                                id="message"
+                                placeholder="How can we help?"
+                                required
+                            ></textarea>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="submit-btn"
+                        >
+                            Send Message
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <div class="footer-container">
+
+            <div>
+
+                <div class="footer-logo">
+                    The ICFAI University, Jaipur
+                </div>
+
+                <p>
+                    Learn. Lead. Innovate.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <a href="#home">
+                    Home
+                </a>
+
+                <a href="#about">
+                    University
+                </a>
+
+                <a href="#programs">
+                    Programs
+                </a>
+
+                <a href="#contact">
+                    Contact
+                </a>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+        /* =========================
+           MOBILE NAVIGATION
+        ========================== */
+
+        const menuBtn =
+            document.getElementById("menuBtn");
+
+        const navLinks =
+            document.getElementById("navLinks");
+
+        menuBtn.addEventListener("click", function () {
+
+            navLinks.classList.toggle("show");
+
+        });
+
+
+        /* =========================
+           CLOSE MENU AFTER CLICK
+        ========================== */
+
+        document
+            .querySelectorAll(".nav-links a")
+            .forEach(function(link) {
+
+                link.addEventListener("click", function() {
+
+                    navLinks.classList.remove("show");
+
+                });
+
+            });
+
+
+        /* =========================
+           SCROLL REVEAL
+        ========================== */
+
+        const revealElements =
+            document.querySelectorAll(".reveal");
+
+        function revealOnScroll() {
+
+            const windowHeight =
+                window.innerHeight;
+
+            revealElements.forEach(function(element) {
+
+                const elementTop =
+                    element.getBoundingClientRect().top;
+
+                if (elementTop <
+                    windowHeight - 100) {
+
+                    element.classList.add("active");
+
+                }
+
+            });
+
+        }
+
+        window.addEventListener(
+            "scroll",
+            revealOnScroll
+        );
+
+        revealOnScroll();
+
+
+        /* =========================
+           CONTACT FORM
+        ========================== */
+
+        const contactForm =
+            document.getElementById("contactForm");
+
+        contactForm.addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+                const name =
+                    document.getElementById("name").value;
+
+                alert(
+                    "Thank you, " +
+                    name +
+                    "! Your enquiry has been submitted."
+                );
+
+                contactForm.reset();
+
+            }
+        );
+
+
+        /* =========================
+           NAVBAR SCROLL EFFECT
+        ========================== */
+
+        window.addEventListener(
+            "scroll",
+            function() {
+
+                const navbar =
+                    document.querySelector(".navbar");
+
+                if (window.scrollY > 60) {
+
+                    navbar.style.boxShadow =
+                        "0 18px 50px rgba(15,23,42,0.16)";
+
+                    navbar.style.background =
+                        "rgba(255,255,255,0.94)";
+
+                } else {
+
+                    navbar.style.boxShadow =
+                        "0 15px 45px rgba(15,23,42,0.10)";
+
+                    navbar.style.background =
+                        "rgba(255,255,255,0.78)";
+
+                }
+
+            }
+        );
+
+
+        /* =========================
+           ESC KEY MENU CLOSE
+        ========================== */
+
+        document.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (event.key === "Escape") {
+
+                    navLinks.classList.remove("show");
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+</html>
+```
