@@ -1,55 +1,129 @@
-<!-- Cabeçalho e Menu de Navegação -->
-<header>
-    <div class="container navbar">
-        <h1 class="logo">Food<span>Corner</span></h1>
-        <nav>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integrated Dashboard - ICFAITECH, RBM Hospital, College & Book Store</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: #003366;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #004080;
+            padding: 10px;
+        }
+        nav a {
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover {
+            background-color: #0059b3;
+            border-radius: 4px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        section {
+            margin-bottom: 40px;
+        }
+        h2 {
+            color: #003366;
+            border-bottom: 2px solid #003366;
+            padding-bottom: 5px;
+        }
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #003366;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Integrated Portal</h1>
+        <p>ICFAITECH | RBM Hospital | College | Book Store</p>
+    </header>
+
+    <nav>
+        <a href="#icfaitech">ICFAITECH</a>
+        <a href="#rbm-hospital">RBM Hospital</a>
+        <a href="#college">College</a>
+        <a href="#bookstore">Book Store</a>
+    </nav>
+
+    <div class="container">
+        <!-- ICFAITECH Section -->
+        <section id="icfaitech">
+            <h2>ICFAITECH</h2>
+            <p>Welcome to ICFAITECH. Excellence in technology, engineering education, research, and innovation.</p>
             <ul>
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="#menu">Cardápio</a></li>
-                <li><a href="#about">Sobre</a></li>
-                <li><a href="#contact">Contato</a></li>
+                <li>Computer Science & Engineering</li>
+                <li>Electronics & Communication</li>
+                <li>Mechanical & Civil Engineering</li>
             </ul>
-        </nav>
-    </div>
-</header>
+        </section>
 
-<!-- Seção Principal (Hero) -->
-<section class="hero">
-    <div class="container hero-content">
-        <h2>Comida deliciosa entregue na sua porta</h2>
-        <p>Experimente os melhores pratos preparados com ingredientes frescos e selecionados.</p>
-        <a href="#menu" class="btn">Ver Cardápio</a>
-    </div>
-</section>
+        <!-- RBM Hospital Section -->
+        <section id="rbm-hospital">
+            <h2>RBM Hospital</h2>
+            <p>Providing top-notch healthcare services, emergency care, and advanced medical treatments with experienced professionals.</p>
+            <ul>
+                <li>24/7 Emergency Services</li>
+                <li>ICU & Pharmacy</li>
+                <li>Specialized Consultations</li>
+            </ul>
+        </section>
 
-<!-- Seção de Produtos / Destaques -->
-<section id="menu" class="container section">
-    <h2>Pratos Populares</h2>
-    <div class="grid-products">
-        <div class="card">
-            <img src="images/burger.jpg" alt="Hambúrguer Gourmet">
-            <h3>Hambúrguer Gourmet</h3>
-            <p>Delicioso hambúrguer artesanal com queijo cheddar e bacon.</p>
-            <span>R$ 35,00</span>
-        </div>
-        <div class="card">
-            <img src="images/pizza.jpg" alt="Pizza Margherita">
-            <h3>Pizza Margherita</h3>
-            <p>Molho de tomate fresco, mussarela de búfala e manjericão.</p>
-            <span>R$ 45,00</span>
-        </div>
-        <div class="card">
-            <img src="images/dessert.jpg" alt="Sobremesa Especial">
-            <h3>Sobremesa Especial</h3>
-            <p>Brownie cremoso de chocolate com sorvete de baunilha.</p>
-            <span>R$ 18,00</span>
-        </div>
-    </div>
-</section>
+        <!-- College Section -->
+        <section id="college">
+            <h2>College Portal</h2>
+            <p>A hub for higher education, arts, science, commerce, and overall student development.</p>
+            <ul>
+                <li>Undergraduate & Postgraduate Programs</li>
+                <li>Library & Sports Facilities</li>
+                <li>Placement Cell</li>
+            </ul>
+        </section>
 
-<!-- Rodapé -->
-<footer>
-    <div class="container footer-content">
-        <p>&copy; 2026 Food Corner. Todos os direitos reservados.</p>
+        <!-- Book Store Section -->
+        <section id="bookstore">
+            <h2>Book Store</h2>
+            <p>Your one-stop destination for academic textbooks, reference materials, novels, and stationery.</p>
+            <ul>
+                <li>Engineering & Medical Textbooks</li>
+                <li>General Fiction & Non-Fiction</li>
+                <li>Stationery & Notebooks</li>
+            </ul>
+        </section>
     </div>
-</footer>
+
+    <footer>
+        <p>© 2026 Integrated Portal. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
