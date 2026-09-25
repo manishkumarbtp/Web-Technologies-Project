@@ -1,0 +1,2027 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Rajasthan Online Book Store | Premium Bookstore</title>
+
+<style>
+
+/* =========================
+   GLOBAL
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    background:#f5f5f7;
+    color:#1d1d1f;
+    overflow-x:hidden;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+button,
+input,
+textarea{
+    font-family:inherit;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:64px;
+    z-index:1000;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 7%;
+
+    background:rgba(255,255,255,.72);
+    backdrop-filter:blur(25px);
+    -webkit-backdrop-filter:blur(25px);
+
+    border-bottom:1px solid rgba(0,0,0,.07);
+
+    transition:.4s;
+}
+
+.logo{
+    font-size:21px;
+    font-weight:700;
+    letter-spacing:-.8px;
+    white-space:nowrap;
+}
+
+.logo span{
+    color:#d65a00;
+}
+
+.nav-links{
+    display:flex;
+    gap:32px;
+    list-style:none;
+}
+
+.nav-links a{
+    font-size:14px;
+    color:#424245;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:#d65a00;
+}
+
+.nav-actions{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.cart{
+    border:0;
+    background:transparent;
+    font-size:21px;
+    cursor:pointer;
+    position:relative;
+}
+
+.cart-count{
+    position:absolute;
+    top:-7px;
+    right:-9px;
+
+    width:18px;
+    height:18px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#d65a00;
+    color:white;
+    border-radius:50%;
+
+    font-size:10px;
+}
+
+.menu-btn{
+    display:none;
+    border:0;
+    background:transparent;
+    font-size:25px;
+    cursor:pointer;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    min-height:100vh;
+
+    padding:150px 7% 90px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+
+    position:relative;
+    overflow:hidden;
+
+    background:
+    radial-gradient(circle at 15% 25%,rgba(214,90,0,.13),transparent 28%),
+    radial-gradient(circle at 85% 65%,rgba(255,149,0,.15),transparent 28%),
+    #f5f5f7;
+}
+
+.hero-content{
+    max-width:1000px;
+    position:relative;
+    z-index:3;
+}
+
+.hero-badge{
+    display:inline-block;
+
+    padding:9px 18px;
+    margin-bottom:25px;
+
+    border-radius:30px;
+
+    background:rgba(255,255,255,.8);
+    border:1px solid rgba(0,0,0,.08);
+
+    font-size:13px;
+
+    animation:fadeUp .8s ease both;
+}
+
+.hero h1{
+    font-size:clamp(55px,9vw,120px);
+    line-height:.88;
+
+    letter-spacing:-8px;
+    font-weight:800;
+
+    animation:fadeUp 1s .1s ease both;
+}
+
+.gradient-text{
+    background:
+    linear-gradient(
+        90deg,
+        #d65a00,
+        #ff9500,
+        #e85d04
+    );
+
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.hero p{
+    max-width:650px;
+    margin:35px auto;
+
+    color:#6e6e73;
+
+    font-size:20px;
+    line-height:1.6;
+
+    animation:fadeUp 1s .25s ease both;
+}
+
+.hero-buttons{
+    display:flex;
+    justify-content:center;
+    gap:14px;
+
+    animation:fadeUp 1s .4s ease both;
+}
+
+.btn{
+    border:0;
+    border-radius:30px;
+
+    padding:15px 26px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    transition:.35s;
+}
+
+.btn-primary{
+    background:#1d1d1f;
+    color:white;
+}
+
+.btn-primary:hover{
+    background:#d65a00;
+    transform:translateY(-5px);
+    box-shadow:0 15px 35px rgba(214,90,0,.25);
+}
+
+.btn-secondary{
+    background:white;
+    border:1px solid #ddd;
+}
+
+.btn-secondary:hover{
+    transform:translateY(-5px);
+    box-shadow:0 12px 30px rgba(0,0,0,.1);
+}
+
+
+/* =========================
+   FLOATING BOOKS
+========================= */
+
+.float-book{
+    position:absolute;
+
+    width:90px;
+    height:120px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:8px 15px 15px 8px;
+
+    color:white;
+    font-size:38px;
+
+    box-shadow:
+        15px 20px 35px rgba(0,0,0,.15);
+
+    animation:bookFloat 6s ease-in-out infinite;
+}
+
+.book-one{
+    left:8%;
+    top:28%;
+
+    background:
+    linear-gradient(135deg,#d65a00,#ff9500);
+
+    transform:rotate(-12deg);
+}
+
+.book-two{
+    right:9%;
+    bottom:22%;
+
+    background:
+    linear-gradient(135deg,#8e44ad,#d65a00);
+
+    transform:rotate(12deg);
+
+    animation-delay:1s;
+}
+
+.book-three{
+    left:15%;
+    bottom:12%;
+
+    width:65px;
+    height:90px;
+
+    background:
+    linear-gradient(135deg,#b8860b,#ff9500);
+
+    transform:rotate(15deg);
+
+    animation-delay:2s;
+}
+
+
+/* =========================
+   SECTIONS
+========================= */
+
+section{
+    padding:120px 7%;
+}
+
+.section-title{
+    text-align:center;
+    max-width:800px;
+    margin:auto;
+}
+
+.section-title small{
+    color:#d65a00;
+    font-weight:700;
+    letter-spacing:.5px;
+}
+
+.section-title h2{
+    margin:12px 0 20px;
+
+    font-size:clamp(42px,6vw,72px);
+
+    letter-spacing:-4px;
+}
+
+.section-title p{
+    color:#6e6e73;
+    font-size:18px;
+    line-height:1.6;
+}
+
+
+/* =========================
+   CATEGORIES
+========================= */
+
+.categories{
+    background:white;
+}
+
+.category-grid{
+    max-width:1100px;
+    margin:65px auto 0;
+
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:18px;
+}
+
+.category-card{
+    padding:32px 18px;
+
+    text-align:center;
+
+    background:#f5f5f7;
+
+    border-radius:28px;
+
+    transition:.5s;
+
+    opacity:0;
+    transform:translateY(40px);
+}
+
+.category-card.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.category-card:hover{
+    transform:translateY(-10px) scale(1.02);
+
+    background:white;
+
+    box-shadow:
+        0 25px 50px rgba(0,0,0,.10);
+}
+
+.category-icon{
+    font-size:42px;
+    margin-bottom:17px;
+}
+
+.category-card h3{
+    font-size:17px;
+}
+
+.category-card p{
+    margin-top:8px;
+    color:#86868b;
+    font-size:13px;
+}
+
+
+/* =========================
+   BOOKS
+========================= */
+
+.books{
+    background:#f5f5f7;
+}
+
+.search-box{
+    max-width:600px;
+    margin:50px auto 35px;
+}
+
+.search-box input{
+    width:100%;
+
+    padding:17px 22px;
+
+    border:1px solid #ddd;
+    border-radius:30px;
+
+    outline:none;
+
+    background:white;
+
+    font-size:15px;
+
+    transition:.3s;
+}
+
+.search-box input:focus{
+    border-color:#d65a00;
+
+    box-shadow:
+        0 0 0 5px rgba(214,90,0,.08);
+}
+
+.book-grid{
+    max-width:1100px;
+    margin:auto;
+
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+
+    gap:22px;
+}
+
+.book-card{
+    background:white;
+
+    border-radius:30px;
+
+    padding:18px;
+
+    transition:.5s;
+
+    overflow:hidden;
+}
+
+.book-card:hover{
+    transform:translateY(-10px);
+
+    box-shadow:
+        0 25px 50px rgba(0,0,0,.12);
+}
+
+.book-cover{
+    height:260px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:22px;
+
+    font-size:75px;
+
+    color:white;
+
+    transition:.5s;
+}
+
+.book-card:hover .book-cover{
+    transform:scale(1.025);
+}
+
+.cover-blue{
+    background:
+    linear-gradient(135deg,#d65a00,#ff9500);
+}
+
+.cover-purple{
+    background:
+    linear-gradient(135deg,#8e44ad,#d65a00);
+}
+
+.cover-orange{
+    background:
+    linear-gradient(135deg,#ff9500,#e85d04);
+}
+
+.book-info{
+    padding:22px 5px 5px;
+}
+
+.book-info h3{
+    font-size:22px;
+    margin-bottom:7px;
+}
+
+.author{
+    color:#86868b;
+    font-size:14px;
+}
+
+.book-bottom{
+    margin-top:18px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.price{
+    font-size:20px;
+    font-weight:700;
+}
+
+.buy-btn{
+    border:0;
+
+    padding:10px 17px;
+
+    border-radius:20px;
+
+    background:#1d1d1f;
+    color:white;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.buy-btn:hover{
+    background:#d65a00;
+    transform:scale(1.05);
+}
+
+
+/* =========================
+   RAJASTHAN SPECIAL SECTION
+========================= */
+
+.rajasthan{
+    background:white;
+}
+
+.rajasthan-box{
+    max-width:1100px;
+    min-height:450px;
+
+    margin:65px auto 0;
+
+    border-radius:42px;
+
+    padding:70px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    color:white;
+
+    position:relative;
+    overflow:hidden;
+
+    background:
+        radial-gradient(circle at 20% 30%,#d65a00,transparent 30%),
+        radial-gradient(circle at 80% 70%,#ff9500,transparent 30%),
+        #1d1d1f;
+}
+
+.rajasthan-box::before{
+    content:"";
+
+    position:absolute;
+    inset:20px;
+
+    border:1px solid rgba(255,255,255,.16);
+
+    border-radius:30px;
+}
+
+.rajasthan-content{
+    position:relative;
+    z-index:2;
+}
+
+.rajasthan-content .symbol{
+    font-size:55px;
+}
+
+.rajasthan-content h2{
+    font-size:clamp(42px,7vw,78px);
+
+    letter-spacing:-5px;
+
+    margin:12px 0 20px;
+}
+
+.rajasthan-content p{
+    max-width:650px;
+
+    color:#d2d2d2;
+
+    font-size:18px;
+
+    line-height:1.7;
+}
+
+
+/* =========================
+   OFFER
+========================= */
+
+.offer{
+    background:#f5f5f7;
+}
+
+.offer-box{
+    max-width:1100px;
+    min-height:430px;
+
+    margin:65px auto 0;
+
+    border-radius:42px;
+
+    padding:70px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    color:white;
+
+    position:relative;
+    overflow:hidden;
+
+    background:
+        radial-gradient(circle at 25% 30%,#d65a00,transparent 28%),
+        radial-gradient(circle at 75% 70%,#8e44ad,transparent 30%),
+        #1d1d1f;
+}
+
+.offer-box::before{
+    content:"";
+
+    position:absolute;
+
+    inset:20px;
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:30px;
+}
+
+.offer-content{
+    position:relative;
+    z-index:2;
+}
+
+.offer-content small{
+    color:#ffd9b3;
+}
+
+.offer-content h2{
+    font-size:clamp(45px,7vw,80px);
+
+    letter-spacing:-5px;
+
+    margin:15px 0;
+}
+
+.offer-content p{
+    color:#d2d2d2;
+
+    font-size:18px;
+
+    margin-bottom:25px;
+}
+
+.offer-btn{
+    background:white;
+    color:#1d1d1f;
+}
+
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact{
+    background:white;
+}
+
+.contact-form{
+    max-width:750px;
+
+    margin:55px auto 0;
+
+    display:grid;
+
+    gap:15px;
+}
+
+.contact-form input,
+.contact-form textarea{
+    width:100%;
+
+    padding:17px 20px;
+
+    border-radius:17px;
+
+    border:1px solid #ddd;
+
+    outline:none;
+
+    background:#f5f5f7;
+
+    transition:.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus{
+    border-color:#d65a00;
+
+    box-shadow:
+        0 0 0 4px rgba(214,90,0,.08);
+}
+
+.contact-form textarea{
+    min-height:140px;
+
+    resize:vertical;
+}
+
+.send-btn{
+    border:0;
+
+    padding:16px;
+
+    border-radius:18px;
+
+    background:#1d1d1f;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    transition:.3s;
+}
+
+.send-btn:hover{
+    background:#d65a00;
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 15px 30px rgba(214,90,0,.2);
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    background:#1d1d1f;
+
+    color:#888;
+
+    text-align:center;
+
+    padding:40px 7%;
+}
+
+footer strong{
+    color:white;
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+    position:fixed;
+
+    bottom:30px;
+    left:50%;
+
+    transform:translate(-50%,120px);
+
+    opacity:0;
+
+    padding:14px 23px;
+
+    border-radius:30px;
+
+    background:#1d1d1f;
+
+    color:white;
+
+    z-index:2000;
+
+    transition:.4s;
+}
+
+.toast.show{
+    transform:translate(-50%,0);
+
+    opacity:1;
+}
+
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(35px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+@keyframes bookFloat{
+
+    0%,100%{
+        translate:0 0;
+    }
+
+    50%{
+        translate:0 -30px;
+    }
+
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:950px){
+
+    .nav-links{
+        position:absolute;
+
+        top:64px;
+        left:0;
+
+        width:100%;
+
+        padding:25px;
+
+        display:none;
+
+        flex-direction:column;
+
+        align-items:center;
+
+        background:rgba(255,255,255,.96);
+
+        backdrop-filter:blur(20px);
+    }
+
+    .nav-links.open{
+        display:flex;
+    }
+
+    .menu-btn{
+        display:block;
+    }
+
+    .category-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .book-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .float-book{
+        opacity:.3;
+    }
+}
+
+
+@media(max-width:650px){
+
+    .navbar{
+        padding:0 5%;
+    }
+
+    .logo{
+        font-size:18px;
+    }
+
+    section{
+        padding:90px 5%;
+    }
+
+    .hero{
+        padding-left:5%;
+        padding-right:5%;
+    }
+
+    .hero h1{
+        letter-spacing:-5px;
+    }
+
+    .hero p{
+        font-size:17px;
+    }
+
+    .hero-buttons{
+        flex-direction:column;
+
+        max-width:260px;
+
+        margin:auto;
+    }
+
+    .category-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .book-grid{
+        grid-template-columns:1fr;
+    }
+
+    .rajasthan-box,
+    .offer-box{
+        padding:50px 25px;
+        border-radius:30px;
+    }
+
+    .rajasthan-content h2,
+    .offer-content h2{
+        letter-spacing:-3px;
+    }
+
+    .float-book{
+        display:none;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav class="navbar" id="navbar">
+
+    <div class="logo">
+        Rajasthan<span>Books</span>
+    </div>
+
+    <ul class="nav-links" id="navLinks">
+
+        <li>
+            <a href="#home">Home</a>
+        </li>
+
+        <li>
+            <a href="#categories">Categories</a>
+        </li>
+
+        <li>
+            <a href="#books">Books</a>
+        </li>
+
+        <li>
+            <a href="#rajasthan">Rajasthan</a>
+        </li>
+
+        <li>
+            <a href="#offers">Offers</a>
+        </li>
+
+        <li>
+            <a href="#contact">Contact</a>
+        </li>
+
+    </ul>
+
+    <div class="nav-actions">
+
+        <button class="cart" title="Shopping Cart">
+
+            🛒
+
+            <span
+                class="cart-count"
+                id="cartCount"
+            >
+                0
+            </span>
+
+        </button>
+
+        <button
+            class="menu-btn"
+            id="menuBtn"
+        >
+            ☰
+        </button>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero" id="home">
+
+    <div class="float-book book-one">
+        📘
+    </div>
+
+    <div class="float-book book-two">
+        📕
+    </div>
+
+    <div class="float-book book-three">
+        📗
+    </div>
+
+
+    <div class="hero-content">
+
+        <div class="hero-badge">
+            📚 Rajasthan's Online Book Destination
+        </div>
+
+        <h1>
+
+            Discover.<br>
+
+            <span class="gradient-text">
+                Read. Grow.
+            </span>
+
+        </h1>
+
+        <p>
+
+            Discover books that inspire ideas,
+            build knowledge and take you
+            somewhere new.
+
+        </p>
+
+
+        <div class="hero-buttons">
+
+            <a
+                href="#books"
+                class="btn btn-primary"
+            >
+                Explore Books
+            </a>
+
+            <a
+                href="#categories"
+                class="btn btn-secondary"
+            >
+                Browse Categories
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     CATEGORIES
+========================= -->
+
+<section
+    class="categories"
+    id="categories"
+>
+
+    <div class="section-title">
+
+        <small>
+            EXPLORE
+        </small>
+
+        <h2>
+
+            Find your next<br>
+            favorite book.
+
+        </h2>
+
+        <p>
+
+            Explore our carefully selected collection
+            across popular categories.
+
+        </p>
+
+    </div>
+
+
+    <div class="category-grid">
+
+
+        <div class="category-card">
+
+            <div class="category-icon">
+                💻
+            </div>
+
+            <h3>
+                Programming
+            </h3>
+
+            <p>
+                Code & Development
+            </p>
+
+        </div>
+
+
+        <div class="category-card">
+
+            <div class="category-icon">
+                🧠
+            </div>
+
+            <h3>
+                Computer Science
+            </h3>
+
+            <p>
+                Technology & Ideas
+            </p>
+
+        </div>
+
+
+        <div class="category-card">
+
+            <div class="category-icon">
+                💼
+            </div>
+
+            <h3>
+                Business
+            </h3>
+
+            <p>
+                Management & Growth
+            </p>
+
+        </div>
+
+
+        <div class="category-card">
+
+            <div class="category-icon">
+                📖
+            </div>
+
+            <h3>
+                Fiction
+            </h3>
+
+            <p>
+                Stories & Imagination
+            </p>
+
+        </div>
+
+
+        <div class="category-card">
+
+            <div class="category-icon">
+                🎓
+            </div>
+
+            <h3>
+                Competitive Exams
+            </h3>
+
+            <p>
+                Study & Preparation
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     BOOKS
+========================= -->
+
+<section
+    class="books"
+    id="books"
+>
+
+    <div class="section-title">
+
+        <small>
+            POPULAR BOOKS
+        </small>
+
+        <h2>
+
+            Knowledge,<br>
+            beautifully curated.
+
+        </h2>
+
+        <p>
+
+            Pick something interesting
+            and start reading today.
+
+        </p>
+
+    </div>
+
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="bookSearch"
+            placeholder="Search books or authors..."
+        >
+
+    </div>
+
+
+    <div
+        class="book-grid"
+        id="bookGrid"
+    >
+
+
+        <!-- BOOK 1 -->
+
+        <div
+            class="book-card"
+            data-name="python programming john smith"
+        >
+
+            <div class="book-cover cover-blue">
+                🐍
+            </div>
+
+            <div class="book-info">
+
+                <h3>
+                    Python Programming
+                </h3>
+
+                <div class="author">
+                    By John Smith
+                </div>
+
+                <div class="book-bottom">
+
+                    <span class="price">
+                        ₹450
+                    </span>
+
+                    <button class="buy-btn">
+                        Add
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- BOOK 2 -->
+
+        <div
+            class="book-card"
+            data-name="web technology david brown"
+        >
+
+            <div class="book-cover cover-purple">
+                🌐
+            </div>
+
+            <div class="book-info">
+
+                <h3>
+                    Web Technology
+                </h3>
+
+                <div class="author">
+                    By David Brown
+                </div>
+
+                <div class="book-bottom">
+
+                    <span class="price">
+                        ₹500
+                    </span>
+
+                    <button class="buy-btn">
+                        Add
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- BOOK 3 -->
+
+        <div
+            class="book-card"
+            data-name="database management robert lee"
+        >
+
+            <div class="book-cover cover-orange">
+                🗄️
+            </div>
+
+            <div class="book-info">
+
+                <h3>
+                    Database Management
+                </h3>
+
+                <div class="author">
+                    By Robert Lee
+                </div>
+
+                <div class="book-bottom">
+
+                    <span class="price">
+                        ₹550
+                    </span>
+
+                    <button class="buy-btn">
+                        Add
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     RAJASTHAN SECTION
+========================= -->
+
+<section
+    class="rajasthan"
+    id="rajasthan"
+>
+
+    <div class="section-title">
+
+        <small>
+            RAJASTHAN COLLECTION
+        </small>
+
+        <h2>
+            Books with a<br>
+            royal touch.
+        </h2>
+
+        <p>
+            Discover knowledge and stories
+            inspired by the culture, history
+            and spirit of Rajasthan.
+        </p>
+
+    </div>
+
+
+    <div class="rajasthan-box">
+
+        <div class="rajasthan-content">
+
+            <div class="symbol">
+                🏰
+            </div>
+
+            <h2>
+                Padharo Mhare<br>
+                Book Store
+            </h2>
+
+            <p>
+
+                A modern online destination
+                for readers across Rajasthan.
+                Explore, learn and discover
+                something new every day.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     OFFER
+========================= -->
+
+<section
+    class="offer"
+    id="offers"
+>
+
+    <div class="section-title">
+
+        <small>
+            SPECIAL OFFER
+        </small>
+
+        <h2>
+
+            More books.<br>
+            More possibilities.
+
+        </h2>
+
+    </div>
+
+
+    <div class="offer-box">
+
+        <div class="offer-content">
+
+            <small>
+                LIMITED TIME OFFER
+            </small>
+
+            <h2>
+                20% OFF
+            </h2>
+
+            <p>
+                Get 20% discount on selected books.
+            </p>
+
+            <a
+                href="#books"
+                class="btn offer-btn"
+            >
+                Shop Now
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<section
+    class="contact"
+    id="contact"
+>
+
+    <div class="section-title">
+
+        <small>
+            CONTACT US
+        </small>
+
+        <h2>
+            Let's connect.
+        </h2>
+
+        <p>
+
+            Have a question about a book?
+            Send us a message.
+
+        </p>
+
+    </div>
+
+
+    <form
+        class="contact-form"
+        id="contactForm"
+    >
+
+        <input
+            type="text"
+            placeholder="Your Name"
+            required
+        >
+
+        <input
+            type="email"
+            placeholder="Your Email"
+            required
+        >
+
+        <textarea
+            placeholder="Your Message"
+            required
+        ></textarea>
+
+        <button
+            type="submit"
+            class="send-btn"
+        >
+            Send Message
+        </button>
+
+    </form>
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <p>
+
+        © 2026
+
+        <strong>
+            Rajasthan Online Book Store
+        </strong>.
+
+        All rights reserved.
+
+    </p>
+
+</footer>
+
+
+
+<!-- TOAST -->
+
+<div
+    class="toast"
+    id="toast"
+>
+    Added to cart ✓
+</div>
+
+
+
+<script>
+
+/* =========================
+   MOBILE NAVIGATION
+========================= */
+
+const menuBtn =
+    document.getElementById("menuBtn");
+
+const navLinks =
+    document.getElementById("navLinks");
+
+
+menuBtn.addEventListener("click", () => {
+
+    navLinks.classList.toggle("open");
+
+});
+
+
+document.querySelectorAll(".nav-links a")
+.forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        navLinks.classList.remove("open");
+
+    });
+
+});
+
+
+
+/* =========================
+   NAVBAR SCROLL EFFECT
+========================= */
+
+const navbar =
+    document.getElementById("navbar");
+
+
+window.addEventListener("scroll", () => {
+
+    if(window.scrollY > 40){
+
+        navbar.style.boxShadow =
+            "0 10px 35px rgba(0,0,0,.08)";
+
+    }else{
+
+        navbar.style.boxShadow =
+            "none";
+
+    }
+
+});
+
+
+
+/* =========================
+   CATEGORY REVEAL
+========================= */
+
+const categoryCards =
+    document.querySelectorAll(".category-card");
+
+
+const observer =
+    new IntersectionObserver(
+        entries => {
+
+            entries.forEach(
+                (entry,index) => {
+
+                    if(entry.isIntersecting){
+
+                        setTimeout(() => {
+
+                            entry.target
+                                .classList
+                                .add("show");
+
+                        },index * 120);
+
+                        observer
+                            .unobserve(entry.target);
+
+                    }
+
+                }
+            );
+
+        },
+        {
+            threshold:.15
+        }
+    );
+
+
+categoryCards.forEach(card => {
+
+    observer.observe(card);
+
+});
+
+
+
+/* =========================
+   BOOK SEARCH
+========================= */
+
+const search =
+    document.getElementById("bookSearch");
+
+const books =
+    document.querySelectorAll(".book-card");
+
+
+search.addEventListener("input", () => {
+
+    const value =
+        search.value
+        .toLowerCase()
+        .trim();
+
+
+    books.forEach(book => {
+
+        const name =
+            book.dataset.name;
+
+
+        if(name.includes(value)){
+
+            book.style.display =
+                "block";
+
+            setTimeout(() => {
+
+                book.style.opacity =
+                    "1";
+
+                book.style.transform =
+                    "scale(1)";
+
+            },50);
+
+        }else{
+
+            book.style.opacity =
+                "0";
+
+            book.style.transform =
+                "scale(.8)";
+
+
+            setTimeout(() => {
+
+                book.style.display =
+                    "none";
+
+            },250);
+
+        }
+
+    });
+
+});
+
+
+
+/* =========================
+   CART
+========================= */
+
+let cartCount = 0;
+
+
+const cart =
+    document.getElementById("cartCount");
+
+const toast =
+    document.getElementById("toast");
+
+
+document.querySelectorAll(".buy-btn")
+.forEach(button => {
+
+    button.addEventListener(
+        "click",
+        () => {
+
+            cartCount++;
+
+            cart.textContent =
+                cartCount;
+
+            toast.textContent =
+                "Book added to cart ✓";
+
+            toast.classList.add("show");
+
+
+            setTimeout(() => {
+
+                toast.classList.remove(
+                    "show"
+                );
+
+            },2000);
+
+        }
+    );
+
+});
+
+
+
+/* =========================
+   CONTACT FORM
+========================= */
+
+document
+    .getElementById("contactForm")
+    .addEventListener(
+        "submit",
+        function(e){
+
+            e.preventDefault();
+
+
+            toast.textContent =
+                "Message sent successfully ✓";
+
+
+            toast.classList.add("show");
+
+
+            this.reset();
+
+
+            setTimeout(() => {
+
+                toast.classList.remove(
+                    "show"
+                );
+
+            },2500);
+
+        }
+    );
+
+
+
+/* =========================
+   MOUSE PARALLAX
+========================= */
+
+window.addEventListener(
+    "mousemove",
+    e => {
+
+        const x =
+            (
+                e.clientX /
+                window.innerWidth -
+                .5
+            ) * 20;
+
+
+        const y =
+            (
+                e.clientY /
+                window.innerHeight -
+                .5
+            ) * 20;
+
+
+        const one =
+            document.querySelector(
+                ".book-one"
+            );
+
+        const two =
+            document.querySelector(
+                ".book-two"
+            );
+
+        const three =
+            document.querySelector(
+                ".book-three"
+            );
+
+
+        one.style.marginLeft =
+            `${x}px`;
+
+        one.style.marginTop =
+            `${y}px`;
+
+
+        two.style.marginLeft =
+            `${-x}px`;
+
+        two.style.marginTop =
+            `${-y}px`;
+
+
+        three.style.marginLeft =
+            `${x * .5}px`;
+
+    }
+);
+
+
+
+/* =========================
+   3D BOOK CARD EFFECT
+========================= */
+
+books.forEach(book => {
+
+
+    book.addEventListener(
+        "mousemove",
+        e => {
+
+            const rect =
+                book.getBoundingClientRect();
+
+
+            const x =
+                e.clientX - rect.left;
+
+            const y =
+                e.clientY - rect.top;
+
+
+            const centerX =
+                rect.width / 2;
+
+            const centerY =
+                rect.height / 2;
+
+
+            const rotateX =
+                (y - centerY) / 25;
+
+            const rotateY =
+                (centerX - x) / 25;
+
+
+            book.style.transform =
+                `
+                perspective(800px)
+                rotateX(${rotateX}deg)
+                rotateY(${rotateY}deg)
+                translateY(-8px)
+                `;
+
+        }
+    );
+
+
+    book.addEventListener(
+        "mouseleave",
+        () => {
+
+            book.style.transform =
+                `
+                perspective(800px)
+                rotateX(0)
+                rotateY(0)
+                translateY(0)
+                `;
+
+        }
+    );
+
+});
+
+</script>
+
+</body>
+</html>
+```

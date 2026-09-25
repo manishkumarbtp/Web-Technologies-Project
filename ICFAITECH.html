@@ -1,0 +1,2746 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>
+    Computer Science | ICFAITECH UNIVERSITY, Jaipur
+</title>
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+
+    background:#f5f5f7;
+    color:#1d1d1f;
+
+    overflow-x:hidden;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+button,
+input,
+textarea{
+    font-family:inherit;
+}
+
+
+/* =====================================================
+   CURSOR GLOW
+===================================================== */
+
+.cursor-glow{
+
+    position:fixed;
+
+    width:300px;
+    height:300px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0,122,255,.14),
+            transparent 65%
+        );
+
+    pointer-events:none;
+
+    transform:translate(-50%,-50%);
+
+    z-index:0;
+
+    filter:blur(10px);
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:68px;
+
+    padding:0 7%;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    background:rgba(255,255,255,.72);
+
+    backdrop-filter:blur(25px);
+    -webkit-backdrop-filter:blur(25px);
+
+    border-bottom:
+        1px solid rgba(0,0,0,.07);
+
+    z-index:1000;
+
+    transition:.4s ease;
+}
+
+.navbar.scrolled{
+
+    box-shadow:
+        0 10px 40px rgba(0,0,0,.08);
+
+}
+
+
+/* LOGO */
+
+.logo{
+
+    font-size:19px;
+
+    font-weight:700;
+
+    letter-spacing:-.7px;
+
+    white-space:nowrap;
+
+}
+
+.logo span{
+
+    color:#0071e3;
+
+}
+
+
+/* NAV LINKS */
+
+.nav-links{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:30px;
+
+    list-style:none;
+
+}
+
+.nav-links a{
+
+    font-size:14px;
+
+    color:#424245;
+
+    transition:.3s;
+
+    position:relative;
+
+}
+
+.nav-links a:hover{
+
+    color:#0071e3;
+
+}
+
+.nav-links a::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+    bottom:-8px;
+
+    width:0;
+    height:2px;
+
+    background:#0071e3;
+
+    transform:translateX(-50%);
+
+    transition:.3s;
+
+}
+
+.nav-links a:hover::after{
+
+    width:100%;
+
+}
+
+
+/* MOBILE BUTTON */
+
+.menu-btn{
+
+    display:none;
+
+    border:0;
+
+    background:transparent;
+
+    font-size:26px;
+
+    cursor:pointer;
+
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero{
+
+    min-height:100vh;
+
+    padding:
+        150px 7%
+        100px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:#f5f5f7;
+
+}
+
+
+/* BACKGROUND GLOW */
+
+.hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:700px;
+    height:700px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0,122,255,.15),
+            transparent 68%
+        );
+
+    top:-300px;
+    left:-250px;
+
+    animation:
+        heroGlow 8s ease-in-out infinite alternate;
+
+}
+
+
+.hero::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:600px;
+    height:600px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(88,86,214,.12),
+            transparent 70%
+        );
+
+    right:-250px;
+    bottom:-250px;
+
+    animation:
+        heroGlow 10s ease-in-out infinite alternate-reverse;
+
+}
+
+
+.hero-content{
+
+    max-width:1100px;
+
+    position:relative;
+
+    z-index:5;
+
+}
+
+
+/* BADGE */
+
+.hero-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:9px 18px;
+
+    margin-bottom:28px;
+
+    border-radius:30px;
+
+    background:
+        rgba(255,255,255,.85);
+
+    border:
+        1px solid rgba(0,0,0,.08);
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,.04);
+
+    font-size:13px;
+
+    animation:
+        fadeUp .9s ease both;
+
+}
+
+
+/* HERO TITLE */
+
+.hero h1{
+
+    font-size:
+        clamp(52px,9vw,120px);
+
+    line-height:.87;
+
+    letter-spacing:-9px;
+
+    font-weight:800;
+
+    animation:
+        fadeUp 1s .1s ease both;
+
+}
+
+
+.gradient-text{
+
+    background:
+        linear-gradient(
+            90deg,
+            #0071e3,
+            #5856d6,
+            #007aff,
+            #34c759
+        );
+
+    background-size:300% 300%;
+
+    -webkit-background-clip:text;
+
+    color:transparent;
+
+    animation:
+        gradientMove 6s ease infinite;
+
+}
+
+
+/* HERO DESCRIPTION */
+
+.hero-description{
+
+    max-width:700px;
+
+    margin:38px auto;
+
+    font-size:20px;
+
+    line-height:1.7;
+
+    color:#6e6e73;
+
+    animation:
+        fadeUp 1s .25s ease both;
+
+}
+
+
+/* HERO BUTTONS */
+
+.hero-buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:14px;
+
+    animation:
+        fadeUp 1s .4s ease both;
+
+}
+
+
+.btn{
+
+    padding:
+        15px 27px;
+
+    border-radius:30px;
+
+    border:0;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    transition:.35s;
+
+}
+
+
+.btn-primary{
+
+    background:#0071e3;
+
+    color:white;
+
+    box-shadow:
+        0 10px 25px
+        rgba(0,113,227,.18);
+
+}
+
+
+.btn-primary:hover{
+
+    transform:
+        translateY(-5px)
+        scale(1.03);
+
+    box-shadow:
+        0 20px 45px
+        rgba(0,113,227,.3);
+
+}
+
+
+.btn-secondary{
+
+    background:white;
+
+    border:
+        1px solid #ddd;
+
+}
+
+
+.btn-secondary:hover{
+
+    transform:
+        translateY(-5px);
+
+    box-shadow:
+        0 15px 35px
+        rgba(0,0,0,.1);
+
+}
+
+
+/* =====================================================
+   FLOATING ELEMENTS
+===================================================== */
+
+.floating{
+
+    position:absolute;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:25px;
+
+    background:
+        rgba(255,255,255,.72);
+
+    backdrop-filter:blur(15px);
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.12);
+
+    animation:
+        floating 6s ease-in-out infinite;
+
+    z-index:2;
+
+}
+
+
+.float-one{
+
+    width:85px;
+    height:85px;
+
+    left:8%;
+    top:27%;
+
+    font-size:38px;
+
+    transform:rotate(-10deg);
+
+}
+
+
+.float-two{
+
+    width:70px;
+    height:70px;
+
+    right:10%;
+    top:31%;
+
+    font-size:30px;
+
+    animation-delay:1s;
+
+}
+
+
+.float-three{
+
+    width:65px;
+    height:65px;
+
+    left:15%;
+    bottom:18%;
+
+    font-size:28px;
+
+    animation-delay:2s;
+
+}
+
+
+/* =====================================================
+   SECTION
+===================================================== */
+
+section{
+
+    padding:
+        120px 7%;
+
+    position:relative;
+
+}
+
+
+.section-title{
+
+    max-width:850px;
+
+    margin:auto;
+
+    text-align:center;
+
+}
+
+
+.section-title small{
+
+    color:#0071e3;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+}
+
+
+.section-title h2{
+
+    margin:
+        12px 0 20px;
+
+    font-size:
+        clamp(43px,6vw,75px);
+
+    line-height:.95;
+
+    letter-spacing:-5px;
+
+}
+
+
+.section-title p{
+
+    color:#6e6e73;
+
+    font-size:18px;
+
+    line-height:1.7;
+
+}
+
+
+/* =====================================================
+   ABOUT
+===================================================== */
+
+.about{
+
+    background:white;
+
+}
+
+
+.about-grid{
+
+    max-width:1100px;
+
+    margin:
+        70px auto 0;
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:25px;
+
+}
+
+
+.glass-card{
+
+    padding:45px;
+
+    border-radius:35px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.95),
+            rgba(245,245,247,.9)
+        );
+
+    border:
+        1px solid rgba(0,0,0,.06);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.06);
+
+    transition:
+        transform .5s,
+        box-shadow .5s;
+
+}
+
+
+.glass-card:hover{
+
+    transform:
+        translateY(-12px);
+
+    box-shadow:
+        0 35px 80px rgba(0,0,0,.12);
+
+}
+
+
+.card-icon{
+
+    width:60px;
+    height:60px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:18px;
+
+    background:#eef6ff;
+
+    font-size:28px;
+
+    margin-bottom:25px;
+
+}
+
+
+.glass-card h3{
+
+    font-size:27px;
+
+    margin-bottom:15px;
+
+}
+
+
+.glass-card p{
+
+    color:#6e6e73;
+
+    line-height:1.8;
+
+}
+
+
+/* =====================================================
+   PROGRAMS
+===================================================== */
+
+.programs{
+
+    background:#f5f5f7;
+
+}
+
+
+.program-grid{
+
+    max-width:1150px;
+
+    margin:
+        70px auto 0;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:18px;
+
+}
+
+
+.program-card{
+
+    min-height:290px;
+
+    padding:30px;
+
+    background:white;
+
+    border-radius:32px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    transition:
+        transform .45s,
+        box-shadow .45s;
+
+}
+
+
+.program-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+    height:180px;
+
+    border-radius:50%;
+
+    background:
+        rgba(0,122,255,.07);
+
+    right:-80px;
+    top:-80px;
+
+    transition:.5s;
+
+}
+
+
+.program-card:hover::before{
+
+    transform:
+        scale(2);
+
+}
+
+
+.program-card:hover{
+
+    transform:
+        translateY(-12px);
+
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.1);
+
+}
+
+
+.program-number{
+
+    font-size:13px;
+
+    color:#86868b;
+
+    margin-bottom:30px;
+
+}
+
+
+.program-icon{
+
+    font-size:43px;
+
+    margin-bottom:25px;
+
+}
+
+
+.program-card h3{
+
+    font-size:20px;
+
+    margin-bottom:12px;
+
+}
+
+
+.program-card p{
+
+    color:#86868b;
+
+    font-size:14px;
+
+    line-height:1.6;
+
+}
+
+
+/* =====================================================
+   FACULTY
+===================================================== */
+
+.faculty{
+
+    background:white;
+
+}
+
+
+.faculty-grid{
+
+    max-width:1050px;
+
+    margin:
+        70px auto 0;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:22px;
+
+}
+
+
+.faculty-card{
+
+    padding:35px 25px;
+
+    text-align:center;
+
+    border-radius:32px;
+
+    background:#f5f5f7;
+
+    transition:.45s;
+
+}
+
+
+.faculty-card:hover{
+
+    transform:
+        translateY(-12px)
+        scale(1.02);
+
+    box-shadow:
+        0 30px 60px rgba(0,0,0,.1);
+
+}
+
+
+.faculty-photo{
+
+    width:105px;
+    height:105px;
+
+    margin:
+        0 auto 22px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:32px;
+
+    font-weight:700;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0071e3,
+            #5856d6
+        );
+
+    box-shadow:
+        0 15px 35px
+        rgba(0,113,227,.22);
+
+}
+
+
+.faculty-card h3{
+
+    font-size:20px;
+
+    margin-bottom:7px;
+
+}
+
+
+.designation{
+
+    color:#0071e3;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+
+.specialization{
+
+    color:#86868b;
+
+    font-size:13px;
+
+    margin-top:12px;
+
+}
+
+
+/* =====================================================
+   NOTICE
+===================================================== */
+
+.notice{
+
+    background:#f5f5f7;
+
+}
+
+
+.notice-box{
+
+    max-width:1050px;
+
+    margin:
+        65px auto 0;
+
+    padding:50px;
+
+    color:white;
+
+    background:#1d1d1f;
+
+    border-radius:40px;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+
+.notice-box::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:400px;
+    height:400px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0,122,255,.3),
+            transparent 65%
+        );
+
+    right:-170px;
+    top:-180px;
+
+}
+
+
+.notice-box h3{
+
+    font-size:30px;
+
+    margin-bottom:25px;
+
+    position:relative;
+
+}
+
+
+.notice-list{
+
+    list-style:none;
+
+    position:relative;
+
+}
+
+
+.notice-list li{
+
+    padding:19px 0;
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.12);
+
+    color:#d2d2d2;
+
+    display:flex;
+
+    gap:15px;
+
+}
+
+
+.notice-list li:last-child{
+
+    border-bottom:0;
+
+}
+
+
+.notice-icon{
+
+    color:#4da3ff;
+
+}
+
+
+/* =====================================================
+   CONTACT
+===================================================== */
+
+.contact{
+
+    background:white;
+
+}
+
+
+.contact-grid{
+
+    max-width:1050px;
+
+    margin:
+        65px auto 0;
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:25px;
+
+}
+
+
+.contact-info{
+
+    padding:45px;
+
+    border-radius:35px;
+
+    background:#f5f5f7;
+
+}
+
+
+.contact-info h3{
+
+    font-size:28px;
+
+    margin-bottom:20px;
+
+}
+
+
+.contact-info p{
+
+    color:#6e6e73;
+
+    line-height:2;
+
+}
+
+
+.contact-form{
+
+    padding:40px;
+
+    border-radius:35px;
+
+    background:#f5f5f7;
+
+}
+
+
+.form-group{
+
+    margin-bottom:15px;
+
+}
+
+
+.form-group input,
+.form-group textarea{
+
+    width:100%;
+
+    padding:17px 18px;
+
+    border:
+        1px solid #ddd;
+
+    border-radius:16px;
+
+    outline:none;
+
+    background:white;
+
+    transition:.3s;
+
+}
+
+
+.form-group textarea{
+
+    min-height:130px;
+
+    resize:vertical;
+
+}
+
+
+.form-group input:focus,
+.form-group textarea:focus{
+
+    border-color:#0071e3;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(0,113,227,.08);
+
+}
+
+
+.submit-btn{
+
+    width:100%;
+
+    padding:16px;
+
+    border:0;
+
+    border-radius:17px;
+
+    background:#0071e3;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    transition:.35s;
+
+}
+
+
+.submit-btn:hover{
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 15px 35px
+        rgba(0,113,227,.25);
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer{
+
+    background:#1d1d1f;
+
+    color:#86868b;
+
+    text-align:center;
+
+    padding:45px 7%;
+
+}
+
+
+footer strong{
+
+    color:white;
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+.toast{
+
+    position:fixed;
+
+    left:50%;
+    bottom:30px;
+
+    transform:
+        translate(-50%,120px);
+
+    opacity:0;
+
+    padding:14px 24px;
+
+    background:#1d1d1f;
+
+    color:white;
+
+    border-radius:30px;
+
+    z-index:3000;
+
+    transition:.4s;
+
+}
+
+
+.toast.show{
+
+    transform:
+        translate(-50%,0);
+
+    opacity:1;
+
+}
+
+
+/* =====================================================
+   SCROLL REVEAL
+===================================================== */
+
+.reveal{
+
+    opacity:0;
+
+    transform:
+        translateY(50px);
+
+    transition:
+        opacity .9s ease,
+        transform .9s ease;
+
+}
+
+
+.reveal.active{
+
+    opacity:1;
+
+    transform:
+        translateY(0);
+
+}
+
+
+/* =====================================================
+   ANIMATIONS
+===================================================== */
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(35px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+@keyframes floating{
+
+    0%,100%{
+
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+    }
+
+    50%{
+
+        transform:
+            translateY(-25px)
+            rotate(4deg);
+
+    }
+
+}
+
+
+@keyframes gradientMove{
+
+    0%{
+
+        background-position:
+            0% 50%;
+
+    }
+
+    50%{
+
+        background-position:
+            100% 50%;
+
+    }
+
+    100%{
+
+        background-position:
+            0% 50%;
+
+    }
+
+}
+
+
+@keyframes heroGlow{
+
+    from{
+
+        transform:
+            scale(1)
+            translate(0,0);
+
+    }
+
+    to{
+
+        transform:
+            scale(1.25)
+            translate(50px,30px);
+
+    }
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:1000px){
+
+    .nav-links{
+
+        position:absolute;
+
+        top:68px;
+        left:0;
+
+        width:100%;
+
+        padding:25px;
+
+        display:none;
+
+        flex-direction:column;
+
+        align-items:center;
+
+        gap:22px;
+
+        background:
+            rgba(255,255,255,.96);
+
+        backdrop-filter:
+            blur(20px);
+
+    }
+
+
+    .nav-links.open{
+
+        display:flex;
+
+    }
+
+
+    .menu-btn{
+
+        display:block;
+
+    }
+
+
+    .program-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+
+    .faculty-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+}
+
+
+@media(max-width:700px){
+
+    section{
+
+        padding:
+            85px 5%;
+
+    }
+
+
+    .hero{
+
+        padding:
+            130px 5% 90px;
+
+    }
+
+
+    .hero h1{
+
+        letter-spacing:-5px;
+
+    }
+
+
+    .hero-description{
+
+        font-size:17px;
+
+    }
+
+
+    .hero-buttons{
+
+        flex-direction:column;
+
+        max-width:260px;
+
+        margin:auto;
+
+    }
+
+
+    .about-grid,
+    .contact-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .program-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .faculty-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .notice-box{
+
+        padding:35px 25px;
+
+        border-radius:30px;
+
+    }
+
+
+    .floating{
+
+        opacity:.35;
+
+        transform:scale(.7);
+
+    }
+
+
+    .logo{
+
+        font-size:16px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     CURSOR GLOW
+===================================================== -->
+
+<div
+    class="cursor-glow"
+    id="cursorGlow">
+</div>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav
+    class="navbar"
+    id="navbar">
+
+    <div class="logo">
+
+        ICFAITECH
+        <span>UNIVERSITY</span>
+
+    </div>
+
+
+    <ul
+        class="nav-links"
+        id="navLinks">
+
+        <li>
+            <a href="#home">Home</a>
+        </li>
+
+        <li>
+            <a href="#about">About</a>
+        </li>
+
+        <li>
+            <a href="#programs">Programs</a>
+        </li>
+
+        <li>
+            <a href="#faculty">Faculty</a>
+        </li>
+
+        <li>
+            <a href="#notice">Notice</a>
+        </li>
+
+        <li>
+            <a href="#contact">Contact</a>
+        </li>
+
+    </ul>
+
+
+    <button
+        class="menu-btn"
+        id="menuBtn">
+
+        ☰
+
+    </button>
+
+</nav>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section
+    class="hero"
+    id="home">
+
+
+    <div
+        class="floating float-one">
+
+        💻
+
+    </div>
+
+
+    <div
+        class="floating float-two">
+
+        ⚡
+
+    </div>
+
+
+    <div
+        class="floating float-three">
+
+        🚀
+
+    </div>
+
+
+    <div class="hero-content">
+
+
+        <div class="hero-badge">
+
+            🎓
+            ICFAITECH UNIVERSITY, Jaipur
+
+        </div>
+
+
+        <h1>
+
+            Department of
+
+            <span class="gradient-text">
+
+                Computer Science.
+
+            </span>
+
+        </h1>
+
+
+        <p class="hero-description">
+
+            Learn technology.
+            Build ideas.
+            Create the future.
+
+            Our department focuses on
+            programming, innovation,
+            problem solving and
+            modern computing.
+
+        </p>
+
+
+        <div class="hero-buttons">
+
+
+            <a
+                href="#programs"
+                class="btn btn-primary">
+
+                Explore Programs
+
+            </a>
+
+
+            <a
+                href="#about"
+                class="btn btn-secondary">
+
+                Discover More
+
+            </a>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ABOUT
+===================================================== -->
+
+<section
+    class="about"
+    id="about">
+
+
+    <div class="section-title reveal">
+
+        <small>
+            ABOUT DEPARTMENT
+        </small>
+
+
+        <h2>
+
+            Think different.
+            Build better.
+
+        </h2>
+
+
+        <p>
+
+            The Department of Computer Science
+            provides quality education and develops
+            technical and problem-solving skills
+            among students.
+
+        </p>
+
+    </div>
+
+
+    <div class="about-grid">
+
+
+        <div class="glass-card reveal">
+
+            <div class="card-icon">
+                🧠
+            </div>
+
+
+            <h3>
+                Our Vision
+            </h3>
+
+
+            <p>
+
+                To develop future-ready technology
+                professionals who can use creativity,
+                innovation and computing knowledge
+                to solve real-world challenges.
+
+            </p>
+
+        </div>
+
+
+        <div class="glass-card reveal">
+
+            <div class="card-icon">
+                🚀
+            </div>
+
+
+            <h3>
+                Our Mission
+            </h3>
+
+
+            <p>
+
+                We focus on strong technical
+                foundations, practical learning,
+                research, teamwork and
+                industry-oriented skills.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PROGRAMS
+===================================================== -->
+
+<section
+    class="programs"
+    id="programs">
+
+
+    <div class="section-title reveal">
+
+        <small>
+            PROGRAMS
+        </small>
+
+
+        <h2>
+
+            Your journey
+            starts here.
+
+        </h2>
+
+
+        <p>
+
+            Explore programs designed
+            around modern computing
+            and technology.
+
+        </p>
+
+    </div>
+
+
+    <div class="program-grid">
+
+
+        <div class="program-card reveal">
+
+            <div class="program-number">
+                01
+            </div>
+
+            <div class="program-icon">
+                🎓
+            </div>
+
+            <h3>
+                BCA
+            </h3>
+
+            <p>
+
+                Bachelor of Computer Applications
+                with programming and application
+                development fundamentals.
+
+            </p>
+
+        </div>
+
+
+        <div class="program-card reveal">
+
+            <div class="program-number">
+                02
+            </div>
+
+            <div class="program-icon">
+                💻
+            </div>
+
+            <h3>
+                MCA
+            </h3>
+
+            <p>
+
+                Master of Computer Applications
+                focused on advanced computing
+                and software development.
+
+            </p>
+
+        </div>
+
+
+        <div class="program-card reveal">
+
+            <div class="program-number">
+                03
+            </div>
+
+            <div class="program-icon">
+                ⚙️
+            </div>
+
+            <h3>
+                B.Tech Computer Science
+            </h3>
+
+            <p>
+
+                Engineering education covering
+                computer science, software and
+                emerging technologies.
+
+            </p>
+
+        </div>
+
+
+        <div class="program-card reveal">
+
+            <div class="program-number">
+                04
+            </div>
+
+            <div class="program-icon">
+                🔬
+            </div>
+
+            <h3>
+                M.Tech Computer Science
+            </h3>
+
+            <p>
+
+                Advanced computing education
+                with opportunities for
+                specialization and research.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FACULTY
+===================================================== -->
+
+<section
+    class="faculty"
+    id="faculty">
+
+
+    <div class="section-title reveal">
+
+        <small>
+            FACULTY MEMBERS
+        </small>
+
+
+        <h2>
+
+            Learn from
+            experienced minds.
+
+        </h2>
+
+
+        <p>
+
+            Faculty members supporting students
+            in academics, technology and research.
+
+        </p>
+
+    </div>
+
+
+    <div class="faculty-grid">
+
+
+        <div class="faculty-card reveal">
+
+            <div class="faculty-photo">
+                AS
+            </div>
+
+
+            <h3>
+                Dr. Amit Sharma
+            </h3>
+
+
+            <div class="designation">
+                Professor
+            </div>
+
+
+            <div class="specialization">
+                Artificial Intelligence
+            </div>
+
+        </div>
+
+
+        <div class="faculty-card reveal">
+
+            <div class="faculty-photo">
+                NV
+            </div>
+
+
+            <h3>
+                Dr. Neha Verma
+            </h3>
+
+
+            <div class="designation">
+                Associate Professor
+            </div>
+
+
+            <div class="specialization">
+                Data Science
+            </div>
+
+        </div>
+
+
+        <div class="faculty-card reveal">
+
+            <div class="faculty-photo">
+                RS
+            </div>
+
+
+            <h3>
+                Mr. Rahul Singh
+            </h3>
+
+
+            <div class="designation">
+                Assistant Professor
+            </div>
+
+
+            <div class="specialization">
+                Computer Networks
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     NOTICE
+===================================================== -->
+
+<section
+    class="notice"
+    id="notice">
+
+
+    <div class="section-title reveal">
+
+        <small>
+            IMPORTANT NOTICE
+        </small>
+
+
+        <h2>
+            What's happening?
+        </h2>
+
+
+        <p>
+            Important academic announcements
+            for students.
+        </p>
+
+    </div>
+
+
+    <div class="notice-box reveal">
+
+
+        <h3>
+            Department Announcements
+        </h3>
+
+
+        <ul class="notice-list">
+
+
+            <li>
+
+                <span class="notice-icon">
+                    ●
+                </span>
+
+                Mid-term examinations will begin
+                from 15 September.
+
+            </li>
+
+
+            <li>
+
+                <span class="notice-icon">
+                    ●
+                </span>
+
+                Students must submit their
+                assignments before the deadline.
+
+            </li>
+
+
+            <li>
+
+                <span class="notice-icon">
+                    ●
+                </span>
+
+                Registration for the seminar
+                is now open.
+
+            </li>
+
+
+        </ul>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CONTACT
+===================================================== -->
+
+<section
+    class="contact"
+    id="contact">
+
+
+    <div class="section-title reveal">
+
+        <small>
+            CONTACT
+        </small>
+
+
+        <h2>
+            Let's connect.
+        </h2>
+
+
+        <p>
+
+            Have a question?
+            Send us a message.
+
+        </p>
+
+    </div>
+
+
+    <div class="contact-grid">
+
+
+        <div class="contact-info reveal">
+
+
+            <h3>
+                Department Office
+            </h3>
+
+
+            <p>
+
+                Department of Computer Science
+                <br><br>
+
+                ICFAITECH UNIVERSITY, Jaipur
+                <br>
+
+                Jaipur, Rajasthan
+                <br><br>
+
+                📧 cs@icfaiuniversity.edu
+                <br>
+
+                📞 +91 XXXXX XXXXX
+
+            </p>
+
+
+        </div>
+
+
+        <form
+            class="contact-form reveal"
+            id="contactForm">
+
+
+            <div class="form-group">
+
+                <input
+                    type="text"
+                    placeholder="Your Name"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <input
+                    type="email"
+                    placeholder="Your Email"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <textarea
+                    placeholder="Your Message"
+                    required></textarea>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="submit-btn">
+
+                Send Message
+
+            </button>
+
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <p>
+
+        © 2026
+
+        <strong>
+            ICFAITECH UNIVERSITY, Jaipur
+        </strong>
+
+        — Department of Computer Science
+
+    </p>
+
+</footer>
+
+
+<!-- TOAST -->
+
+<div
+    class="toast"
+    id="toast">
+
+    Message sent successfully ✓
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+
+const menuBtn =
+    document.getElementById("menuBtn");
+
+const navLinks =
+    document.getElementById("navLinks");
+
+
+menuBtn.addEventListener(
+    "click",
+    () => {
+
+        navLinks.classList.toggle("open");
+
+    }
+);
+
+
+document
+    .querySelectorAll(".nav-links a")
+    .forEach(link => {
+
+        link.addEventListener(
+            "click",
+            () => {
+
+                navLinks.classList.remove(
+                    "open"
+                );
+
+            }
+        );
+
+    });
+
+
+/* =====================================================
+   NAVBAR SCROLL
+===================================================== */
+
+const navbar =
+    document.getElementById("navbar");
+
+
+window.addEventListener(
+    "scroll",
+    () => {
+
+        if(window.scrollY > 50){
+
+            navbar.classList.add(
+                "scrolled"
+            );
+
+        }else{
+
+            navbar.classList.remove(
+                "scrolled"
+            );
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   CURSOR GLOW
+===================================================== */
+
+const cursorGlow =
+    document.getElementById(
+        "cursorGlow"
+    );
+
+
+document.addEventListener(
+    "mousemove",
+    event => {
+
+        cursorGlow.style.left =
+            event.clientX + "px";
+
+        cursorGlow.style.top =
+            event.clientY + "px";
+
+    }
+);
+
+
+/* =====================================================
+   SCROLL REVEAL
+===================================================== */
+
+const revealElements =
+    document.querySelectorAll(
+        ".reveal"
+    );
+
+
+const revealObserver =
+    new IntersectionObserver(
+        entries => {
+
+            entries.forEach(
+                entry => {
+
+                    if(
+                        entry.isIntersecting
+                    ){
+
+                        entry.target.classList.add(
+                            "active"
+                        );
+
+                        revealObserver.unobserve(
+                            entry.target
+                        );
+
+                    }
+
+                }
+            );
+
+        },
+        {
+            threshold:.12
+        }
+    );
+
+
+revealElements.forEach(
+    element => {
+
+        revealObserver.observe(
+            element
+        );
+
+    }
+);
+
+
+/* =====================================================
+   3D CARD EFFECT
+===================================================== */
+
+const cards =
+    document.querySelectorAll(
+        ".program-card, .faculty-card"
+    );
+
+
+cards.forEach(card => {
+
+
+    card.addEventListener(
+        "mousemove",
+        event => {
+
+            const rect =
+                card.getBoundingClientRect();
+
+
+            const x =
+                event.clientX -
+                rect.left;
+
+
+            const y =
+                event.clientY -
+                rect.top;
+
+
+            const centerX =
+                rect.width / 2;
+
+
+            const centerY =
+                rect.height / 2;
+
+
+            const rotateX =
+                (y - centerY) / 30;
+
+
+            const rotateY =
+                (centerX - x) / 30;
+
+
+            card.style.transform =
+                `
+                perspective(900px)
+                rotateX(${rotateX}deg)
+                rotateY(${rotateY}deg)
+                translateY(-10px)
+                `;
+
+        }
+    );
+
+
+    card.addEventListener(
+        "mouseleave",
+        () => {
+
+            card.style.transform =
+                "";
+
+        }
+    );
+
+});
+
+
+/* =====================================================
+   CONTACT FORM
+===================================================== */
+
+const contactForm =
+    document.getElementById(
+        "contactForm"
+    );
+
+
+const toast =
+    document.getElementById(
+        "toast"
+    );
+
+
+contactForm.addEventListener(
+    "submit",
+    event => {
+
+        event.preventDefault();
+
+
+        toast.classList.add(
+            "show"
+        );
+
+
+        contactForm.reset();
+
+
+        setTimeout(
+            () => {
+
+                toast.classList.remove(
+                    "show"
+                );
+
+            },
+            2500
+        );
+
+    }
+);
+
+
+/* =====================================================
+   HERO PARALLAX
+===================================================== */
+
+const floating =
+    document.querySelectorAll(
+        ".floating"
+    );
+
+
+document.addEventListener(
+    "mousemove",
+    event => {
+
+        const x =
+            (
+                event.clientX /
+                window.innerWidth -
+                .5
+            ) * 20;
+
+
+        const y =
+            (
+                event.clientY /
+                window.innerHeight -
+                .5
+            ) * 20;
+
+
+        floating.forEach(
+            (item,index) => {
+
+                const speed =
+                    (index + 1) * .35;
+
+
+                item.style.marginLeft =
+                    `${x * speed}px`;
+
+
+                item.style.marginTop =
+                    `${y * speed}px`;
+
+            }
+        );
+
+    }
+);
+
+
+/* =====================================================
+   BUTTON RIPPLE
+===================================================== */
+
+document
+    .querySelectorAll(
+        ".btn, .submit-btn"
+    )
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            function(event){
+
+                const ripple =
+                    document.createElement(
+                        "span"
+                    );
+
+
+                ripple.style.position =
+                    "absolute";
+
+                ripple.style.width =
+                    "10px";
+
+                ripple.style.height =
+                    "10px";
+
+                ripple.style.borderRadius =
+                    "50%";
+
+                ripple.style.background =
+                    "rgba(255,255,255,.5)";
+
+                ripple.style.left =
+                    event.offsetX + "px";
+
+                ripple.style.top =
+                    event.offsetY + "px";
+
+                ripple.style.transform =
+                    "translate(-50%,-50%)";
+
+                ripple.style.pointerEvents =
+                    "none";
+
+
+                this.style.position =
+                    "relative";
+
+                this.style.overflow =
+                    "hidden";
+
+
+                this.appendChild(
+                    ripple
+                );
+
+
+                setTimeout(
+                    () => {
+
+                        ripple.remove();
+
+                    },
+                    600
+                );
+
+            }
+        );
+
+    });
+
+</script>
+
+</body>
+
+</html>

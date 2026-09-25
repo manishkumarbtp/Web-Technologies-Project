@@ -1,0 +1,1299 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Food Corner | Premium Restaurant</title>
+
+<style>
+/* =========================
+   RESET
+========================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    background:#f5f5f7;
+    color:#1d1d1f;
+    overflow-x:hidden;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+.navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:64px;
+    z-index:1000;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 7%;
+    background:rgba(255,255,255,.72);
+    backdrop-filter:blur(22px);
+    -webkit-backdrop-filter:blur(22px);
+
+    border-bottom:1px solid rgba(0,0,0,.08);
+}
+
+.logo{
+    font-size:21px;
+    font-weight:700;
+    letter-spacing:-.7px;
+}
+
+.logo span{
+    color:#ff3b30;
+}
+
+.nav-links{
+    display:flex;
+    gap:34px;
+    list-style:none;
+}
+
+.nav-links a{
+    font-size:14px;
+    color:#424245;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:#ff3b30;
+}
+
+.menu-btn{
+    display:none;
+    border:0;
+    background:none;
+    font-size:25px;
+    cursor:pointer;
+}
+
+/* =========================
+   HERO
+========================= */
+.hero{
+    min-height:100vh;
+    padding:150px 7% 80px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+
+    position:relative;
+    overflow:hidden;
+
+    background:
+    radial-gradient(circle at 20% 20%,rgba(255,59,48,.15),transparent 30%),
+    radial-gradient(circle at 80% 70%,rgba(255,149,0,.18),transparent 30%),
+    #f5f5f7;
+}
+
+.hero-content{
+    max-width:900px;
+    position:relative;
+    z-index:2;
+}
+
+.badge{
+    display:inline-block;
+    padding:9px 17px;
+    border-radius:30px;
+    background:rgba(255,255,255,.7);
+    border:1px solid rgba(0,0,0,.08);
+    font-size:13px;
+    margin-bottom:25px;
+
+    animation:fadeUp .8s ease both;
+}
+
+.hero h1{
+    font-size:clamp(55px,9vw,110px);
+    line-height:.95;
+    letter-spacing:-7px;
+    font-weight:800;
+
+    animation:fadeUp 1s .15s ease both;
+}
+
+.hero h1 span{
+    background:linear-gradient(90deg,#ff3b30,#ff9500);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.hero p{
+    max-width:620px;
+    margin:30px auto;
+    font-size:20px;
+    line-height:1.6;
+    color:#6e6e73;
+
+    animation:fadeUp 1s .3s ease both;
+}
+
+.hero-buttons{
+    display:flex;
+    justify-content:center;
+    gap:14px;
+
+    animation:fadeUp 1s .45s ease both;
+}
+
+.btn{
+    padding:15px 25px;
+    border-radius:30px;
+    border:none;
+    cursor:pointer;
+    font-size:15px;
+    transition:.35s;
+}
+
+.btn-primary{
+    background:#1d1d1f;
+    color:white;
+}
+
+.btn-primary:hover{
+    transform:translateY(-4px) scale(1.03);
+    box-shadow:0 15px 30px rgba(0,0,0,.18);
+}
+
+.btn-secondary{
+    background:white;
+    border:1px solid #ddd;
+}
+
+.btn-secondary:hover{
+    transform:translateY(-4px);
+    border-color:#aaa;
+}
+
+/* Floating circles */
+.float{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(1px);
+    opacity:.6;
+}
+
+.circle1{
+    width:180px;
+    height:180px;
+    background:#ff3b30;
+    top:15%;
+    left:-70px;
+    animation:float 7s ease-in-out infinite;
+}
+
+.circle2{
+    width:130px;
+    height:130px;
+    background:#ff9500;
+    right:5%;
+    top:25%;
+    animation:float 6s ease-in-out infinite reverse;
+}
+
+.circle3{
+    width:90px;
+    height:90px;
+    background:#ffd60a;
+    bottom:10%;
+    left:15%;
+    animation:float 5s ease-in-out infinite;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+section{
+    padding:120px 7%;
+}
+
+.section-title{
+    text-align:center;
+    max-width:750px;
+    margin:auto;
+}
+
+.section-title small{
+    color:#ff3b30;
+    font-weight:600;
+    font-size:15px;
+}
+
+.section-title h2{
+    font-size:clamp(40px,6vw,70px);
+    letter-spacing:-4px;
+    margin:12px 0 20px;
+}
+
+.section-title p{
+    color:#6e6e73;
+    font-size:18px;
+    line-height:1.6;
+}
+
+/* =========================
+   FEATURE CARDS
+========================= */
+.features{
+    background:white;
+}
+
+.feature-grid{
+    max-width:1100px;
+    margin:70px auto 0;
+
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.feature-card{
+    padding:40px 30px;
+    border-radius:30px;
+    background:#f5f5f7;
+    transition:.5s;
+    opacity:0;
+    transform:translateY(40px);
+}
+
+.feature-card.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.feature-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 25px 50px rgba(0,0,0,.10);
+}
+
+.icon{
+    font-size:45px;
+    margin-bottom:25px;
+}
+
+.feature-card h3{
+    font-size:24px;
+    margin-bottom:12px;
+}
+
+.feature-card p{
+    color:#6e6e73;
+    line-height:1.6;
+}
+
+/* =========================
+   MENU
+========================= */
+.menu-section{
+    background:#f5f5f7;
+}
+
+.filters{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+    margin:45px 0;
+}
+
+.filter{
+    padding:10px 20px;
+    border-radius:30px;
+    border:1px solid #ddd;
+    background:white;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.filter.active,
+.filter:hover{
+    background:#1d1d1f;
+    color:white;
+}
+
+.menu-grid{
+    max-width:1100px;
+    margin:auto;
+
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.food-card{
+    background:white;
+    border-radius:28px;
+    padding:18px;
+    transition:.5s;
+    overflow:hidden;
+}
+
+.food-card:hover{
+    transform:translateY(-10px) scale(1.02);
+    box-shadow:0 25px 45px rgba(0,0,0,.12);
+}
+
+.food-image{
+    height:190px;
+    border-radius:22px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:85px;
+
+    background:
+    linear-gradient(135deg,#fff1e8,#fff);
+
+    transition:.5s;
+}
+
+.food-card:hover .food-image{
+    transform:scale(1.04);
+}
+
+.food-info{
+    padding:20px 5px 5px;
+}
+
+.food-info h3{
+    font-size:20px;
+    margin-bottom:7px;
+}
+
+.category{
+    color:#86868b;
+    font-size:13px;
+}
+
+.price{
+    font-weight:700;
+    font-size:19px;
+    margin-top:12px;
+    display:block;
+}
+
+.order-btn{
+    margin-top:15px;
+    width:100%;
+    padding:11px;
+    border:0;
+    border-radius:15px;
+    background:#1d1d1f;
+    color:white;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.order-btn:hover{
+    background:#ff3b30;
+}
+
+/* =========================
+   ABOUT
+========================= */
+.about{
+    background:#fff;
+}
+
+.about-box{
+    max-width:1100px;
+    margin:70px auto 0;
+
+    min-height:450px;
+    border-radius:40px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+
+    padding:70px;
+
+    background:
+    radial-gradient(circle at 30% 30%,#ff3b30 0,transparent 25%),
+    radial-gradient(circle at 70% 70%,#ff9500 0,transparent 25%),
+    #1d1d1f;
+
+    color:white;
+    overflow:hidden;
+    position:relative;
+}
+
+.about-box::before{
+    content:"";
+    position:absolute;
+    inset:20px;
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:30px;
+}
+
+.about-content{
+    max-width:700px;
+    position:relative;
+    z-index:2;
+}
+
+.about-content h2{
+    font-size:clamp(40px,6vw,70px);
+    letter-spacing:-4px;
+    margin-bottom:20px;
+}
+
+.about-content p{
+    color:#c7c7c7;
+    line-height:1.7;
+    font-size:18px;
+}
+
+/* =========================
+   HOURS
+========================= */
+.hours{
+    text-align:center;
+    background:#f5f5f7;
+}
+
+.hours-card{
+    max-width:700px;
+    margin:50px auto 0;
+    padding:45px;
+    border-radius:30px;
+    background:white;
+    box-shadow:0 15px 40px rgba(0,0,0,.06);
+}
+
+.hours-card h3{
+    font-size:28px;
+    margin-bottom:15px;
+}
+
+.hours-card p{
+    color:#6e6e73;
+}
+
+/* =========================
+   CONTACT
+========================= */
+.contact{
+    background:white;
+}
+
+.contact-box{
+    max-width:850px;
+    margin:50px auto 0;
+    display:grid;
+    gap:15px;
+}
+
+.contact-box input,
+.contact-box textarea{
+    width:100%;
+    padding:17px 20px;
+    border-radius:16px;
+    border:1px solid #ddd;
+    background:#f5f5f7;
+    outline:none;
+    font-family:inherit;
+    transition:.3s;
+}
+
+.contact-box input:focus,
+.contact-box textarea:focus{
+    border-color:#ff3b30;
+    box-shadow:0 0 0 4px rgba(255,59,48,.08);
+}
+
+.contact-box textarea{
+    min-height:140px;
+    resize:vertical;
+}
+
+.submit{
+    padding:16px;
+    border:0;
+    border-radius:18px;
+    background:#1d1d1f;
+    color:white;
+    cursor:pointer;
+    font-size:16px;
+    transition:.3s;
+}
+
+.submit:hover{
+    background:#ff3b30;
+    transform:translateY(-3px);
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer{
+    padding:40px 7%;
+    background:#1d1d1f;
+    color:#aaa;
+    text-align:center;
+}
+
+footer strong{
+    color:white;
+}
+
+/* =========================
+   TOAST
+========================= */
+.toast{
+    position:fixed;
+    bottom:30px;
+    left:50%;
+    transform:translate(-50%,120px);
+    padding:15px 24px;
+    border-radius:30px;
+    background:#1d1d1f;
+    color:white;
+    z-index:2000;
+    opacity:0;
+    transition:.4s;
+}
+
+.toast.show{
+    transform:translate(-50%,0);
+    opacity:1;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes float{
+    0%,100%{
+        transform:translateY(0) translateX(0);
+    }
+    50%{
+        transform:translateY(-30px) translateX(20px);
+    }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media(max-width:900px){
+
+    .nav-links{
+        position:absolute;
+        top:64px;
+        left:0;
+        width:100%;
+        padding:25px;
+        background:rgba(255,255,255,.95);
+
+        flex-direction:column;
+        align-items:center;
+
+        display:none;
+    }
+
+    .nav-links.open{
+        display:flex;
+    }
+
+    .menu-btn{
+        display:block;
+    }
+
+    .feature-grid{
+        grid-template-columns:1fr;
+    }
+
+    .menu-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px){
+
+    .navbar{
+        padding:0 5%;
+    }
+
+    .hero{
+        padding-left:5%;
+        padding-right:5%;
+    }
+
+    .hero h1{
+        letter-spacing:-4px;
+    }
+
+    .hero p{
+        font-size:17px;
+    }
+
+    .hero-buttons{
+        flex-direction:column;
+        max-width:250px;
+        margin:auto;
+    }
+
+    section{
+        padding:90px 5%;
+    }
+
+    .section-title h2{
+        letter-spacing:-2px;
+    }
+
+    .menu-grid{
+        grid-template-columns:1fr;
+    }
+
+    .about-box{
+        padding:45px 25px;
+        border-radius:30px;
+    }
+
+    .hours-card{
+        padding:35px 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+
+    <div class="logo">
+        Food<span>Corner</span>
+    </div>
+
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#hours">Hours</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <button class="menu-btn" id="menuBtn">☰</button>
+
+</nav>
+
+
+<!-- HERO -->
+<section class="hero" id="home">
+
+    <div class="float circle1"></div>
+    <div class="float circle2"></div>
+    <div class="float circle3"></div>
+
+    <div class="hero-content">
+
+        <div class="badge">
+            🍽️ Premium Dining Experience
+        </div>
+
+        <h1>
+            Taste the <span>extraordinary.</span>
+        </h1>
+
+        <p>
+            Delicious food, beautiful moments and unforgettable taste.
+            Welcome to the new experience of Food Corner.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#menu" class="btn btn-primary">
+                Explore Menu
+            </a>
+
+            <a href="#about" class="btn btn-secondary">
+                Discover More
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FEATURES -->
+<section class="features">
+
+    <div class="section-title">
+
+        <small>WHY FOOD CORNER</small>
+
+        <h2>
+            Simple ingredients.<br>
+            Amazing taste.
+        </h2>
+
+        <p>
+            We believe great food doesn't need to be complicated.
+            Fresh ingredients and thoughtful preparation make every
+            bite special.
+        </p>
+
+    </div>
+
+
+    <div class="feature-grid">
+
+        <div class="feature-card">
+            <div class="icon">🥗</div>
+            <h3>Fresh Ingredients</h3>
+            <p>
+                Fresh and carefully selected ingredients prepared
+                with attention to quality.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">👨‍🍳</div>
+            <h3>Expert Cooking</h3>
+            <p>
+                Delicious recipes prepared with passion and
+                modern cooking techniques.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">❤️</div>
+            <h3>Made With Love</h3>
+            <p>
+                Every dish is prepared to create a memorable
+                dining experience.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- MENU -->
+<section class="menu-section" id="menu">
+
+    <div class="section-title">
+
+        <small>OUR MENU</small>
+
+        <h2>
+            Choose your favorite.
+        </h2>
+
+        <p>
+            Explore our selection of delicious food and refreshing
+            beverages.
+        </p>
+
+    </div>
+
+
+    <div class="filters">
+
+        <button class="filter active" data-filter="all">
+            All
+        </button>
+
+        <button class="filter" data-filter="italian">
+            Italian
+        </button>
+
+        <button class="filter" data-filter="indian">
+            Indian
+        </button>
+
+        <button class="filter" data-filter="fast">
+            Fast Food
+        </button>
+
+        <button class="filter" data-filter="drink">
+            Drinks
+        </button>
+
+    </div>
+
+
+    <div class="menu-grid">
+
+        <div class="food-card" data-category="italian">
+
+            <div class="food-image">
+                🍕
+            </div>
+
+            <div class="food-info">
+                <h3>Pizza</h3>
+                <span class="category">Italian</span>
+                <span class="price">₹250</span>
+
+                <button class="order-btn">
+                    Add to Order
+                </button>
+            </div>
+
+        </div>
+
+
+        <div class="food-card" data-category="indian">
+
+            <div class="food-image">
+                🥘
+            </div>
+
+            <div class="food-info">
+                <h3>Paneer Tikka</h3>
+                <span class="category">Indian</span>
+                <span class="price">₹180</span>
+
+                <button class="order-btn">
+                    Add to Order
+                </button>
+            </div>
+
+        </div>
+
+
+        <div class="food-card" data-category="fast">
+
+            <div class="food-image">
+                🍔
+            </div>
+
+            <div class="food-info">
+                <h3>Veg Burger</h3>
+                <span class="category">Fast Food</span>
+                <span class="price">₹120</span>
+
+                <button class="order-btn">
+                    Add to Order
+                </button>
+            </div>
+
+        </div>
+
+
+        <div class="food-card" data-category="drink">
+
+            <div class="food-image">
+                ☕
+            </div>
+
+            <div class="food-info">
+                <h3>Cold Coffee</h3>
+                <span class="category">Beverage</span>
+                <span class="price">₹100</span>
+
+                <button class="order-btn">
+                    Add to Order
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ABOUT -->
+<section class="about" id="about">
+
+    <div class="section-title">
+
+        <small>OUR STORY</small>
+
+        <h2>
+            Food is an experience.
+        </h2>
+
+        <p>
+            More than just a restaurant.
+        </p>
+
+    </div>
+
+
+    <div class="about-box">
+
+        <div class="about-content">
+
+            <h2>
+                Welcome to<br>
+                Food Corner.
+            </h2>
+
+            <p>
+                We serve fresh, delicious and hygienic food for our
+                customers. Our goal is simple — great taste,
+                beautiful presentation and happy moments.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- HOURS -->
+<section class="hours" id="hours">
+
+    <div class="section-title">
+
+        <small>VISIT US</small>
+
+        <h2>
+            We're open for you.
+        </h2>
+
+    </div>
+
+
+    <div class="hours-card">
+
+        <h3>Opening Hours</h3>
+
+        <p>
+            Monday – Sunday
+        </p>
+
+        <br>
+
+        <strong>
+            11:00 AM – 10:00 PM
+        </strong>
+
+    </div>
+
+</section>
+
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+
+    <div class="section-title">
+
+        <small>GET IN TOUCH</small>
+
+        <h2>
+            Let's talk.
+        </h2>
+
+        <p>
+            Have a question? Send us a message.
+        </p>
+
+    </div>
+
+
+    <form class="contact-box" id="contactForm">
+
+        <input
+            type="text"
+            placeholder="Your Name"
+            required
+        >
+
+        <input
+            type="email"
+            placeholder="Your Email"
+            required
+        >
+
+        <textarea
+            placeholder="Your Message"
+            required
+        ></textarea>
+
+        <button class="submit" type="submit">
+            Send Message
+        </button>
+
+    </form>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <p>
+        © 2026 <strong>Food Corner Restaurant</strong>.
+        All rights reserved.
+    </p>
+
+</footer>
+
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+    Added to your order ✓
+</div>
+
+
+<script>
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+
+menuBtn.addEventListener("click", () => {
+
+    navLinks.classList.toggle("open");
+
+});
+
+
+/* =========================
+   CLOSE MOBILE MENU
+========================= */
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        navLinks.classList.remove("open");
+
+    });
+
+});
+
+
+/* =========================
+   MENU FILTER
+========================= */
+
+const filters = document.querySelectorAll(".filter");
+const foodCards = document.querySelectorAll(".food-card");
+
+filters.forEach(filter => {
+
+    filter.addEventListener("click", () => {
+
+        filters.forEach(btn =>
+            btn.classList.remove("active")
+        );
+
+        filter.classList.add("active");
+
+        const selected =
+            filter.getAttribute("data-filter");
+
+        foodCards.forEach(card => {
+
+            const category =
+                card.getAttribute("data-category");
+
+            if(
+                selected === "all" ||
+                selected === category
+            ){
+
+                card.style.display = "block";
+
+                setTimeout(() => {
+                    card.style.opacity = "1";
+                    card.style.transform = "scale(1)";
+                },50);
+
+            }else{
+
+                card.style.opacity = "0";
+                card.style.transform = "scale(.8)";
+
+                setTimeout(() => {
+                    card.style.display = "none";
+                },300);
+
+            }
+
+        });
+
+    });
+
+});
+
+
+/* =========================
+   ORDER BUTTON
+========================= */
+
+const toast = document.getElementById("toast");
+
+document.querySelectorAll(".order-btn").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        toast.classList.add("show");
+
+        setTimeout(() => {
+
+            toast.classList.remove("show");
+
+        },2000);
+
+    });
+
+});
+
+
+/* =========================
+   CONTACT FORM
+========================= */
+
+document.getElementById("contactForm")
+.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    toast.textContent =
+        "Message sent successfully ✓";
+
+    toast.classList.add("show");
+
+    this.reset();
+
+    setTimeout(() => {
+
+        toast.classList.remove("show");
+
+        setTimeout(() => {
+            toast.textContent =
+                "Added to your order ✓";
+        },400);
+
+    },2500);
+
+});
+
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+const cards =
+    document.querySelectorAll(".feature-card");
+
+const observer =
+    new IntersectionObserver(
+        entries => {
+
+            entries.forEach((entry,index) => {
+
+                if(entry.isIntersecting){
+
+                    setTimeout(() => {
+
+                        entry.target.classList.add("show");
+
+                    }, index * 150);
+
+                    observer.unobserve(entry.target);
+
+                }
+
+            });
+
+        },
+        {
+            threshold:.15
+        }
+    );
+
+cards.forEach(card => observer.observe(card));
+
+
+/* =========================
+   PARALLAX EFFECT
+========================= */
+
+window.addEventListener("mousemove", e => {
+
+    const x =
+        (e.clientX / window.innerWidth - .5) * 20;
+
+    const y =
+        (e.clientY / window.innerHeight - .5) * 20;
+
+    document.querySelector(".circle1")
+        .style.transform =
+        `translate(${x}px, ${y}px)`;
+
+    document.querySelector(".circle2")
+        .style.transform =
+        `translate(${-x}px, ${-y}px)`;
+
+});
+
+
+/* =========================
+   NAVBAR SCROLL EFFECT
+========================= */
+
+window.addEventListener("scroll", () => {
+
+    const navbar =
+        document.querySelector(".navbar");
+
+    if(window.scrollY > 30){
+
+        navbar.style.boxShadow =
+            "0 8px 30px rgba(0,0,0,.08)";
+
+    }else{
+
+        navbar.style.boxShadow = "none";
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
+```
