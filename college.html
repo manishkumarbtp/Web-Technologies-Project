@@ -1,1361 +1,2322 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>The ICFAI University, Jaipur</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>The ICFAI University, Jaipur</title>
+
+<style>
+:root{
+    --navy:#082b68;
+    --blue:#0877f9;
+    --blue2:#005ddf;
+    --red:#e51e2a;
+    --text:#193e73;
+    --muted:#7185a4;
+    --light:#f5f9ff;
+    --border:#dce8f6;
+    --white:#ffffff;
+    --shadow:0 18px 55px rgba(15,61,120,.12);
+    --radius:20px;
+    --font:Inter,"Segoe UI",Arial,sans-serif;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:var(--font);
+    color:var(--text);
+    background:#fff;
+    overflow-x:hidden;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+button,
+input,
+textarea,
+select{
+    font-family:inherit;
+}
+
+img{
+    max-width:100%;
+}
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar{
+    position:fixed;
+    z-index:2000;
+    top:0;
+    left:0;
+    width:100%;
+    height:88px;
+
+    display:flex;
+    align-items:center;
+
+    padding:0 4%;
+
+    background:rgba(255,255,255,.94);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    border-bottom:1px solid rgba(20,70,130,.10);
+
+    transition:.3s ease;
+}
+
+.navbar.scrolled{
+    height:74px;
+    box-shadow:0 8px 35px rgba(20,65,120,.10);
+}
+
+.logo-area{
+    min-width:400px;
+
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.logo{
+    width:174px;
+    height:auto;
+    display:block;
+}
+
+.logo-divider{
+    width:1px;
+    height:40px;
+    background:#d5e1ee;
+}
 
-    <style>
-        /* =========================
-           GLOBAL
-        ========================== */
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+.university-name{
+    color:var(--navy);
+    font-size:14px;
+    font-weight:750;
+    white-space:nowrap;
+}
 
-        html {
-            scroll-behavior: smooth;
-        }
+.nav-links{
+    flex:1;
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-                         Roboto, Helvetica, Arial, sans-serif;
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
 
-            background: #f5f7fb;
-            color: #111827;
-            overflow-x: hidden;
-        }
+    gap:20px;
+}
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        ::selection {
-            background: #172554;
-            color: white;
-        }
+.nav-links a{
+    position:relative;
 
-        /* =========================
-           NAVBAR
-        ========================== */
+    padding:32px 0;
 
-        .navbar {
-            position: fixed;
-            top: 15px;
-            left: 50%;
-            transform: translateX(-50%);
+    color:#183d73;
+    font-size:11px;
+    font-weight:700;
 
-            width: min(1180px, 94%);
-            height: 66px;
+    white-space:nowrap;
 
-            display: flex;
-            align-items: center;
+    transition:.25s;
+}
 
-            padding: 0 22px;
+.nav-links a:hover,
+.nav-links a.active{
+    color:var(--blue);
+}
 
-            background: rgba(255, 255, 255, 0.78);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
+.nav-links a.active::after{
+    content:"";
 
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            border-radius: 22px;
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:10px;
 
-            box-shadow: 0 15px 45px rgba(15, 23, 42, 0.10);
+    height:2px;
 
-            z-index: 1000;
+    border-radius:10px;
+    background:var(--blue);
+}
 
-            transition: 0.3s ease;
-        }
+.dropdown::after{
+    content:"⌄";
+    margin-left:5px;
+    font-size:10px;
+}
 
-        .nav-container {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+.nav-actions{
+    display:flex;
+    align-items:center;
+    gap:5px;
+    margin-left:15px;
+}
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 11px;
+.icon-btn{
+    width:34px;
+    height:34px;
 
-            font-weight: 700;
-            font-size: 15px;
-            letter-spacing: -0.3px;
-        }
+    border:0;
+    background:transparent;
 
-        .logo-mark {
-            width: 38px;
-            height: 38px;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            border-radius: 12px;
-
-            background:
-                linear-gradient(135deg,
-                #172554,
-                #2563eb);
+    color:var(--navy);
+    font-size:18px;
 
-            color: white;
-            font-weight: 800;
-        }
+    cursor:pointer;
+}
 
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 28px;
+.apply-btn{
+    padding:11px 19px;
 
-            list-style: none;
+    border:0;
+    border-radius:30px;
 
-            font-size: 14px;
-            color: #475569;
-        }
+    color:#fff;
+    background:linear-gradient(135deg,#087aff,#005bdd);
 
-        .nav-links a {
-            transition: 0.3s ease;
-        }
+    font-size:11px;
+    font-weight:800;
 
-        .nav-links a:hover {
-            color: #2563eb;
-        }
+    cursor:pointer;
 
-        .nav-admission {
-            padding: 10px 17px;
-            border-radius: 20px;
+    box-shadow:0 10px 28px rgba(8,108,255,.22);
 
-            background: #111827;
-            color: white !important;
-        }
+    transition:.25s;
+}
 
-        .nav-admission:hover {
-            background: #2563eb;
-        }
+.apply-btn:hover{
+    transform:translateY(-2px);
+}
 
-        .menu-btn {
-            display: none;
+.menu-btn{
+    display:none;
 
-            border: none;
-            background: transparent;
+    margin-left:auto;
 
-            font-size: 25px;
-            cursor: pointer;
-        }
+    border:0;
+    background:none;
 
-        /* =========================
-           HERO
-        ========================== */
+    color:var(--navy);
+    font-size:25px;
 
-        .hero {
-            min-height: 100vh;
+    cursor:pointer;
+}
 
-            position: relative;
-            overflow: hidden;
+/* =========================================================
+   HERO
+========================================================= */
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
+.hero{
+    position:relative;
 
-            text-align: center;
+    min-height:820px;
 
-            padding: 150px 20px 100px;
+    padding-top:88px;
 
-            background:
-                radial-gradient(
-                    circle at 15% 20%,
-                    rgba(37, 99, 235, 0.18),
-                    transparent 28%
-                ),
+    overflow:hidden;
 
-                radial-gradient(
-                    circle at 85% 30%,
-                    rgba(124, 58, 237, 0.18),
-                    transparent 28%
-                ),
+    background:#f5faff;
+}
 
-                radial-gradient(
-                    circle at 50% 100%,
-                    rgba(14, 165, 233, 0.12),
-                    transparent 35%
-                ),
+/*
+   YOUR ICFAI JAIPUR CAMPUS PHOTO
+*/
+.hero-bg{
+    position:absolute;
+    inset:0;
 
-                linear-gradient(
-                    135deg,
-                    #ffffff,
-                    #f4f7ff,
-                    #eef2ff
-                );
-        }
+    background-image:
+        linear-gradient(
+            90deg,
+            #f6fbff 0%,
+            rgba(246,251,255,.99) 13%,
+            rgba(246,251,255,.95) 25%,
+            rgba(246,251,255,.78) 37%,
+            rgba(246,251,255,.42) 50%,
+            rgba(246,251,255,.10) 67%,
+            rgba(246,251,255,0) 84%
+        ),
+        url("https://www.iujaipur.edu.in/assets/img/campus-building.jpg");
 
-        .orb {
-            position: absolute;
+    background-size:cover;
+    background-position:center center;
+    background-repeat:no-repeat;
 
-            width: 250px;
-            height: 250px;
+    transform:scale(1.01);
+}
 
-            border-radius: 50%;
+.hero::after{
+    content:"";
 
-            filter: blur(80px);
+    position:absolute;
+    inset:0;
 
-            opacity: 0.35;
+    pointer-events:none;
 
-            animation: float 8s ease-in-out infinite;
-        }
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.06),
+            transparent 40%,
+            rgba(255,255,255,.08)
+        );
+}
 
-        .orb-one {
-            background: #2563eb;
-            top: 20%;
-            left: -100px;
-        }
+.hero-container{
+    position:relative;
+    z-index:5;
 
-        .orb-two {
-            background: #7c3aed;
-            bottom: 5%;
-            right: -100px;
+    width:91%;
+    max-width:1700px;
 
-            animation-delay: 2s;
-        }
+    min-height:732px;
 
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
+    margin:auto;
+}
 
-            50% {
-                transform: translateY(-35px);
-            }
-        }
+.hero-content{
+    width:575px;
 
-        .hero-content {
-            position: relative;
-            z-index: 2;
+    padding-top:68px;
+}
 
-            max-width: 1000px;
-        }
+.hero-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
 
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+    padding:7px 13px 7px 7px;
 
-            padding: 9px 16px;
+    border:1px solid #d4e7fb;
+    border-radius:50px;
 
-            border-radius: 30px;
+    background:rgba(238,248,255,.90);
 
-            background: rgba(255,255,255,0.75);
+    color:#0670ed;
 
-            border: 1px solid rgba(37,99,235,0.15);
+    font-size:10px;
+    font-weight:800;
 
-            color: #1d4ed8;
+    box-shadow:0 8px 25px rgba(30,100,180,.07);
+}
 
-            font-size: 13px;
-            font-weight: 600;
+.badge-icon{
+    width:27px;
+    height:27px;
 
-            margin-bottom: 25px;
-        }
+    display:grid;
+    place-items:center;
 
-        .badge-dot {
-            width: 7px;
-            height: 7px;
+    border-radius:50%;
 
-            border-radius: 50%;
+    background:#dcefff;
 
-            background: #22c55e;
+    font-size:13px;
+}
 
-            box-shadow: 0 0 10px #22c55e;
-        }
+.badge-divider{
+    width:1px;
+    height:15px;
 
-        .hero h1 {
-            font-size: clamp(48px, 8vw, 96px);
+    background:#b9d6ef;
+}
 
-            line-height: 0.98;
+.hero h1{
+    margin-top:27px;
 
-            letter-spacing: -5px;
+    font-family:Georgia,"Times New Roman",serif;
 
-            font-weight: 800;
+    font-size:62px;
+    line-height:1.01;
 
-            background:
-                linear-gradient(
-                    100deg,
-                    #0f172a,
-                    #1d4ed8,
-                    #7c3aed
-                );
+    letter-spacing:-2.5px;
 
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+    color:var(--navy);
 
-        .hero h1 span {
-            display: block;
+    text-shadow:0 1px 0 rgba(255,255,255,.5);
+}
 
-            font-size: 0.48em;
+.hero h1 .blue{
+    color:#195ba9;
+}
 
-            letter-spacing: -1px;
+.hero h1 .red{
+    color:var(--red);
+}
 
-            margin-top: 15px;
+.hero-description{
+    width:520px;
 
-            background:
-                linear-gradient(
-                    90deg,
-                    #334155,
-                    #64748b
-                );
+    margin-top:18px;
 
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+    color:#425f87;
 
-        .hero-description {
-            max-width: 700px;
+    font-size:12px;
+    line-height:1.75;
+}
 
-            margin: 30px auto;
+.location-box{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
 
-            color: #64748b;
+    margin-top:23px;
+}
 
-            font-size: 19px;
+.location-icon{
+    width:35px;
+    height:35px;
 
-            line-height: 1.8;
-        }
+    display:grid;
+    place-items:center;
 
-        .hero-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 13px;
+    flex-shrink:0;
 
-            flex-wrap: wrap;
+    border-radius:50%;
 
-            margin-top: 35px;
-        }
+    background:#fff;
 
-        .btn {
-            padding: 14px 24px;
+    color:#ed1c24;
 
-            border-radius: 30px;
+    font-size:16px;
 
-            font-size: 15px;
-            font-weight: 600;
+    box-shadow:0 8px 25px rgba(30,70,120,.14);
+}
 
-            transition: 0.35s ease;
-        }
+.location-title{
+    display:block;
 
-        .btn-primary {
-            background: #111827;
-            color: white;
+    color:var(--navy);
 
-            box-shadow:
-                0 10px 30px rgba(15,23,42,0.18);
-        }
+    font-size:12px;
+    font-weight:800;
+}
 
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            background: #2563eb;
-        }
+.location-address{
+    display:block;
 
-        .btn-secondary {
-            background: rgba(255,255,255,0.75);
+    margin-top:4px;
 
-            border: 1px solid #dbe2ea;
+    color:#7187a6;
 
-            color: #1e293b;
-        }
+    font-size:9px;
+    line-height:1.6;
+}
 
-        .btn-secondary:hover {
-            transform: translateY(-3px);
+.hero-buttons{
+    display:flex;
+    gap:10px;
 
-            border-color: #2563eb;
-            color: #2563eb;
-        }
+    margin-top:24px;
+}
 
-        /* =========================
-           SECTION
-        ========================== */
+.hero-btn{
+    min-height:43px;
 
-        section {
-            padding: 110px 20px;
-        }
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:7px;
 
-        .container {
-            width: min(1150px, 92%);
-            margin: auto;
-        }
+    padding:0 20px;
 
-        .section-label {
-            text-align: center;
+    border-radius:30px;
 
-            color: #2563eb;
+    font-size:11px;
+    font-weight:800;
 
-            font-size: 13px;
-            font-weight: 700;
+    transition:.25s;
+}
 
-            letter-spacing: 2px;
-            text-transform: uppercase;
+.hero-primary{
+    color:#fff;
 
-            margin-bottom: 12px;
-        }
+    background:linear-gradient(
+        135deg,
+        #087bff,
+        #005ddd
+    );
 
-        .section-title {
-            text-align: center;
+    box-shadow:
+        0 13px 30px rgba(7,110,245,.25);
+}
 
-            font-size: clamp(38px, 5vw, 62px);
+.hero-secondary{
+    color:var(--blue);
 
-            letter-spacing: -3px;
+    background:rgba(255,255,255,.88);
 
-            line-height: 1.05;
-        }
+    border:1px solid var(--blue);
+}
 
-        .section-subtitle {
-            max-width: 650px;
+.hero-btn:hover{
+    transform:translateY(-3px);
+}
 
-            margin: 18px auto 60px;
+/* =========================================================
+   FLOATING INFORMATION CARD
+========================================================= */
 
-            text-align: center;
+.hero-side-card{
+    position:absolute;
 
-            color: #64748b;
+    right:2%;
+    top:155px;
 
-            font-size: 17px;
-            line-height: 1.8;
-        }
+    width:235px;
 
-        /* =========================
-           ABOUT
-        ========================== */
+    padding:16px;
 
-        .about {
-            background: white;
-        }
+    border-radius:18px;
 
-        .about-grid {
-            display: grid;
+    background:rgba(255,255,255,.78);
 
-            grid-template-columns: 1fr 1fr;
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
 
-            gap: 60px;
+    border:1px solid rgba(255,255,255,.92);
 
-            align-items: center;
-        }
+    box-shadow:
+        0 18px 50px rgba(20,70,125,.13);
 
-        .about-content h3 {
-            font-size: 38px;
+    animation:floatCard 5s ease-in-out infinite;
+}
 
-            letter-spacing: -2px;
+@keyframes floatCard{
 
-            line-height: 1.15;
+    0%,100%{
+        transform:translateY(0);
+    }
 
-            margin-bottom: 22px;
-        }
+    50%{
+        transform:translateY(-7px);
+    }
 
-        .about-content p {
-            color: #64748b;
+}
 
-            font-size: 16px;
+.side-card-top{
+    display:flex;
+    align-items:center;
+    gap:9px;
+}
 
-            line-height: 1.9;
+.side-card-icon{
+    width:38px;
+    height:38px;
 
-            margin-bottom: 15px;
-        }
+    display:grid;
+    place-items:center;
 
-        .about-visual {
-            min-height: 430px;
+    border-radius:11px;
 
-            position: relative;
+    background:#e8f4ff;
 
-            border-radius: 35px;
+    color:var(--blue);
 
-            overflow: hidden;
+    font-size:18px;
+}
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #0f172a,
-                    #172554,
-                    #2563eb
-                );
+.side-card-title{
+    color:var(--navy);
+    font-size:11px;
+    font-weight:800;
+}
 
-            box-shadow:
-                0 35px 80px rgba(30,64,175,0.25);
-        }
+.side-card-sub{
+    margin-top:2px;
 
-        .about-visual::before {
-            content: "";
+    color:#7a8ca7;
+    font-size:8px;
+}
 
-            position: absolute;
+.side-line{
+    height:1px;
 
-            width: 300px;
-            height: 300px;
+    margin:13px 0;
 
-            border-radius: 50%;
+    background:#e5edf7;
+}
 
-            background: rgba(255,255,255,0.08);
+.side-stat{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 
-            top: -100px;
-            right: -80px;
-        }
+    padding:5px 0;
+}
 
-        .about-visual::after {
-            content: "";
+.side-stat span{
+    color:#778aa5;
+    font-size:8px;
+}
 
-            position: absolute;
+.side-stat strong{
+    color:var(--blue);
+    font-size:10px;
+}
 
-            width: 220px;
-            height: 220px;
+/* =========================================================
+   RECRUITER BAR
+========================================================= */
 
-            border-radius: 50%;
+.recruiter-bar{
+    position:absolute;
 
-            border: 1px solid rgba(255,255,255,0.2);
+    left:0;
+    bottom:154px;
 
-            bottom: -70px;
-            left: -60px;
-        }
+    width:875px;
 
-        .visual-content {
-            position: absolute;
+    padding:12px 17px;
 
-            inset: 0;
+    border-radius:15px;
 
-            display: flex;
-            flex-direction: column;
+    background:rgba(255,255,255,.88);
 
-            justify-content: center;
-            align-items: center;
+    backdrop-filter:blur(15px);
+    -webkit-backdrop-filter:blur(15px);
 
-            color: white;
+    border:1px solid rgba(255,255,255,.95);
 
-            text-align: center;
+    box-shadow:
+        0 15px 42px rgba(25,70,125,.12);
+}
 
-            z-index: 2;
-        }
+.recruiter-heading{
+    margin-bottom:7px;
 
-        .visual-symbol {
-            font-size: 80px;
+    color:#7e91aa;
 
-            margin-bottom: 20px;
+    font-size:8px;
+    font-weight:800;
 
-            filter:
-                drop-shadow(
-                    0 10px 20px
-                    rgba(0,0,0,0.2)
-                );
-        }
+    letter-spacing:.4px;
+}
 
-        .visual-content h3 {
-            font-size: 28px;
-        }
+.recruiter-logos{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 
-        .visual-content p {
-            color: #cbd5e1;
+    gap:8px;
+}
 
-            margin-top: 8px;
-        }
+.recruiter{
+    min-width:65px;
+    height:24px;
 
-        /* =========================
-           PROGRAMS
-        ========================== */
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-        .programs {
-            background: #f6f8fc;
-        }
+    font-size:10px;
+    font-weight:850;
 
-        .program-grid {
-            display: grid;
+    white-space:nowrap;
+}
 
-            grid-template-columns:
-                repeat(4, 1fr);
+.tcs{
+    color:#df1d2a;
+}
 
-            gap: 18px;
-        }
+.accenture{
+    color:#111;
+}
 
-        .program-card {
-            position: relative;
+.wipro{
+    color:#4b3ba0;
+}
 
-            min-height: 270px;
+.infosys{
+    color:#0077b5;
+}
 
-            padding: 28px;
+.hcl{
+    color:#0073bb;
+}
 
-            border-radius: 28px;
+.techmahindra{
+    color:#e3222d;
+    font-size:8px;
+    text-align:center;
+    line-height:1;
+}
 
-            background: white;
+.icici{
+    color:#a91f32;
+}
 
-            border: 1px solid #e8edf4;
+.amazon{
+    color:#111;
+}
 
-            overflow: hidden;
+.deloitte{
+    color:#111;
+}
 
-            transition: 0.45s ease;
-        }
+.genpact{
+    color:#0083c3;
+}
 
-        .program-card::before {
-            content: "";
+/* =========================================================
+   STATS
+========================================================= */
 
-            position: absolute;
+.hero-stats{
+    position:absolute;
 
-            width: 120px;
-            height: 120px;
+    left:0;
+    bottom:39px;
 
-            border-radius: 50%;
+    width:875px;
 
-            background: #eff6ff;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
 
-            right: -45px;
-            top: -45px;
+    gap:10px;
+}
 
-            transition: 0.4s ease;
-        }
+.stat-card{
+    min-height:88px;
 
-        .program-card:hover {
-            transform: translateY(-10px);
+    display:flex;
+    align-items:center;
 
-            box-shadow:
-                0 25px 60px
-                rgba(15,23,42,0.12);
-        }
+    gap:9px;
 
-        .program-card:hover::before {
-            transform: scale(2.2);
-        }
+    padding:11px;
 
-        .program-icon {
-            position: relative;
+    border-radius:15px;
 
-            width: 52px;
-            height: 52px;
+    background:rgba(255,255,255,.91);
 
-            display: flex;
+    backdrop-filter:blur(15px);
+    -webkit-backdrop-filter:blur(15px);
 
-            justify-content: center;
-            align-items: center;
+    border:1px solid rgba(255,255,255,.95);
 
-            border-radius: 16px;
+    box-shadow:
+        0 15px 38px rgba(25,70,125,.11);
 
-            background: #eff6ff;
+    transition:.3s;
+}
 
-            font-size: 25px;
+.stat-card:hover{
+    transform:translateY(-5px);
+}
 
-            margin-bottom: 35px;
-        }
+.stat-icon{
+    width:37px;
+    height:37px;
 
-        .program-card h3 {
-            font-size: 22px;
+    display:grid;
+    place-items:center;
 
-            margin-bottom: 10px;
-        }
+    flex-shrink:0;
 
-        .program-card p {
-            position: relative;
+    border-radius:50%;
 
-            color: #64748b;
+    background:#eaf4ff;
 
-            font-size: 14px;
+    color:var(--blue);
 
-            line-height: 1.7;
-        }
+    font-size:15px;
+}
 
-        /* =========================
-           EXPERIENCE
-        ========================== */
+.stat-number{
+    color:var(--blue);
 
-        .experience {
-            background:
-                linear-gradient(
-                    135deg,
-                    #0f172a,
-                    #172554
-                );
+    font-size:16px;
+    font-weight:900;
+}
 
-            color: white;
-        }
+.stat-text{
+    margin-top:4px;
 
-        .experience .section-label {
-            color: #93c5fd;
-        }
+    color:#768aa6;
 
-        .experience .section-subtitle {
-            color: #94a3b8;
-        }
+    font-size:8.5px;
+    line-height:1.35;
+}
 
-        .experience-grid {
-            display: grid;
+/* =========================================================
+   ASSISTANT
+========================================================= */
 
-            grid-template-columns:
-                repeat(3, 1fr);
+.assistant{
+    position:absolute;
 
-            gap: 20px;
-        }
+    right:0;
+    bottom:70px;
 
-        .experience-card {
-            padding: 35px;
+    width:275px;
 
-            border-radius: 28px;
+    display:flex;
+    align-items:center;
 
-            background:
-                rgba(255,255,255,0.06);
+    gap:10px;
 
-            border: 1px solid
-                rgba(255,255,255,0.10);
+    padding:13px;
 
-            backdrop-filter: blur(15px);
+    border-radius:17px;
 
-            transition: 0.4s ease;
-        }
+    background:rgba(255,255,255,.93);
 
-        .experience-card:hover {
-            transform: translateY(-8px);
+    backdrop-filter:blur(15px);
+    -webkit-backdrop-filter:blur(15px);
 
-            background:
-                rgba(255,255,255,0.10);
-        }
+    border:1px solid rgba(255,255,255,.95);
 
-        .experience-card span {
-            font-size: 35px;
-        }
+    box-shadow:
+        0 18px 48px rgba(20,65,120,.16);
+}
 
-        .experience-card h3 {
-            font-size: 22px;
+.bot-icon{
+    width:42px;
+    height:42px;
 
-            margin: 22px 0 10px;
-        }
+    display:grid;
+    place-items:center;
 
-        .experience-card p {
-            color: #94a3b8;
+    flex-shrink:0;
 
-            font-size: 14px;
+    border-radius:12px;
 
-            line-height: 1.8;
-        }
+    background:#e6f3ff;
 
-        /* =========================
-           STATS
-        ========================== */
+    font-size:20px;
+}
 
-        .stats {
-            background: white;
-        }
+.assistant strong{
+    display:block;
 
-        .stats-grid {
-            display: grid;
+    margin-bottom:3px;
 
-            grid-template-columns:
-                repeat(4, 1fr);
+    color:var(--navy);
 
-            gap: 20px;
+    font-size:11px;
+}
 
-            text-align: center;
-        }
+.assistant p{
+    color:#7185a2;
 
-        .stat {
-            padding: 30px;
-        }
+    font-size:8.5px;
+    line-height:1.45;
+}
 
-        .stat h2 {
-            font-size: 52px;
+.chat-open{
+    position:absolute;
 
-            letter-spacing: -3px;
+    right:-3px;
+    bottom:-51px;
 
-            background:
-                linear-gradient(
-                    90deg,
-                    #172554,
-                    #2563eb
-                );
+    width:44px;
+    height:44px;
 
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+    display:grid;
+    place-items:center;
 
-        .stat p {
-            color: #64748b;
+    border:0;
+    border-radius:50%;
 
-            margin-top: 5px;
-        }
+    background:linear-gradient(
+        135deg,
+        #087aff,
+        #005bdd
+    );
 
-        /* =========================
-           ADMISSION
-        ========================== */
+    color:#fff;
 
-        .admission {
-            padding-top: 30px;
+    font-size:17px;
 
-            background: white;
-        }
+    box-shadow:
+        0 11px 30px rgba(8,108,255,.30);
 
-        .admission-box {
-            position: relative;
+    cursor:pointer;
+}
 
-            overflow: hidden;
+/* =========================================================
+   COMMON SECTION
+========================================================= */
 
-            padding: 75px 40px;
+section:not(.hero){
+    padding:80px 5%;
+}
 
-            border-radius: 38px;
+.section-head{
+    max-width:720px;
 
-            text-align: center;
+    margin-bottom:38px;
+}
 
-            color: white;
+.eyebrow{
+    margin-bottom:8px;
 
-            background:
-                linear-gradient(
-                    120deg,
-                    #111827,
-                    #172554,
-                    #2563eb
-                );
+    color:var(--blue);
 
-            box-shadow:
-                0 30px 80px
-                rgba(30,64,175,0.22);
-        }
+    font-size:9px;
+    font-weight:850;
 
-        .admission-box::before {
-            content: "";
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+}
 
-            position: absolute;
+.section-head h2{
+    color:var(--navy);
 
-            width: 300px;
-            height: 300px;
+    font-family:Georgia,"Times New Roman",serif;
 
-            border: 1px solid
-                rgba(255,255,255,0.12);
+    font-size:36px;
+    line-height:1.15;
+}
 
-            border-radius: 50%;
+.section-head p{
+    margin-top:11px;
 
-            left: -100px;
-            top: -130px;
-        }
+    color:var(--muted);
 
-        .admission-box h2 {
-            position: relative;
+    font-size:11px;
+    line-height:1.7;
+}
 
-            font-size: clamp(38px, 5vw, 60px);
+/* =========================================================
+   ABOUT
+========================================================= */
 
-            letter-spacing: -3px;
-        }
+.about{
+    background:#f7fbff;
+}
 
-        .admission-box p {
-            position: relative;
+.about-grid{
+    max-width:1250px;
 
-            max-width: 600px;
+    margin:auto;
 
-            margin: 18px auto 30px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
 
-            color: #cbd5e1;
+    gap:45px;
 
-            line-height: 1.8;
-        }
+    align-items:center;
+}
 
-        .admission-box .btn {
-            position: relative;
+.about-image{
+    height:350px;
 
-            background: white;
+    border-radius:23px;
 
-            color: #172554;
-        }
+    background:
+        url("https://www.iujaipur.edu.in/assets/img/campus-building.jpg")
+        center/cover no-repeat;
 
-        .admission-box .btn:hover {
-            transform: translateY(-3px);
+    box-shadow:var(--shadow);
+}
 
-            background: #dbeafe;
-        }
+.about-content h3{
+    color:var(--navy);
 
-        /* =========================
-           CONTACT
-        ========================== */
+    font-size:24px;
+}
 
-        .contact {
-            background: #f6f8fc;
-        }
+.about-content p{
+    margin-top:11px;
 
-        .contact-grid {
-            display: grid;
+    color:#7185a2;
 
-            grid-template-columns:
-                0.8fr 1.2fr;
+    font-size:11px;
+    line-height:1.8;
+}
 
-            gap: 30px;
-        }
+.about-points{
+    display:grid;
+    grid-template-columns:1fr 1fr;
 
-        .contact-info,
-        .contact-form {
-            background: white;
+    gap:10px;
 
-            border-radius: 30px;
+    margin-top:18px;
+}
 
-            padding: 35px;
+.about-point{
+    padding:13px;
 
-            border: 1px solid #e7ebf2;
-        }
+    border:1px solid var(--border);
+    border-radius:13px;
 
-        .contact-info h3 {
-            font-size: 30px;
+    background:#fff;
+}
 
-            margin-bottom: 20px;
-        }
+.about-point strong{
+    display:block;
 
-        .contact-info p {
-            color: #64748b;
+    color:var(--navy);
 
-            line-height: 1.8;
+    font-size:10px;
+}
 
-            margin-bottom: 20px;
-        }
+.about-point span{
+    display:block;
 
-        .contact-item {
-            padding: 15px 0;
+    margin-top:4px;
 
-            border-bottom: 1px solid #eef1f5;
+    color:#7d8fa8;
 
-            color: #475569;
+    font-size:8px;
+}
 
-            font-size: 14px;
-        }
+/* =========================================================
+   PROGRAMS
+========================================================= */
 
-        .form-group {
-            margin-bottom: 18px;
-        }
+.programs{
+    background:#fff;
+}
 
-        .form-group label {
-            display: block;
+.filters{
+    display:flex;
+    flex-wrap:wrap;
 
-            margin-bottom: 7px;
+    gap:8px;
 
-            font-size: 14px;
+    margin-bottom:25px;
+}
 
-            font-weight: 600;
-        }
+.filter{
+    padding:8px 14px;
 
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
+    border:1px solid var(--border);
+    border-radius:30px;
 
-            border: 1px solid #dbe1ea;
+    background:#fff;
 
-            border-radius: 14px;
+    color:#57729a;
 
-            padding: 14px;
+    font-size:9px;
+    font-weight:750;
 
-            font-family: inherit;
+    cursor:pointer;
+}
 
-            font-size: 15px;
+.filter.active,
+.filter:hover{
+    color:#fff;
 
-            outline: none;
+    background:var(--blue);
+    border-color:var(--blue);
+}
 
-            transition: 0.3s ease;
-        }
+.program-grid{
+    max-width:1250px;
 
-        .form-group textarea {
-            min-height: 130px;
+    margin:auto;
 
-            resize: vertical;
-        }
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
 
-        .form-group input:focus,
-        .form-group textarea:focus {
-            border-color: #2563eb;
+    gap:15px;
+}
 
-            box-shadow:
-                0 0 0 4px
-                rgba(37,99,235,0.10);
-        }
+.program{
+    padding:22px;
 
-        .submit-btn {
-            width: 100%;
+    border:1px solid var(--border);
+    border-radius:19px;
 
-            padding: 14px;
+    background:#fff;
 
-            border: none;
+    transition:.3s;
+}
 
-            border-radius: 20px;
+.program:hover{
+    transform:translateY(-5px);
 
-            background: #111827;
+    box-shadow:var(--shadow);
+}
 
-            color: white;
+.program-icon{
+    width:40px;
+    height:40px;
 
-            font-weight: 600;
+    display:grid;
+    place-items:center;
 
-            cursor: pointer;
+    border-radius:11px;
 
-            transition: 0.3s ease;
-        }
+    background:#edf6ff;
 
-        .submit-btn:hover {
-            background: #2563eb;
-        }
+    font-size:18px;
+}
 
-        /* =========================
-           FOOTER
-        ========================== */
+.program h3{
+    margin-top:14px;
 
-        footer {
-            background: #080b12;
+    color:var(--navy);
 
-            color: white;
+    font-size:14px;
+}
 
-            padding: 50px 20px;
-        }
+.program p{
+    margin-top:6px;
 
-        .footer-container {
-            width: min(1150px, 92%);
+    color:#788ba5;
 
-            margin: auto;
+    font-size:9px;
+    line-height:1.65;
+}
 
-            display: flex;
+/* =========================================================
+   PLACEMENTS
+========================================================= */
 
-            justify-content: space-between;
+.placements{
+    background:#f5faff;
+}
 
-            align-items: center;
+.placement-grid{
+    max-width:1250px;
 
-            gap: 25px;
-        }
+    margin:auto;
 
-        .footer-logo {
-            font-size: 17px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
 
-            font-weight: 700;
-        }
+    gap:30px;
+}
 
-        .footer-container p {
-            color: #64748b;
+.placement-box{
+    padding:27px;
 
-            font-size: 13px;
-        }
+    border:1px solid var(--border);
+    border-radius:21px;
 
-        .footer-links {
-            display: flex;
+    background:#fff;
 
-            gap: 20px;
+    box-shadow:
+        0 10px 35px rgba(25,70,120,.05);
+}
 
-            color: #94a3b8;
+.placement-box h3{
+    color:var(--navy);
 
-            font-size: 13px;
-        }
+    font-size:20px;
+}
 
-        .footer-links a:hover {
-            color: white;
-        }
+.placement-box > p{
+    margin-top:8px;
 
-        /* =========================
-           SCROLL REVEAL
-        ========================== */
+    color:#7185a3;
 
-        .reveal {
-            opacity: 0;
+    font-size:10px;
+    line-height:1.7;
+}
 
-            transform: translateY(40px);
+.placement-stats{
+    display:grid;
+    grid-template-columns:1fr 1fr;
 
-            transition:
-                opacity 0.8s ease,
-                transform 0.8s ease;
-        }
+    gap:10px;
 
-        .reveal.active {
-            opacity: 1;
+    margin-top:20px;
+}
 
-            transform: translateY(0);
-        }
+.pstat{
+    padding:15px;
 
-        /* =========================
-           RESPONSIVE
-        ========================== */
+    border-radius:13px;
 
-        @media (max-width: 900px) {
+    background:#f4f8ff;
+}
 
-            .nav-links {
-                position: absolute;
+.pstat strong{
+    display:block;
 
-                top: 76px;
-                left: 0;
+    color:var(--blue);
 
-                width: 100%;
+    font-size:19px;
+}
 
-                display: none;
+.pstat span{
+    display:block;
 
-                flex-direction: column;
+    margin-top:4px;
 
-                align-items: stretch;
+    color:#7c8ea7;
 
-                gap: 0;
+    font-size:8px;
+}
 
-                padding: 10px;
+.company-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
 
-                border-radius: 20px;
+    gap:9px;
 
-                background: rgba(255,255,255,0.96);
+    margin-top:17px;
+}
 
-                backdrop-filter: blur(20px);
+.company{
+    height:60px;
 
-                box-shadow:
-                    0 20px 50px
-                    rgba(15,23,42,0.15);
-            }
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-            .nav-links.show {
-                display: flex;
-            }
+    border:1px solid #e2ebf6;
+    border-radius:11px;
 
-            .nav-links li {
-                padding: 13px 18px;
-            }
+    background:#fff;
 
-            .menu-btn {
-                display: block;
-            }
+    font-size:12px;
+    font-weight:850;
+}
 
-            .about-grid {
-                grid-template-columns: 1fr;
-            }
+/* =========================================================
+   CAMPUSES
+========================================================= */
 
-            .program-grid {
-                grid-template-columns: 1fr 1fr;
-            }
+.campuses{
+    background:#fff;
+}
 
-            .experience-grid {
-                grid-template-columns: 1fr;
-            }
+.campus-grid{
+    max-width:1250px;
 
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
-            }
+    margin:auto;
 
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
 
-        @media (max-width: 600px) {
+    gap:14px;
+}
 
-            .navbar {
-                top: 8px;
-            }
+.campus{
+    overflow:hidden;
 
-            .hero h1 {
-                letter-spacing: -3px;
-            }
+    border:1px solid var(--border);
+    border-radius:17px;
 
-            .hero-description {
-                font-size: 16px;
-            }
+    background:#fff;
 
-            .program-grid {
-                grid-template-columns: 1fr;
-            }
+    transition:.3s;
+}
 
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
-            }
+.campus:hover{
+    transform:translateY(-4px);
 
-            .footer-container {
-                flex-direction: column;
+    box-shadow:var(--shadow);
+}
 
-                text-align: center;
-            }
+.campus img{
+    width:100%;
+    height:120px;
 
-            .footer-links {
-                flex-wrap: wrap;
+    display:block;
 
-                justify-content: center;
-            }
+    object-fit:cover;
+}
 
-            section {
-                padding: 80px 20px;
-            }
-        }
-    </style>
+.campus-info{
+    padding:11px 12px;
+}
+
+.campus-info h3{
+    color:var(--navy);
+
+    font-size:11px;
+}
+
+.campus-info p{
+    margin-top:3px;
+
+    color:#8192aa;
+
+    font-size:8px;
+}
+
+/* =========================================================
+   CAMPUS LIFE
+========================================================= */
+
+.life{
+    background:#f7fbff;
+}
+
+.life-grid{
+    max-width:1250px;
+
+    margin:auto;
+
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+
+    gap:17px;
+}
+
+.life-card{
+    padding:23px;
+
+    border:1px solid var(--border);
+    border-radius:19px;
+
+    background:#fff;
+}
+
+.life-icon{
+    font-size:23px;
+}
+
+.life-card h3{
+    margin-top:11px;
+
+    color:var(--navy);
+
+    font-size:14px;
+}
+
+.life-card p{
+    margin-top:6px;
+
+    color:#7588a3;
+
+    font-size:9px;
+    line-height:1.65;
+}
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.contact{
+    background:#fff;
+}
+
+.contact-grid{
+    max-width:1100px;
+
+    margin:auto;
+
+    display:grid;
+    grid-template-columns:.9fr 1.1fr;
+
+    gap:30px;
+}
+
+.contact-info{
+    padding:28px;
+
+    border-radius:21px;
+
+    background:#f3f8ff;
+}
+
+.contact-info h3{
+    color:var(--navy);
+
+    font-size:21px;
+}
+
+.contact-info > p{
+    margin-top:8px;
+
+    color:#7185a3;
+
+    font-size:10px;
+    line-height:1.7;
+}
+
+.contact-item{
+    display:flex;
+    gap:10px;
+
+    margin-top:20px;
+}
+
+.contact-icon{
+    width:33px;
+    height:33px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:9px;
+
+    background:#fff;
+}
+
+.contact-item strong{
+    display:block;
+
+    color:var(--navy);
+
+    font-size:9px;
+}
+
+.contact-item span{
+    display:block;
+
+    margin-top:3px;
+
+    color:#7c8fa9;
+
+    font-size:8px;
+}
+
+.contact-form{
+    padding:28px;
+
+    border:1px solid var(--border);
+    border-radius:21px;
+
+    background:#fff;
+}
+
+.form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+
+    gap:10px;
+}
+
+.form-group{
+    margin-bottom:11px;
+}
+
+.form-group label{
+    display:block;
+
+    margin-bottom:5px;
+
+    color:var(--navy);
+
+    font-size:8px;
+    font-weight:800;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+    width:100%;
+
+    padding:10px 11px;
+
+    border:1px solid #dce7f4;
+    border-radius:9px;
+
+    outline:none;
+
+    background:#fbfdff;
+
+    color:#36557f;
+
+    font-size:9px;
+}
+
+.form-group textarea{
+    min-height:95px;
+
+    resize:vertical;
+}
+
+.submit{
+    width:100%;
+
+    padding:11px;
+
+    border:0;
+    border-radius:10px;
+
+    background:var(--blue);
+
+    color:#fff;
+
+    font-size:10px;
+    font-weight:800;
+
+    cursor:pointer;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+    padding:43px 5% 22px;
+
+    background:#08285e;
+
+    color:#fff;
+}
+
+.footer-grid{
+    max-width:1250px;
+
+    margin:auto;
+
+    display:grid;
+    grid-template-columns:1.5fr 1fr 1fr 1fr;
+
+    gap:32px;
+}
+
+.footer-logo{
+    width:145px;
+
+    padding:6px;
+
+    border-radius:4px;
+
+    background:#fff;
+}
+
+.footer-about{
+    max-width:310px;
+
+    margin-top:13px;
+
+    color:#b8cae6;
+
+    font-size:8px;
+    line-height:1.8;
+}
+
+.footer-col h3{
+    margin-bottom:12px;
+
+    font-size:10px;
+}
+
+.footer-col a{
+    display:block;
+
+    margin-bottom:7px;
+
+    color:#b8cae6;
+
+    font-size:8px;
+}
+
+.footer-bottom{
+    max-width:1250px;
+
+    margin:27px auto 0;
+
+    padding-top:15px;
+
+    display:flex;
+    justify-content:space-between;
+
+    border-top:1px solid rgba(255,255,255,.12);
+
+    color:#9db3d4;
+
+    font-size:8px;
+}
+
+/* =========================================================
+   CHATBOT
+========================================================= */
+
+.chat-panel{
+    position:fixed;
+
+    z-index:3000;
+
+    right:25px;
+    bottom:85px;
+
+    width:305px;
+
+    display:none;
+
+    overflow:hidden;
+
+    border:1px solid var(--border);
+    border-radius:17px;
+
+    background:#fff;
+
+    box-shadow:
+        0 20px 60px rgba(15,50,100,.22);
+}
+
+.chat-panel.open{
+    display:block;
+}
+
+.chat-head{
+    padding:14px;
+
+    display:flex;
+    justify-content:space-between;
+
+    background:var(--blue);
+
+    color:#fff;
+}
+
+.chat-head strong{
+    font-size:10px;
+}
+
+.chat-close{
+    border:0;
+
+    background:none;
+
+    color:#fff;
+
+    font-size:17px;
+
+    cursor:pointer;
+}
+
+.chat-body{
+    padding:14px;
+}
+
+.message{
+    padding:10px;
+
+    border-radius:11px;
+
+    background:#f1f7ff;
+
+    color:#536c91;
+
+    font-size:8px;
+    line-height:1.6;
+}
+
+.chat-options{
+    display:grid;
+
+    gap:6px;
+
+    margin-top:10px;
+}
+
+.chat-options button{
+    padding:8px;
+
+    border:1px solid #dbe7f5;
+    border-radius:9px;
+
+    background:#fff;
+
+    color:var(--navy);
+
+    font-size:8px;
+
+    text-align:left;
+
+    cursor:pointer;
+}
+
+/* =========================================================
+   REVEAL ANIMATION
+========================================================= */
+
+.reveal{
+    opacity:0;
+
+    transform:translateY(18px);
+
+    transition:
+        opacity .65s ease,
+        transform .65s ease;
+}
+
+.reveal.show{
+    opacity:1;
+
+    transform:translateY(0);
+}
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+body.dark{
+    background:#071a37;
+    color:#dceaff;
+}
+
+body.dark .navbar{
+    background:rgba(7,26,55,.96);
+}
+
+body.dark .university-name,
+body.dark .nav-links a,
+body.dark .icon-btn{
+    color:#e5efff;
+}
+
+body.dark .hero{
+    background:#071a37;
+}
+
+body.dark .hero-bg{
+    background-image:
+        linear-gradient(
+            90deg,
+            #071a37 0%,
+            rgba(7,26,55,.97) 22%,
+            rgba(7,26,55,.74) 43%,
+            rgba(7,26,55,.25) 70%,
+            rgba(7,26,55,0) 90%
+        ),
+        url("https://www.iujaipur.edu.in/assets/img/campus-building.jpg");
+}
+
+body.dark .hero h1,
+body.dark .location-title,
+body.dark .section-head h2,
+body.dark .program h3,
+body.dark .placement-box h3,
+body.dark .campus-info h3,
+body.dark .life-card h3{
+    color:#fff;
+}
+
+body.dark .about,
+body.dark .placements,
+body.dark .life{
+    background:#0a2142;
+}
+
+body.dark .program,
+body.dark .placement-box,
+body.dark .campus,
+body.dark .life-card,
+body.dark .contact-form,
+body.dark .assistant,
+body.dark .recruiter-bar,
+body.dark .stat-card,
+body.dark .hero-side-card{
+    background:#10294d;
+    border-color:#20436f;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1250px){
+
+    .logo-area{
+        min-width:350px;
+    }
+
+    .logo{
+        width:150px;
+    }
+
+    .nav-links{
+        gap:13px;
+    }
+
+    .nav-links a{
+        font-size:9px;
+    }
+
+    .recruiter-bar,
+    .hero-stats{
+        width:790px;
+    }
+
+    .hero-side-card{
+        display:none;
+    }
+}
+
+@media(max-width:1050px){
+
+    .navbar{
+        height:75px;
+
+        padding:0 20px;
+    }
+
+    .logo-area{
+        min-width:auto;
+    }
+
+    .logo{
+        width:145px;
+    }
+
+    .logo-divider,
+    .university-name,
+    .nav-links,
+    .nav-actions{
+        display:none;
+    }
+
+    .menu-btn{
+        display:block;
+    }
+
+    .hero{
+        padding-top:75px;
+
+        min-height:950px;
+    }
+
+    .hero-bg{
+        background-image:
+            linear-gradient(
+                180deg,
+                rgba(247,251,255,.98) 0%,
+                rgba(247,251,255,.92) 43%,
+                rgba(247,251,255,.42) 73%,
+                rgba(247,251,255,.08) 100%
+            ),
+            url("https://www.iujaipur.edu.in/assets/img/campus-building.jpg");
+
+        background-position:center top;
+    }
+
+    .hero-container{
+        width:90%;
+    }
+
+    .hero-content{
+        width:100%;
+
+        padding-top:47px;
+    }
+
+    .hero h1{
+        font-size:52px;
+    }
+
+    .hero-description{
+        width:100%;
+    }
+
+    .recruiter-bar{
+        width:100%;
+
+        bottom:155px;
+    }
+
+    .hero-stats{
+        width:100%;
+
+        bottom:35px;
+    }
+
+    .assistant{
+        display:none;
+    }
+
+    .program-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .campus-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+}
+
+@media(max-width:700px){
+
+    .hero{
+        min-height:1080px;
+    }
+
+    .hero h1{
+        font-size:41px;
+
+        letter-spacing:-1.5px;
+    }
+
+    .hero-description{
+        font-size:10px;
+    }
+
+    .hero-buttons{
+        flex-direction:column;
+    }
+
+    .hero-btn{
+        width:100%;
+    }
+
+    .recruiter-bar{
+        bottom:210px;
+    }
+
+    .recruiter-logos{
+        flex-wrap:wrap;
+
+        justify-content:flex-start;
+    }
+
+    .hero-stats{
+        grid-template-columns:1fr 1fr;
+
+        gap:8px;
+    }
+
+    .stat-card{
+        min-height:78px;
+    }
+
+    section:not(.hero){
+        padding:60px 5%;
+    }
+
+    .section-head h2{
+        font-size:30px;
+    }
+
+    .about-grid,
+    .placement-grid,
+    .contact-grid{
+        grid-template-columns:1fr;
+    }
+
+    .program-grid{
+        grid-template-columns:1fr;
+    }
+
+    .campus-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .life-grid{
+        grid-template-columns:1fr;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .footer-bottom{
+        flex-direction:column;
+        gap:7px;
+    }
+}
+
+@media(max-width:430px){
+
+    .hero{
+        min-height:1110px;
+    }
+
+    .hero h1{
+        font-size:36px;
+    }
+
+    .recruiter-bar{
+        bottom:220px;
+    }
+
+    .campus-grid,
+    .footer-grid{
+        grid-template-columns:1fr;
+    }
+
+    .stat-card{
+        padding:8px;
+    }
+
+    .stat-icon{
+        width:30px;
+        height:30px;
+    }
+
+    .stat-number{
+        font-size:13px;
+    }
+
+    .stat-text{
+        font-size:7.5px;
+    }
+}
+</style>
 </head>
 
 <body>
 
-    <!-- =========================
-         NAVIGATION
-    ========================== -->
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
 
-    <nav class="navbar">
+<header class="navbar" id="navbar">
 
-        <div class="nav-container">
+    <div class="logo-area">
 
-            <a href="#home" class="logo">
+        <img
+            class="logo"
+            src="https://iujaipur.edu.in/assets/img/Logo.svg"
+            alt="ICFAI University Jaipur Logo">
 
-                <div class="logo-mark">
-                    IU
-                </div>
+        <div class="logo-divider"></div>
 
-                <span>
-                    The ICFAI University, Jaipur
-                </span>
-
-            </a>
-
-            <button class="menu-btn" id="menuBtn">
-                ☰
-            </button>
-
-            <ul class="nav-links" id="navLinks">
-
-                <li>
-                    <a href="#home">Home</a>
-                </li>
-
-                <li>
-                    <a href="#about">University</a>
-                </li>
-
-                <li>
-                    <a href="#programs">Programs</a>
-                </li>
-
-                <li>
-                    <a href="#experience">Experience</a>
-                </li>
-
-                <li>
-                    <a href="#contact">Contact</a>
-                </li>
-
-                <li>
-                    <a href="#admission" class="nav-admission">
-                        Admissions
-                    </a>
-                </li>
-
-            </ul>
-
+        <div class="university-name">
+            The ICFAI University, Jaipur
         </div>
+
+    </div>
+
+    <nav class="nav-links">
+
+        <a href="#home" class="active">
+            Home
+        </a>
+
+        <a href="#about">
+            About
+        </a>
+
+        <a href="#programs" class="dropdown">
+            Academics
+        </a>
+
+        <a href="#campuses" class="dropdown">
+            Campuses
+        </a>
+
+        <a href="#placements" class="dropdown">
+            Placements
+        </a>
+
+        <a href="#life" class="dropdown">
+            Campus Life
+        </a>
+
+        <a href="#events">
+            Events
+        </a>
+
+        <a href="#contact">
+            Contact
+        </a>
 
     </nav>
 
+    <div class="nav-actions">
 
-    <!-- =========================
-         HERO
-    ========================== -->
+        <button class="icon-btn" id="searchBtn">
+            ⌕
+        </button>
 
-    <section class="hero" id="home">
+        <button class="icon-btn" id="darkBtn">
+            ☾
+        </button>
 
-        <div class="orb orb-one"></div>
-        <div class="orb orb-two"></div>
+        <button class="apply-btn"
+            onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+            Apply Now →
+        </button>
 
-        <div class="hero-content">
+    </div>
+
+    <button class="menu-btn" id="menuBtn">
+        ☰
+    </button>
+
+</header>
+
+
+<!-- =========================================================
+     HOME / FIRST PAGE
+========================================================= -->
+
+<section class="hero" id="home">
+
+    <!-- YOUR PROVIDED ICFAI JAIPUR CAMPUS PHOTO -->
+    <div class="hero-bg"></div>
+
+    <div class="hero-container">
+
+        <div class="hero-content reveal">
 
             <div class="hero-badge">
 
-                <span class="badge-dot"></span>
+                <span class="badge-icon">
+                    🎓
+                </span>
 
-                Admissions & Academic Journey
+                <span>
+                    NAAC Accredited
+                </span>
+
+                <span class="badge-divider"></span>
+
+                <span>
+                    11+ ICFAI Campuses
+                </span>
 
             </div>
 
+
             <h1>
 
-                The ICFAI
-                University
+                Learn.
 
-                <span>
-                    Jaipur • Rajasthan
+                <span class="blue">
+                    Build.
+                </span>
+
+                <span class="red">
+                    Lead.
                 </span>
 
             </h1>
 
+
             <p class="hero-description">
 
-                A modern learning environment where ideas,
-                technology and ambition come together to
-                shape the leaders of tomorrow.
+                The ICFAI University, Jaipur offers a modern
+                education experience with a strong focus on
+                academic excellence, industry exposure,
+                technology and holistic development.
 
             </p>
+
+
+            <div class="location-box">
+
+                <div class="location-icon">
+                    📍
+                </div>
+
+                <div>
+
+                    <span class="location-title">
+                        The ICFAI University, Jaipur
+                    </span>
+
+                    <span class="location-address">
+                        Near Cambay Golf Resort, Agra Road,
+                        Jamdoli, Jaipur - 302031, Rajasthan
+                    </span>
+
+                </div>
+
+            </div>
+
 
             <div class="hero-buttons">
 
                 <a
                     href="#programs"
-                    class="btn btn-primary"
-                >
+                    class="hero-btn hero-primary">
                     Explore Programs →
                 </a>
 
                 <a
-                    href="#about"
-                    class="btn btn-secondary"
-                >
-                    Discover the University
+                    href="#placements"
+                    class="hero-btn hero-secondary">
+                    📅 View Placements
                 </a>
 
             </div>
 
         </div>
 
-    </section>
 
+        <!-- FLOATING CAMPUS CARD -->
 
-    <!-- =========================
-         ABOUT
-    ========================== -->
+        <div class="hero-side-card reveal">
 
-    <section class="about reveal" id="about">
+            <div class="side-card-top">
 
-        <div class="container">
+                <div class="side-card-icon">
+                    🏛️
+                </div>
 
-            <div class="section-label">
-                THE UNIVERSITY
-            </div>
+                <div>
 
-            <h2 class="section-title">
-                Education without limits.
-            </h2>
+                    <div class="side-card-title">
+                        Jaipur Campus
+                    </div>
 
-            <p class="section-subtitle">
-
-                An environment designed to encourage curiosity,
-                creativity, professional growth and innovation.
-
-            </p>
-
-            <div class="about-grid">
-
-                <div class="about-content">
-
-                    <h3>
-                        Learn today.
-                        Create tomorrow.
-                    </h3>
-
-                    <p>
-
-                        The ICFAI University, Jaipur provides an
-                        academic environment where students can
-                        develop knowledge, practical skills and
-                        independent thinking.
-
-                    </p>
-
-                    <p>
-
-                        With technology-driven learning,
-                        professional exposure and a focus on
-                        future-ready skills, students can prepare
-                        themselves for an evolving world.
-
-                    </p>
+                    <div class="side-card-sub">
+                        A modern learning environment
+                    </div>
 
                 </div>
 
-                <div class="about-visual">
+            </div>
 
-                    <div class="visual-content">
+            <div class="side-line"></div>
 
-                        <div class="visual-symbol">
-                            ✦
-                        </div>
+            <div class="side-stat">
+                <span>Campus</span>
+                <strong>40 Acres</strong>
+            </div>
 
-                        <h3>
-                            Learn • Lead • Innovate
-                        </h3>
+            <div class="side-stat">
+                <span>ICFAI Network</span>
+                <strong>11+</strong>
+            </div>
 
-                        <p>
-                            The ICFAI University, Jaipur
-                        </p>
+            <div class="side-stat">
+                <span>Programs</span>
+                <strong>UG + PG</strong>
+            </div>
 
+        </div>
+
+
+        <!-- RECRUITER LOGOS -->
+
+        <div class="recruiter-bar reveal">
+
+            <div class="recruiter-heading">
+                SELECTED RECRUITERS / RECRUITER ECOSYSTEM
+            </div>
+
+            <div class="recruiter-logos">
+
+                <div class="recruiter tcs">
+                    TCS
+                </div>
+
+                <div class="recruiter accenture">
+                    accenture
+                </div>
+
+                <div class="recruiter wipro">
+                    wipro
+                </div>
+
+                <div class="recruiter infosys">
+                    Infosys
+                </div>
+
+                <div class="recruiter techmahindra">
+                    Tech<br>Mahindra
+                </div>
+
+                <div class="recruiter hcl">
+                    HCL
+                </div>
+
+                <div class="recruiter icici">
+                    ICICI Bank
+                </div>
+
+                <div class="recruiter amazon">
+                    amazon
+                </div>
+
+                <div class="recruiter deloitte">
+                    Deloitte.
+                </div>
+
+                <div class="recruiter genpact">
+                    genpact
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- STATS -->
+
+        <div class="hero-stats reveal">
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🎓
+                </div>
+
+                <div>
+
+                    <div class="stat-number">
+                        11+
+                    </div>
+
+                    <div class="stat-text">
+                        ICFAI Campuses
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🏢
+                </div>
+
+                <div>
+
+                    <div class="stat-number">
+                        40
+                    </div>
+
+                    <div class="stat-text">
+                        Acres Campus
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ₹
+                </div>
+
+                <div>
+
+                    <div class="stat-number">
+                        ₹30.22L
+                    </div>
+
+                    <div class="stat-text">
+                        Highest International
+                        MBA Package
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🎯
+                </div>
+
+                <div>
+
+                    <div class="stat-number">
+                        95%+
+                    </div>
+
+                    <div class="stat-text">
+                        Placement Record
+                        Recent 5 Years
                     </div>
 
                 </div>
@@ -1364,623 +2325,1556 @@
 
         </div>
 
-    </section>
 
+        <!-- ICFAI ASSISTANT -->
 
-    <!-- =========================
-         PROGRAMS
-    ========================== -->
+        <div class="assistant">
 
-    <section class="programs reveal" id="programs">
-
-        <div class="container">
-
-            <div class="section-label">
-                ACADEMICS
+            <div class="bot-icon">
+                🤖
             </div>
-
-            <h2 class="section-title">
-                Explore your future.
-            </h2>
-
-            <p class="section-subtitle">
-
-                Discover academic pathways designed to build
-                strong foundations and practical skills.
-
-            </p>
-
-            <div class="program-grid">
-
-                <div class="program-card">
-
-                    <div class="program-icon">
-                        💻
-                    </div>
-
-                    <h3>
-                        Computer Applications
-                    </h3>
-
-                    <p>
-
-                        Develop programming, software development
-                        and technology skills for the digital world.
-
-                    </p>
-
-                </div>
-
-
-                <div class="program-card">
-
-                    <div class="program-icon">
-                        ⚙️
-                    </div>
-
-                    <h3>
-                        Computer Science
-                    </h3>
-
-                    <p>
-
-                        Explore algorithms, software systems,
-                        computing and emerging technologies.
-
-                    </p>
-
-                </div>
-
-
-                <div class="program-card">
-
-                    <div class="program-icon">
-                        📊
-                    </div>
-
-                    <h3>
-                        Management
-                    </h3>
-
-                    <p>
-
-                        Build business knowledge, leadership skills
-                        and strategic thinking.
-
-                    </p>
-
-                </div>
-
-
-                <div class="program-card">
-
-                    <div class="program-icon">
-                        🚀
-                    </div>
-
-                    <h3>
-                        Technology
-                    </h3>
-
-                    <p>
-
-                        Learn with a future-focused mindset and
-                        explore innovation-driven opportunities.
-
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         EXPERIENCE
-    ========================== -->
-
-    <section class="experience reveal" id="experience">
-
-        <div class="container">
-
-            <div class="section-label">
-                CAMPUS EXPERIENCE
-            </div>
-
-            <h2 class="section-title">
-                More than a classroom.
-            </h2>
-
-            <p class="section-subtitle">
-
-                University life is about learning, discovering
-                new interests and creating meaningful experiences.
-
-            </p>
-
-            <div class="experience-grid">
-
-                <div class="experience-card">
-
-                    <span>🧠</span>
-
-                    <h3>
-                        Innovation
-                    </h3>
-
-                    <p>
-
-                        Encourage creative thinking, problem solving
-                        and technology-driven ideas.
-
-                    </p>
-
-                </div>
-
-
-                <div class="experience-card">
-
-                    <span>🌐</span>
-
-                    <h3>
-                        Industry Exposure
-                    </h3>
-
-                    <p>
-
-                        Connect academic learning with practical
-                        knowledge and professional experiences.
-
-                    </p>
-
-                </div>
-
-
-                <div class="experience-card">
-
-                    <span>🎯</span>
-
-                    <h3>
-                        Career Focus
-                    </h3>
-
-                    <p>
-
-                        Develop skills, confidence and professional
-                        capabilities for future opportunities.
-
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         STATS
-    ========================== -->
-
-    <section class="stats reveal">
-
-        <div class="container">
-
-            <div class="stats-grid">
-
-                <div class="stat">
-
-                    <h2>25+</h2>
-
-                    <p>
-                        Years of Academic Journey
-                    </p>
-
-                </div>
-
-                <div class="stat">
-
-                    <h2>5K+</h2>
-
-                    <p>
-                        Student Community
-                    </p>
-
-                </div>
-
-                <div class="stat">
-
-                    <h2>100+</h2>
-
-                    <p>
-                        Faculty & Academics
-                    </p>
-
-                </div>
-
-                <div class="stat">
-
-                    <h2>50+</h2>
-
-                    <p>
-                        Industry Connections
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         ADMISSION CTA
-    ========================== -->
-
-    <section class="admission reveal" id="admission">
-
-        <div class="container">
-
-            <div class="admission-box">
-
-                <h2>
-                    Your next chapter
-                    starts here.
-                </h2>
-
-                <p>
-
-                    Take the next step toward your academic
-                    and professional journey at
-                    The ICFAI University, Jaipur.
-
-                </p>
-
-                <a
-                    href="#contact"
-                    class="btn"
-                >
-                    Enquire Now →
-                </a>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         CONTACT
-    ========================== -->
-
-    <section class="contact reveal" id="contact">
-
-        <div class="container">
-
-            <div class="section-label">
-                CONNECT
-            </div>
-
-            <h2 class="section-title">
-                Let's talk.
-            </h2>
-
-            <p class="section-subtitle">
-
-                Have a question about academics, admissions
-                or university life?
-
-            </p>
-
-            <div class="contact-grid">
-
-                <div class="contact-info">
-
-                    <h3>
-                        The ICFAI University, Jaipur
-                    </h3>
-
-                    <p>
-
-                        Connect with the university to learn more
-                        about programs, admissions and opportunities.
-
-                    </p>
-
-                    <div class="contact-item">
-                        📍 Jaipur, Rajasthan, India
-                    </div>
-
-                    <div class="contact-item">
-                        🎓 Academic Admissions
-                    </div>
-
-                    <div class="contact-item">
-                        💻 Technology & Programs
-                    </div>
-
-                </div>
-
-
-                <div class="contact-form">
-
-                    <form id="contactForm">
-
-                        <div class="form-group">
-
-                            <label>
-                                Your Name
-                            </label>
-
-                            <input
-                                type="text"
-                                id="name"
-                                placeholder="Enter your name"
-                                required
-                            >
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label>
-                                Email Address
-                            </label>
-
-                            <input
-                                type="email"
-                                id="email"
-                                placeholder="Enter your email"
-                                required
-                            >
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label>
-                                Message
-                            </label>
-
-                            <textarea
-                                id="message"
-                                placeholder="How can we help?"
-                                required
-                            ></textarea>
-
-                        </div>
-
-
-                        <button
-                            type="submit"
-                            class="submit-btn"
-                        >
-                            Send Message
-                        </button>
-
-                    </form>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         FOOTER
-    ========================== -->
-
-    <footer>
-
-        <div class="footer-container">
 
             <div>
 
-                <div class="footer-logo">
-                    The ICFAI University, Jaipur
-                </div>
+                <strong>
+                    ICFAI Assistant
+                </strong>
 
                 <p>
-                    Learn. Lead. Innovate.
+                    Ask about programs, admission,
+                    placements or campus.
                 </p>
 
             </div>
 
+            <button class="chat-open" id="chatOpen">
+                💬
+            </button>
 
-            <div class="footer-links">
+        </div>
 
-                <a href="#home">
-                    Home
-                </a>
+    </div>
 
-                <a href="#about">
-                    University
-                </a>
+</section>
 
-                <a href="#programs">
-                    Programs
-                </a>
 
-                <a href="#contact">
-                    Contact
-                </a>
+<!-- =========================================================
+     ABOUT
+========================================================= -->
+
+<section class="about" id="about">
+
+    <div class="section-head reveal">
+
+        <div class="eyebrow">
+            About ICFAI Jaipur
+        </div>
+
+        <h2>
+            Education designed for the future.
+        </h2>
+
+        <p>
+            A modern university environment connecting
+            academics, technology, industry exposure
+            and student development.
+        </p>
+
+    </div>
+
+
+    <div class="about-grid">
+
+        <div class="about-image reveal"></div>
+
+        <div class="about-content reveal">
+
+            <h3>
+                The ICFAI University, Jaipur
+            </h3>
+
+            <p>
+                The university provides an interdisciplinary
+                academic environment across management,
+                technology, law, liberal arts, pharmaceutical
+                sciences and other disciplines.
+            </p>
+
+            <p>
+                Students get opportunities for classroom
+                learning, projects, competitions, events,
+                technology exposure and industry interaction.
+            </p>
+
+
+            <div class="about-points">
+
+                <div class="about-point">
+
+                    <strong>
+                        Industry Exposure
+                    </strong>
+
+                    <span>
+                        Projects & professional interaction
+                    </span>
+
+                </div>
+
+                <div class="about-point">
+
+                    <strong>
+                        Modern Programs
+                    </strong>
+
+                    <span>
+                        Technology & interdisciplinary learning
+                    </span>
+
+                </div>
+
+                <div class="about-point">
+
+                    <strong>
+                        Campus Life
+                    </strong>
+
+                    <span>
+                        Events, clubs and activities
+                    </span>
+
+                </div>
+
+                <div class="about-point">
+
+                    <strong>
+                        Career Support
+                    </strong>
+
+                    <span>
+                        Training & placement activities
+                    </span>
+
+                </div>
 
             </div>
 
         </div>
 
-    </footer>
+    </div>
+
+</section>
 
 
-    <!-- =========================
-         JAVASCRIPT
-    ========================== -->
+<!-- =========================================================
+     PROGRAMS
+========================================================= -->
 
-    <script>
+<section class="programs" id="programs">
 
-        /* =========================
-           MOBILE NAVIGATION
-        ========================== */
+    <div class="section-head reveal">
 
-        const menuBtn =
-            document.getElementById("menuBtn");
+        <div class="eyebrow">
+            Academics
+        </div>
 
-        const navLinks =
-            document.getElementById("navLinks");
+        <h2>
+            Explore academic programs.
+        </h2>
 
-        menuBtn.addEventListener("click", function () {
+        <p>
+            Discover undergraduate and postgraduate
+            programs across multiple disciplines.
+        </p>
 
-            navLinks.classList.toggle("show");
-
-        });
-
-
-        /* =========================
-           CLOSE MENU AFTER CLICK
-        ========================== */
-
-        document
-            .querySelectorAll(".nav-links a")
-            .forEach(function(link) {
-
-                link.addEventListener("click", function() {
-
-                    navLinks.classList.remove("show");
-
-                });
-
-            });
+    </div>
 
 
-        /* =========================
-           SCROLL REVEAL
-        ========================== */
+    <div class="filters reveal">
 
-        const revealElements =
-            document.querySelectorAll(".reveal");
+        <button class="filter active" data-filter="all">
+            All
+        </button>
 
-        function revealOnScroll() {
+        <button class="filter" data-filter="ug">
+            Undergraduate
+        </button>
 
-            const windowHeight =
-                window.innerHeight;
+        <button class="filter" data-filter="pg">
+            Postgraduate
+        </button>
 
-            revealElements.forEach(function(element) {
+        <button class="filter" data-filter="tech">
+            Technology
+        </button>
 
-                const elementTop =
-                    element.getBoundingClientRect().top;
+        <button class="filter" data-filter="management">
+            Management
+        </button>
 
-                if (elementTop <
-                    windowHeight - 100) {
+    </div>
 
-                    element.classList.add("active");
 
-                }
+    <div class="program-grid">
 
+        <div class="program reveal" data-category="ug tech">
+
+            <div class="program-icon">
+                💻
+            </div>
+
+            <h3>
+                B.Tech
+            </h3>
+
+            <p>
+                Engineering and technology focused
+                undergraduate education.
+            </p>
+
+        </div>
+
+
+        <div class="program reveal" data-category="ug tech">
+
+            <div class="program-icon">
+                🖥️
+            </div>
+
+            <h3>
+                BCA
+            </h3>
+
+            <p>
+                Computer applications, programming
+                and software development.
+            </p>
+
+        </div>
+
+
+        <div class="program reveal" data-category="pg tech">
+
+            <div class="program-icon">
+                ⚙️
+            </div>
+
+            <h3>
+                MCA
+            </h3>
+
+            <p>
+                Advanced computer applications
+                and technology learning.
+            </p>
+
+        </div>
+
+
+        <div class="program reveal" data-category="ug management">
+
+            <div class="program-icon">
+                📊
+            </div>
+
+            <h3>
+                BBA
+            </h3>
+
+            <p>
+                Business administration and
+                management fundamentals.
+            </p>
+
+        </div>
+
+
+        <div class="program reveal" data-category="pg management">
+
+            <div class="program-icon">
+                💼
+            </div>
+
+            <h3>
+                MBA
+            </h3>
+
+            <p>
+                Management education with industry
+                and professional exposure.
+            </p>
+
+        </div>
+
+
+        <div class="program reveal" data-category="ug">
+
+            <div class="program-icon">
+                ⚖️
+            </div>
+
+            <h3>
+                Law Programs
+            </h3>
+
+            <p>
+                Integrated and professional legal
+                education pathways.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     PLACEMENTS
+========================================================= -->
+
+<section class="placements" id="placements">
+
+    <div class="section-head reveal">
+
+        <div class="eyebrow">
+            Placements
+        </div>
+
+        <h2>
+            Connect. Grow. Build your career.
+        </h2>
+
+        <p>
+            Career development, recruitment drives,
+            training and industry interaction.
+        </p>
+
+    </div>
+
+
+    <div class="placement-grid">
+
+        <div class="placement-box reveal">
+
+            <h3>
+                Placement Highlights
+            </h3>
+
+            <p>
+                Students can participate in recruitment
+                drives and career preparation activities
+                through the university placement ecosystem.
+            </p>
+
+
+            <div class="placement-stats">
+
+                <div class="pstat">
+
+                    <strong>
+                        ₹30.22L
+                    </strong>
+
+                    <span>
+                        Highest International MBA Package
+                    </span>
+
+                </div>
+
+                <div class="pstat">
+
+                    <strong>
+                        ₹15L
+                    </strong>
+
+                    <span>
+                        Highest Domestic MBA Package
+                    </span>
+
+                </div>
+
+                <div class="pstat">
+
+                    <strong>
+                        50+
+                    </strong>
+
+                    <span>
+                        Recruiter Ecosystem
+                    </span>
+
+                </div>
+
+                <div class="pstat">
+
+                    <strong>
+                        CRT
+                    </strong>
+
+                    <span>
+                        Career Readiness Training
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="placement-box reveal">
+
+            <h3>
+                Placement Companies
+            </h3>
+
+            <p>
+                Selected companies represented in
+                recruitment / recruiter material.
+            </p>
+
+
+            <div class="company-grid">
+
+                <div class="company" style="color:#e21e2a;">
+                    TCS
+                </div>
+
+                <div class="company">
+                    accenture
+                </div>
+
+                <div class="company" style="color:#4c3ba5;">
+                    wipro
+                </div>
+
+                <div class="company" style="color:#0078ba;">
+                    Infosys
+                </div>
+
+                <div class="company" style="color:#e32129;">
+                    Tech Mahindra
+                </div>
+
+                <div class="company" style="color:#0070c5;">
+                    HCL
+                </div>
+
+                <div class="company" style="color:#ae1e30;">
+                    ICICI Bank
+                </div>
+
+                <div class="company">
+                    Amazon
+                </div>
+
+                <div class="company">
+                    Deloitte.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CAMPUSES
+========================================================= -->
+
+<section class="campuses" id="campuses">
+
+    <div class="section-head reveal">
+
+        <div class="eyebrow">
+            ICFAI Network
+        </div>
+
+        <h2>
+            Explore the ICFAI campus network.
+        </h2>
+
+        <p>
+            ICFAI institutions are present across
+            multiple locations in India.
+        </p>
+
+    </div>
+
+
+    <div class="campus-grid">
+
+        <div class="campus reveal">
+
+            <img
+                src="https://www.icfaiuniversity.in/assets/img/campuse-building/IFHE.jpg"
+                alt="ICFAI Hyderabad">
+
+            <div class="campus-info">
+
+                <h3>
+                    IFHE Hyderabad
+                </h3>
+
+                <p>
+                    Hyderabad
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="campus reveal">
+
+            <img
+                src="https://www.icfaiuniversity.in/assets/img/campuse-building/ICFAI-University-Dehradun.jpg"
+                alt="ICFAI Dehradun">
+
+            <div class="campus-info">
+
+                <h3>
+                    ICFAI University
+                </h3>
+
+                <p>
+                    Dehradun
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="campus reveal">
+
+            <img
+                src="https://www.icfaiuniversity.in/assets/img/campuse-building/ICFAI-University-Himachal.jpg"
+                alt="ICFAI Himachal">
+
+            <div class="campus-info">
+
+                <h3>
+                    ICFAI University
+                </h3>
+
+                <p>
+                    Himachal Pradesh
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="campus reveal">
+
+            <img
+                src="https://www.icfaiuniversity.in/assets/img/campuse-building/ICFAI-University-Jharkhand.jpg"
+                alt="ICFAI Jharkhand">
+
+            <div class="campus-info">
+
+                <h3>
+                    ICFAI University
+                </h3>
+
+                <p>
+                    Jharkhand
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="campus reveal">
+
+            <img
+                src="https://www.icfaiuniversity.in/assets/img/campuse-building/ICFAI-University-Meghalaya.jpg"
+                alt="ICFAI Meghalaya">
+
+            <div class="campus-info">
+
+                <h3>
+                    ICFAI University
+                </h3>
+
+                <p>
+                    Meghalaya
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="campus reveal">
+
+            <img
+                src="https://www.icfaiuniversity.in/assets/img/campuse-building/ICFAI-University-Mizoram.jpg"
+                alt="ICFAI Mizoram">
+
+            <div class="campus-info">
+
+                <h3>
+                    ICFAI University
+                </h3>
+
+                <p>
+                    Mizoram
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="campus reveal">
+
+            <img
+                src="https://www.icfaiuniversity.in/assets/img/campuse-building/ICFAI-University-Nagaland.jpg"
+                alt="ICFAI Nagaland">
+
+            <div class="campus-info">
+
+                <h3>
+                    ICFAI University
+                </h3>
+
+                <p>
+                    Nagaland
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="campus reveal">
+
+            <img
+                src="https://www.icfaiuniversity.in/assets/img/campuse-building/ICFAI-University-Raipur.jpg"
+                alt="ICFAI Raipur">
+
+            <div class="campus-info">
+
+                <h3>
+                    ICFAI University
+                </h3>
+
+                <p>
+                    Raipur
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CAMPUS LIFE
+========================================================= -->
+
+<section class="life" id="life">
+
+    <div class="section-head reveal">
+
+        <div class="eyebrow">
+            Campus Life
+        </div>
+
+        <h2>
+            More than classrooms.
+        </h2>
+
+        <p>
+            Learn, participate, collaborate and
+            experience university life beyond academics.
+        </p>
+
+    </div>
+
+
+    <div class="life-grid">
+
+        <div class="life-card reveal">
+
+            <div class="life-icon">
+                🎤
+            </div>
+
+            <h3>
+                Events
+            </h3>
+
+            <p>
+                Academic, cultural and student-oriented
+                events throughout the year.
+            </p>
+
+        </div>
+
+
+        <div class="life-card reveal">
+
+            <div class="life-icon">
+                🏆
+            </div>
+
+            <h3>
+                Competitions
+            </h3>
+
+            <p>
+                Opportunities to participate in
+                competitions and student activities.
+            </p>
+
+        </div>
+
+
+        <div class="life-card reveal">
+
+            <div class="life-icon">
+                💡
+            </div>
+
+            <h3>
+                Innovation
+            </h3>
+
+            <p>
+                Projects, technology exposure and
+                idea-driven learning.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     EVENTS
+========================================================= -->
+
+<section id="events">
+
+    <div class="section-head reveal">
+
+        <div class="eyebrow">
+            Events
+        </div>
+
+        <h2>
+            Learn beyond the classroom.
+        </h2>
+
+        <p>
+            University events, competitions,
+            workshops and student activities.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CONTACT
+========================================================= -->
+
+<section class="contact" id="contact">
+
+    <div class="section-head reveal">
+
+        <div class="eyebrow">
+            Contact
+        </div>
+
+        <h2>
+            Start your ICFAI journey.
+        </h2>
+
+        <p>
+            Get in touch with the university admissions team.
+        </p>
+
+    </div>
+
+
+    <div class="contact-grid">
+
+        <div class="contact-info reveal">
+
+            <h3>
+                The ICFAI University, Jaipur
+            </h3>
+
+            <p>
+                Near Cambay Golf Resort, Agra Road,
+                Jamdoli, Jaipur - 302031, Rajasthan.
+            </p>
+
+
+            <div class="contact-item">
+
+                <div class="contact-icon">
+                    📍
+                </div>
+
+                <div>
+
+                    <strong>
+                        Campus
+                    </strong>
+
+                    <span>
+                        Jamdoli, Jaipur, Rajasthan
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="contact-item">
+
+                <div class="contact-icon">
+                    ☎
+                </div>
+
+                <div>
+
+                    <strong>
+                        Admissions
+                    </strong>
+
+                    <span>
+                        +91 8094688800
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="contact-item">
+
+                <div class="contact-icon">
+                    ✉
+                </div>
+
+                <div>
+
+                    <strong>
+                        Email
+                    </strong>
+
+                    <span>
+                        admissions@iujaipur.edu.in
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <form class="contact-form reveal" id="contactForm">
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label>
+                        Name
+                    </label>
+
+                    <input
+                        type="text"
+                        placeholder="Your name"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Mobile
+                    </label>
+
+                    <input
+                        type="tel"
+                        placeholder="Mobile number"
+                        required>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    placeholder="Email address"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Program
+                </label>
+
+                <select required>
+
+                    <option value="">
+                        Select Program
+                    </option>
+
+                    <option>
+                        B.Tech
+                    </option>
+
+                    <option>
+                        BCA
+                    </option>
+
+                    <option>
+                        MCA
+                    </option>
+
+                    <option>
+                        BBA
+                    </option>
+
+                    <option>
+                        MBA
+                    </option>
+
+                    <option>
+                        Law
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Message
+                </label>
+
+                <textarea
+                    placeholder="Write your message..."
+                    required></textarea>
+
+            </div>
+
+
+            <button
+                class="submit"
+                type="submit">
+
+                Send Enquiry →
+
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <div class="footer-grid">
+
+        <div class="footer-col">
+
+            <img
+                class="footer-logo"
+                src="https://iujaipur.edu.in/assets/img/Logo.svg"
+                alt="ICFAI University Jaipur">
+
+            <p class="footer-about">
+
+                The ICFAI University, Jaipur is focused
+                on academic learning, professional exposure,
+                technology and holistic development.
+
+            </p>
+
+        </div>
+
+
+        <div class="footer-col">
+
+            <h3>
+                University
+            </h3>
+
+            <a href="#about">
+                About
+            </a>
+
+            <a href="#programs">
+                Academics
+            </a>
+
+            <a href="#campuses">
+                Campuses
+            </a>
+
+            <a href="#life">
+                Campus Life
+            </a>
+
+        </div>
+
+
+        <div class="footer-col">
+
+            <h3>
+                Students
+            </h3>
+
+            <a href="#placements">
+                Placements
+            </a>
+
+            <a href="#events">
+                Events
+            </a>
+
+            <a href="#programs">
+                Programs
+            </a>
+
+            <a href="#contact">
+                Admissions
+            </a>
+
+        </div>
+
+
+        <div class="footer-col">
+
+            <h3>
+                Contact
+            </h3>
+
+            <a href="#contact">
+                Jaipur Campus
+            </a>
+
+            <a href="#contact">
+                Admissions
+            </a>
+
+            <a href="#contact">
+                Email
+            </a>
+
+            <a href="#contact">
+                Enquiry
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <span>
+            © 2026 The ICFAI University, Jaipur
+        </span>
+
+        <span>
+            Learn. Build. Lead.
+        </span>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================================================
+     CHATBOT
+========================================================= -->
+
+<div class="chat-panel" id="chatPanel">
+
+    <div class="chat-head">
+
+        <strong>
+            🤖 ICFAI Assistant
+        </strong>
+
+        <button
+            class="chat-close"
+            id="chatClose">
+
+            ×
+
+        </button>
+
+    </div>
+
+
+    <div class="chat-body">
+
+        <div class="message">
+
+            Hello! 👋 How can I help you with
+            ICFAI University Jaipur?
+
+        </div>
+
+
+        <div class="chat-options">
+
+            <button onclick="botReply('program')">
+                📚 Tell me about programs
+            </button>
+
+            <button onclick="botReply('admission')">
+                🎓 Admission information
+            </button>
+
+            <button onclick="botReply('placement')">
+                💼 Placement information
+            </button>
+
+            <button onclick="botReply('campus')">
+                🏫 Campus information
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   NAVBAR SCROLL
+========================================================= */
+
+const navbar =
+document.getElementById("navbar");
+
+window.addEventListener(
+    "scroll",
+    function(){
+
+        if(window.scrollY > 30){
+
+            navbar.classList.add("scrolled");
+
+        }else{
+
+            navbar.classList.remove("scrolled");
+
+        }
+
+    },
+    {passive:true}
+);
+
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+const darkBtn =
+document.getElementById("darkBtn");
+
+darkBtn.addEventListener(
+    "click",
+    function(){
+
+        document.body.classList.toggle("dark");
+
+        darkBtn.textContent =
+            document.body.classList.contains("dark")
+            ? "☀"
+            : "☾";
+
+    }
+);
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+document
+.getElementById("searchBtn")
+.addEventListener(
+    "click",
+    function(){
+
+        const query =
+            prompt(
+                "Search ICFAI University Jaipur:"
+            );
+
+        if(!query){
+            return;
+        }
+
+        const text =
+            query.toLowerCase();
+
+        if(
+            text.includes("program") ||
+            text.includes("bca") ||
+            text.includes("btech") ||
+            text.includes("mba") ||
+            text.includes("mca")
+        ){
+
+            document
+            .getElementById("programs")
+            .scrollIntoView({
+                behavior:"smooth"
             });
 
         }
 
-        window.addEventListener(
-            "scroll",
-            revealOnScroll
-        );
+        else if(
+            text.includes("placement") ||
+            text.includes("company") ||
+            text.includes("job")
+        ){
 
-        revealOnScroll();
+            document
+            .getElementById("placements")
+            .scrollIntoView({
+                behavior:"smooth"
+            });
+
+        }
+
+        else if(
+            text.includes("campus") ||
+            text.includes("jaipur")
+        ){
+
+            document
+            .getElementById("campuses")
+            .scrollIntoView({
+                behavior:"smooth"
+            });
+
+        }
+
+        else if(
+            text.includes("contact") ||
+            text.includes("admission")
+        ){
+
+            document
+            .getElementById("contact")
+            .scrollIntoView({
+                behavior:"smooth"
+            });
+
+        }
+
+        else{
+
+            alert(
+                "Try searching: Programs, Placements, Campus, Admission or Contact."
+            );
+
+        }
+
+    }
+);
 
 
-        /* =========================
-           CONTACT FORM
-        ========================== */
+/* =========================================================
+   PROGRAM FILTER
+========================================================= */
 
-        const contactForm =
-            document.getElementById("contactForm");
+const filters =
+document.querySelectorAll(".filter");
 
-        contactForm.addEventListener(
-            "submit",
-            function(event) {
+const programs =
+document.querySelectorAll(".program");
 
-                event.preventDefault();
+filters.forEach(
+    function(button){
 
-                const name =
-                    document.getElementById("name").value;
+        button.addEventListener(
+            "click",
+            function(){
 
-                alert(
-                    "Thank you, " +
-                    name +
-                    "! Your enquiry has been submitted."
+                filters.forEach(
+                    function(item){
+
+                        item.classList.remove(
+                            "active"
+                        );
+
+                    }
                 );
 
-                contactForm.reset();
+                button.classList.add("active");
+
+                const filter =
+                    button.dataset.filter;
+
+                programs.forEach(
+                    function(card){
+
+                        const category =
+                            card.dataset.category;
+
+                        if(
+                            filter === "all" ||
+                            category.includes(filter)
+                        ){
+
+                            card.style.display =
+                                "block";
+
+                        }else{
+
+                            card.style.display =
+                                "none";
+
+                        }
+
+                    }
+                );
 
             }
         );
 
+    }
+);
 
-        /* =========================
-           NAVBAR SCROLL EFFECT
-        ========================== */
 
-        window.addEventListener(
-            "scroll",
-            function() {
+/* =========================================================
+   CONTACT FORM
+========================================================= */
 
-                const navbar =
-                    document.querySelector(".navbar");
+document
+.getElementById("contactForm")
+.addEventListener(
+    "submit",
+    function(event){
 
-                if (window.scrollY > 60) {
+        event.preventDefault();
 
-                    navbar.style.boxShadow =
-                        "0 18px 50px rgba(15,23,42,0.16)";
+        alert(
+            "Thank you! Your enquiry has been submitted successfully."
+        );
 
-                    navbar.style.background =
-                        "rgba(255,255,255,0.94)";
+        this.reset();
 
-                } else {
+    }
+);
 
-                    navbar.style.boxShadow =
-                        "0 15px 45px rgba(15,23,42,0.10)";
 
-                    navbar.style.background =
-                        "rgba(255,255,255,0.78)";
+/* =========================================================
+   CHAT
+========================================================= */
+
+const chatPanel =
+document.getElementById("chatPanel");
+
+document
+.getElementById("chatOpen")
+.addEventListener(
+    "click",
+    function(){
+
+        chatPanel.classList.add("open");
+
+    }
+);
+
+
+document
+.getElementById("chatClose")
+.addEventListener(
+    "click",
+    function(){
+
+        chatPanel.classList.remove("open");
+
+    }
+);
+
+
+function botReply(type){
+
+    if(type === "program"){
+
+        alert(
+            "ICFAI University Jaipur offers programs across technology, management, law, liberal arts, pharmaceutical sciences and other disciplines."
+        );
+
+    }
+
+    if(type === "admission"){
+
+        alert(
+            "For admission information, please use the Contact section."
+        );
+
+    }
+
+    if(type === "placement"){
+
+        alert(
+            "The placement ecosystem includes recruitment drives, career readiness training and industry interaction."
+        );
+
+    }
+
+    if(type === "campus"){
+
+        alert(
+            "The Jaipur campus is located near Cambay Golf Resort, Agra Road, Jamdoli, Jaipur."
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   REVEAL ANIMATION
+========================================================= */
+
+const revealElements =
+document.querySelectorAll(".reveal");
+
+const observer =
+new IntersectionObserver(
+    function(entries){
+
+        entries.forEach(
+            function(entry){
+
+                if(entry.isIntersecting){
+
+                    entry.target.classList.add(
+                        "show"
+                    );
+
+                    observer.unobserve(
+                        entry.target
+                    );
 
                 }
 
             }
         );
 
+    },
+    {
+        threshold:.08
+    }
+);
 
-        /* =========================
-           ESC KEY MENU CLOSE
-        ========================== */
+revealElements.forEach(
+    function(element){
 
-        document.addEventListener(
-            "keydown",
-            function(event) {
+        observer.observe(element);
 
-                if (event.key === "Escape") {
+    }
+);
 
-                    navLinks.classList.remove("show");
 
-                }
+/* =========================================================
+   ACTIVE NAV
+========================================================= */
+
+const navLinks =
+document.querySelectorAll(".nav-links a");
+
+navLinks.forEach(
+    function(link){
+
+        link.addEventListener(
+            "click",
+            function(){
+
+                navLinks.forEach(
+                    function(item){
+
+                        item.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+                link.classList.add("active");
 
             }
         );
 
-    </script>
+    }
+);
+
+
+/* =========================================================
+   ESCAPE
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Escape"){
+
+            chatPanel.classList.remove(
+                "open"
+            );
+
+        }
+
+    }
+);
+
+</script>
 
 </body>
 </html>
-```
