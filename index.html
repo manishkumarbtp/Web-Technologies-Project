@@ -1,174 +1,268 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Integrated Portal</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f4f8;
-            color: #333;
-        }
-        header {
-            background-color: #0b4380;
-            color: #ffffff;
-            text-align: center;
-            padding: 30px 20px 20px 20px;
-        }
-        header h1 {
-            font-size: 2.2rem;
-            margin-bottom: 10px;
-        }
-        .sublinks a {
-            color: #cfe3ff;
-            text-decoration: none;
-            margin: 0 8px;
-            font-size: 0.95rem;
-        }
-        .sublinks a:hover {
-            text-decoration: underline;
-        }
-        nav {
-            background-color: #083363;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            padding: 12px;
-            gap: 20px;
-        }
-        nav a {
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1rem;
-            padding: 6px 14px;
-            border-radius: 4px;
-            transition: background-color 0.2s;
-        }
-        nav a:hover {
-            background-color: #0f5bb0;
-        }
-        .main-container {
-            max-width: 1000px;
-            margin: 30px auto;
-            background: #ffffff;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-        }
-        .card {
-            margin-bottom: 35px;
-            border-bottom: 2px solid #0b4380;
-            padding-bottom: 25px;
-        }
-        .card:last-child {
-            border-bottom: none;
-        }
-        .card h2 a {
-            color: #0b4380;
-            text-decoration: none;
-        }
-        .card h2 a:hover {
-            text-decoration: underline;
-        }
-        .card p {
-            margin: 12px 0;
-            line-height: 1.6;
-        }
-        .card ul {
-            padding-left: 20px;
-            margin: 10px 0 15px 0;
-            line-height: 1.6;
-        }
-        .open-btn {
-            display: inline-block;
-            background-color: #0b4380;
-            color: #ffffff;
-            padding: 8px 18px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            margin-top: 8px;
-            transition: background 0.2s;
-        }
-        .open-btn:hover {
-            background-color: #083363;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects Portal — Manish Kumar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0c101b;
+      --card-bg: #141b2d;
+      --card-border: #1e2942;
+      --badge-bg: #0d1424;
+      --badge-text: #4a6fa5;
+      --text-main: #ffffff;
+      --text-muted: #8e9bb2;
+      --btn-grad-start: #3b82f6;
+      --btn-grad-end: #6366f1;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 60px 20px 30px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-bottom: 50px;
+    }
+
+    .project-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 32px 28px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: #334771;
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
+    }
+
+    /* Centers the 5th card on wide screens */
+    @media (min-width: 769px) {
+      .project-card:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+        max-width: 538px;
+        width: 100%;
+        justify-self: center;
+      }
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .card-icon {
+      font-size: 1.4rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 10px;
+    }
+
+    .card-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--text-main);
+    }
+
+    .card-description {
+      color: var(--text-muted);
+      font-size: 0.96rem;
+      line-height: 1.6;
+      margin-bottom: 22px;
+      min-height: 72px;
+    }
+
+    .file-badge {
+      display: block;
+      width: 100%;
+      background: var(--badge-bg);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 9px;
+      padding: 12px 16px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.88rem;
+      color: var(--badge-text);
+      margin-bottom: 18px;
+    }
+
+    .open-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 14px 20px;
+      background: linear-gradient(90deg, var(--btn-grad-start), var(--btn-grad-end));
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border-radius: 10px;
+      transition: filter 0.2s ease, transform 0.2s ease;
+    }
+
+    .open-btn:hover {
+      filter: brightness(1.12);
+      transform: translateY(-1px);
+    }
+
+    footer {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      padding-top: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      body {
+        padding: 30px 16px;
+      }
+
+      .card-description {
+        min-height: auto;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Header -->
-    <header>
-        <h1>Integrated Portal</h1>
-        <div class="sublinks">
-            <a href="ICFAITECH.html">ICFAITECH</a> |
-            <a href="RBM%20Hospital.html">RBM Hospital</a> |
-            <a href="college.html">College</a> |
-            <a href="Book%20Store.html">Book Store</a> |
-            <a href="FoodCorner.html">Food Corner</a>
+  <main class="container">
+    <div class="projects-grid">
+
+      <!-- 1. ICFAITECH -->
+      <article class="project-card">
+        <div>
+          <div class="card-header">
+            <span class="card-icon">🏛️</span>
+            <h2 class="card-title">ICFAITECH</h2>
+          </div>
+          <p class="card-description">
+            Technology and engineering education portal showcasing departments, programs, research initiatives, and academic innovation.
+          </p>
         </div>
-    </header>
-
-    <!-- Top Navigation Bar -->
-    <nav>
-        <a href="ICFAITECH.html">ICFAITECH</a>
-        <a href="RBM%20Hospital.html">RBM Hospital</a>
-        <a href="college.html">College</a>
-        <a href="Book%20Store.html">Book Store</a>
-        <a href="FoodCorner.html">Food Corner</a>
-    </nav>
-
-    <!-- Main Content with Direct Links -->
-    <div class="main-container">
-
-        <div class="card">
-            <h2><a href="ICFAITECH.html">ICFAITECH &rarr;</a></h2>
-            <p>Welcome to ICFAITECH. Excellence in technology, engineering education, research, and innovation.</p>
-            <ul>
-                <li>Computer Science & Engineering</li>
-                <li>Electronics & Communication</li>
-                <li>Mechanical & Civil Engineering</li>
-            </ul>
-            <a href="ICFAITECH.html" class="open-btn">Open ICFAITECH Page</a>
+        <div>
+          <div class="file-badge">ICFAITECH.html</div>
+          <a href="ICFAITECH.html" class="open-btn">Open Live Project &rarr;</a>
         </div>
+      </article>
 
-        <div class="card">
-            <h2><a href="RBM%20Hospital.html">RBM Hospital &rarr;</a></h2>
-            <p>Providing top-notch healthcare services, emergency care, and advanced medical treatments with experienced professionals.</p>
-            <ul>
-                <li>24/7 Emergency Services</li>
-                <li>ICU & Pharmacy</li>
-                <li>Specialized Consultations</li>
-            </ul>
-            <a href="RBM%20Hospital.html" class="open-btn">Open Hospital Page</a>
+      <!-- 2. RBM Hospital -->
+      <article class="project-card">
+        <div>
+          <div class="card-header">
+            <span class="card-icon">🏥</span>
+            <h2 class="card-title">RBM Hospital</h2>
+          </div>
+          <p class="card-description">
+            Healthcare services portal featuring 24/7 emergency details, ICU facilities, pharmacy services, and doctor consultations.
+          </p>
         </div>
+        <div>
+          <div class="file-badge">RBM Hospital.html</div>
+          <a href="RBM%20Hospital.html" class="open-btn">Open Live Project &rarr;</a>
+        </div>
+      </article>
 
-        <div class="card">
-            <h2><a href="college.html">College Portal &rarr;</a></h2>
-            <p>A hub for higher education, arts, science, commerce, and overall student development.</p>
-            <a href="college.html" class="open-btn">Open College Page</a>
+      <!-- 3. College Portal -->
+      <article class="project-card">
+        <div>
+          <div class="card-header">
+            <span class="card-icon">🎓</span>
+            <h2 class="card-title">College Portal</h2>
+          </div>
+          <p class="card-description">
+            Higher education center for arts, science, and commerce departments along with student resources and campus updates.
+          </p>
         </div>
+        <div>
+          <div class="file-badge">college.html</div>
+          <a href="college.html" class="open-btn">Open Live Project &rarr;</a>
+        </div>
+      </article>
 
-        <div class="card">
-            <h2><a href="Book%20Store.html">Book Store &rarr;</a></h2>
-            <p>Browse, explore, and purchase academic and leisure reading books.</p>
-            <a href="Book%20Store.html" class="open-btn">Open Book Store Page</a>
+      <!-- 4. Book Store -->
+      <article class="project-card">
+        <div>
+          <div class="card-header">
+            <span class="card-icon">📚</span>
+            <h2 class="card-title">Book Store</h2>
+          </div>
+          <p class="card-description">
+            Interactive digital bookstore allowing users to explore curated reading catalogs, reference texts, and literature.
+          </p>
         </div>
+        <div>
+          <div class="file-badge">Book Store.html</div>
+          <a href="Book%20Store.html" class="open-btn">Open Live Project &rarr;</a>
+        </div>
+      </article>
 
-        <div class="card">
-            <h2><a href="FoodCorner.html">Food Corner &rarr;</a></h2>
-            <p>Order food and explore canteen menus and meals.</p>
-            <a href="FoodCorner.html" class="open-btn">Open Food Corner Page</a>
+      <!-- 5. Food Corner -->
+      <article class="project-card">
+        <div>
+          <div class="card-header">
+            <span class="card-icon">🍽️</span>
+            <h2 class="card-title">Food Corner</h2>
+          </div>
+          <p class="card-description">
+            Canteen and restaurant service platform featuring food menus, daily specials, meal deals, and direct ordering.
+          </p>
         </div>
+        <div>
+          <div class="file-badge">FoodCorner.html</div>
+          <a href="FoodCorner.html" class="open-btn">Open Live Project &rarr;</a>
+        </div>
+      </article>
 
     </div>
+  </main>
+
+  <footer>
+    &copy; 2026 Manish Kumar &bull; Hosted with GitHub Pages
+  </footer>
 
 </body>
 </html>
