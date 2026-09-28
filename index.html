@@ -3,67 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Web Projects</title>
+    <title>Integrated Portal</title>
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f6f8;
+            background-color: #f0f4f8;
             color: #333;
+        }
+        header {
+            background-color: #0b4380;
+            color: #ffffff;
+            text-align: center;
+            padding: 30px 20px 20px 20px;
+        }
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        .sublinks a {
+            color: #cfe3ff;
+            text-decoration: none;
+            margin: 0 8px;
+            font-size: 0.95rem;
+        }
+        .sublinks a:hover {
+            text-decoration: underline;
+        }
+        nav {
+            background-color: #083363;
             display: flex;
             justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-        }
-        .container {
-            background: #ffffff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            width: 100%;
-            text-align: center;
-        }
-        h1 {
-            font-size: 1.6rem;
-            margin-bottom: 20px;
-            color: #111;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        li {
-            margin: 10px 0;
-        }
-        a {
-            display: block;
+            flex-wrap: wrap;
             padding: 12px;
-            background: #007bff;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-            transition: background 0.2s ease-in-out;
+            gap: 20px;
         }
-        a:hover {
-            background: #0056b3;
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            padding: 6px 14px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+        nav a:hover {
+            background-color: #0f5bb0;
+        }
+        .main-container {
+            max-width: 1000px;
+            margin: 30px auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        }
+        .card {
+            margin-bottom: 35px;
+            border-bottom: 2px solid #0b4380;
+            padding-bottom: 25px;
+        }
+        .card:last-child {
+            border-bottom: none;
+        }
+        .card h2 a {
+            color: #0b4380;
+            text-decoration: none;
+        }
+        .card h2 a:hover {
+            text-decoration: underline;
+        }
+        .card p {
+            margin: 12px 0;
+            line-height: 1.6;
+        }
+        .card ul {
+            padding-left: 20px;
+            margin: 10px 0 15px 0;
+            line-height: 1.6;
+        }
+        .open-btn {
+            display: inline-block;
+            background-color: #0b4380;
+            color: #ffffff;
+            padding: 8px 18px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-top: 8px;
+            transition: background 0.2s;
+        }
+        .open-btn:hover {
+            background-color: #083363;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>Project Directory</h1>
-    <ul>
-        <li><a href="Book Store.html">Book Store</a></li>
-        <li><a href="FoodCorner.html">Food Corner</a></li>
-        <li><a href="ICFAITECH.html">ICFAITECH</a></li>
-        <li><a href="RBM Hospital.html">RBM Hospital</a></li>
-        <li><a href="college.html">College</a></li>
-    </ul>
-</div>
+    <!-- Header -->
+    <header>
+        <h1>Integrated Portal</h1>
+        <div class="sublinks">
+            <a href="ICFAITECH.html">ICFAITECH</a> |
+            <a href="RBM%20Hospital.html">RBM Hospital</a> |
+            <a href="college.html">College</a> |
+            <a href="Book%20Store.html">Book Store</a> |
+            <a href="FoodCorner.html">Food Corner</a>
+        </div>
+    </header>
+
+    <!-- Top Navigation Bar -->
+    <nav>
+        <a href="ICFAITECH.html">ICFAITECH</a>
+        <a href="RBM%20Hospital.html">RBM Hospital</a>
+        <a href="college.html">College</a>
+        <a href="Book%20Store.html">Book Store</a>
+        <a href="FoodCorner.html">Food Corner</a>
+    </nav>
+
+    <!-- Main Content with Direct Links -->
+    <div class="main-container">
+
+        <div class="card">
+            <h2><a href="ICFAITECH.html">ICFAITECH &rarr;</a></h2>
+            <p>Welcome to ICFAITECH. Excellence in technology, engineering education, research, and innovation.</p>
+            <ul>
+                <li>Computer Science & Engineering</li>
+                <li>Electronics & Communication</li>
+                <li>Mechanical & Civil Engineering</li>
+            </ul>
+            <a href="ICFAITECH.html" class="open-btn">Open ICFAITECH Page</a>
+        </div>
+
+        <div class="card">
+            <h2><a href="RBM%20Hospital.html">RBM Hospital &rarr;</a></h2>
+            <p>Providing top-notch healthcare services, emergency care, and advanced medical treatments with experienced professionals.</p>
+            <ul>
+                <li>24/7 Emergency Services</li>
+                <li>ICU & Pharmacy</li>
+                <li>Specialized Consultations</li>
+            </ul>
+            <a href="RBM%20Hospital.html" class="open-btn">Open Hospital Page</a>
+        </div>
+
+        <div class="card">
+            <h2><a href="college.html">College Portal &rarr;</a></h2>
+            <p>A hub for higher education, arts, science, commerce, and overall student development.</p>
+            <a href="college.html" class="open-btn">Open College Page</a>
+        </div>
+
+        <div class="card">
+            <h2><a href="Book%20Store.html">Book Store &rarr;</a></h2>
+            <p>Browse, explore, and purchase academic and leisure reading books.</p>
+            <a href="Book%20Store.html" class="open-btn">Open Book Store Page</a>
+        </div>
+
+        <div class="card">
+            <h2><a href="FoodCorner.html">Food Corner &rarr;</a></h2>
+            <p>Order food and explore canteen menus and meals.</p>
+            <a href="FoodCorner.html" class="open-btn">Open Food Corner Page</a>
+        </div>
+
+    </div>
 
 </body>
 </html>
